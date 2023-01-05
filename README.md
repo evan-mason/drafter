@@ -6,7 +6,7 @@ version 0.0.2. Init
 Structure.
 
 React with polling https://developer.okta.com/blog/2018/09/25/spring-webflux-websockets-react // possible move to server-sent-events
-Front-End And Backend setup with JSON API
+Front-End And Backend setup with JSON API// perhaps spring boot and spring 5 with https://www.baeldung.com/spring-webflux
 
 Methodology
 
