@@ -8,6 +8,10 @@ Structure.
 React with polling https://developer.okta.com/blog/2018/09/25/spring-webflux-websockets-react // possible move to server-sent-events
 Front-End And Backend setup with JSON API
 
+Methodology
+
+I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
+
 Design
 
 screens USER
