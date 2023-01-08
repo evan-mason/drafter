@@ -3,18 +3,20 @@ package com.kevy.drafter.model;
 import java.util.Set;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "teams")
+@Table(name = "TEAMS")
 public class Team {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String name;
@@ -27,6 +29,11 @@ public class Team {
 	public Team(String name) {
 		
 		this.name = name;
+	}
+	
+	@Override public String toString(){
+		
+		return new String("Player: " + name);
 	}
 
 }
