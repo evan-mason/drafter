@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Player> // This is the same as a List, I could use this too
+<h1>Shop</h1>
+<p>Count :@Model.Count()</p>
+<div class="row">
+    @foreach (var p in Model)
+    {
+        <div class="col-md-3">
+            <div class="border bg-light rounded p-1">
+                <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
+                <h3>@p.Name - @p.Position</h3>
+                <ul>
+                    <li>Points: @p.Points</li>
+                    <li>NBA Team: @p.NBATeam</li>
+                    <li>Team: Free Agent</li>
+                </ul>
+                <button id="draftButton" class="btn btn-success">Draft</button>
+            </div>
+        </div>
+    }
+</div>

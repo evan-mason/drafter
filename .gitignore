@@ -10,6 +10,10 @@
 
 # production
 /build
+/bin
+/wwwroot/lib
+/.vs
+/obj
 
 # misc
 .DS_Store
