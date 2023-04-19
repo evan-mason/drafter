@@ -1,4 +1,5 @@
 ﻿using Drafter.Data;
+using Drafter.Data.Entities;
 using Drafter.Services;
 using Drafter.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -27,21 +28,21 @@ namespace Drafter.Controllers
         }
 
         [HttpGet("contact")]
-        public IActionResult Contact() 
+        public IActionResult Contact()
         {
-            return View(); 
+            return View();
         }
 
         [HttpPost("contact")]
-        public IActionResult Contact (ContactViewModel model)
+        public IActionResult Contact(ContactViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _mailService.SendMessage("kevy@kevy.c", model.Subject, $"from: {model.Name} - {model.Email}, Message : {model.Message}" );
+                _mailService.SendMessage("kevy@kevy.c", model.Subject, $"from: {model.Name} - {model.Email}, Message : {model.Message}");
                 ViewBag.UserMessage = "Mail Sent";
                 ModelState.Clear();
             }
-            
+
             return View();
         }
 
@@ -51,10 +52,51 @@ namespace Drafter.Controllers
             return View();
         }
 
+        [HttpGet("Players")]
         public IActionResult Players()
         {
             var results = _repository.GetAllPlayers();
             return View(results);
+        }
+
+        [HttpPost("Players")]
+        public IActionResult Players(Player model)
+        {
+            int teamId = 2;
+            _repository.DraftPlayer(model.Id, teamId);
+            var results = _repository.GetAllPlayers();
+            return View(results);
+        }
+
+        [HttpGet("MyTeams")]
+        public IActionResult MyTeams()
+        {
+            var results = _repository.GetMyTeams(2);
+            return View(results);
+        }
+
+        [HttpPost("MyTeams")]
+        public IActionResult MyTeams(Player model)
+        {
+            _repository.UndraftPlayer(model.Id);
+            var results = _repository.GetMyTeams(2);
+            return View(results);
+        }
+
+        [HttpGet("Timeline")]
+        public IActionResult Timeline()
+        {
+            var results = _repository.GetTimeline();
+            return View(results);
+        }
+
+
+        //DEBUG METHOD, REMOVE LATER
+        [HttpGet("Create")]
+        public IActionResult CreateKevy()
+        {
+            _repository.CreateKevy();
+            return RedirectToPage("Players");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Drafter.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +18,38 @@ namespace Drafter.Data
             _ctx = ctx;
             _logger = logger;
         }
+        
+        //DEBUG METHOD REMOVE LATER
+        public void CreateKevy()
+        {
+            _ctx.Add<FantasyTeam>(new FantasyTeam()
+            {
+                Name = "albuquerque isotopes",
+                User = new User()
+                {
+                    Name = "kevy"
+                }
+            });
+
+            _ctx.SaveChanges();
+        }
 
         public IEnumerable<Player> GetAllPlayers()
         {
-            _logger.LogInformation("Get all products was called");
+            _logger.LogInformation("Get all players was called");
             return _ctx.Players
-                .OrderBy(p => p.Points)
+                .Include(p => p.FantasyTeam)
+                .OrderByDescending(p => p.Points)
                 .ToList();
+        }
+
+        public IEnumerable<Player> GetAllFreeAgentPlayers()
+        {
+            _logger.LogInformation("Get all free agents was called");
+            return _ctx.Players
+                .OrderByDescending(p => p.Points)
+                .Where(p => p.FantasyTeam.Id == 1)
+                .ToList();  
         }
 
         public IEnumerable<Player> GetPlayerByName(string name)
@@ -37,12 +63,66 @@ namespace Drafter.Data
         {
             return _ctx.Players
                 .Where(p => p.Position == position)
+                .OrderByDescending(p => p.Points)
+                .ToList();
+        }
+
+        public IEnumerable<FantasyTeam> GetMyTeams(int userId)
+        {
+            _logger.LogInformation("Get all products was called");
+            return _ctx.FantasyTeams
+                .Where(u => u.Id == userId)
+                .Include(f => f.Players.OrderByDescending(p => p.Points))
                 .ToList();
         }
 
         public bool SaveAll()
         {
             return _ctx.SaveChanges() > 0;
+        }
+
+        public void DraftPlayer(int id, int teamId)
+        {
+            var player = _ctx.Players
+                .SingleOrDefault(p => p.Id == id);
+
+            var lastPickPlayer = _ctx.Players// this is so we can get the next draft number
+                .OrderByDescending(p => p.DraftPosition)
+                .FirstOrDefault();
+
+            var currentPick = lastPickPlayer == null ? 0 : lastPickPlayer.DraftPosition + 1; // pick is 0 if null, else it's next number
+
+            if (player != null)
+            {
+                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.Id == teamId);
+                player.FantasyTeam = team;
+                player.DraftPosition = currentPick;
+                _ctx.SaveChanges();
+            }
+        }
+
+        public void UndraftPlayer(int id)
+        {
+            var player = _ctx.Players
+                .SingleOrDefault(p => p.Id == id);
+
+            if (player != null)
+            {
+                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.Id == 1);
+                player.FantasyTeam = team;
+                player.DraftPosition = 0;
+                _ctx.SaveChanges();
+            }
+        }
+
+        public IEnumerable<Player> GetTimeline()
+        {
+            _logger.LogInformation("Get timeline was called");
+            return _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .OrderBy(p => p.DraftPosition)
+                .Where(p => p.FantasyTeam.Id != 1) // shouldn't need calling but eh.
+                .ToList();
         }
     }
 }

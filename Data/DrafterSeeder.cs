@@ -27,11 +27,13 @@ namespace Drafter.Data
             {
                 var freeAgentTeam = new FantasyTeam()
                 {
-                    Owner = new User()
+                    Name = "Free Agents",
+                    User = new User()
                     {
                         Name = "Adam Silver"
                     },
                 };
+                _ctx.FantasyTeams.Add(freeAgentTeam);
 
                 var filePath = Path.Combine(_env.ContentRootPath,"Data/players.csv");
                 IEnumerable<Player> players = File.ReadAllLines(filePath)
@@ -42,6 +44,11 @@ namespace Drafter.Data
                 _ctx.Players.AddRange(players);
                 _ctx.SaveChanges();
             }
+        }
+
+        public void Destroy()
+        {
+            _ctx.Database.EnsureDeleted();
         }
     }
 }

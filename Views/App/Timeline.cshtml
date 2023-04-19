@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Player> // This is the same as a List, I could use this too
+<h1>@Model.Count() Players Drafted</h1>
+<div class="container">
+    @foreach (var p in Model)
+    {
+        <div class="col-md-3">
+            <div class="border bg-light rounded p-1">
+                <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
+                <h3>
+                    @p.DraftPosition - @p.Name
+                </h3>
+                <ul>
+                    <li>Team: @p.FantasyTeam.Name</li>
+                    <li>Positions: @p.Position</li>
+                    <li>NBA Team: @p.NBATeam <button id="draftButton" class="btn btn-primary" name="FuckYou" value="@p.Id">Fuck You</button></li>
+                    <li>Rate Pick: # PICK RATER HERE#</li>
+                </ul>
+            </div>
+        </div>
+    }
+</div>

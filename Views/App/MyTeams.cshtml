@@ -1,0 +1,27 @@
+﻿@model IEnumerable<FantasyTeam> // This is the same as a List, I could use this too
+<h1>My Teams: @Model.Count() teams</h1>
+<div class="row">
+    @foreach (var t in Model)
+    {
+        <h4>@t.Name</h4>
+        @foreach (var p in t.Players)
+        {
+                <div class="col-md-2">
+                    <div class="border bg-light rounded p-1">
+                        <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
+                        <h3>
+                            @p.Name - @p.Position
+                            <form method="post">
+                                <button id="removeButton" class="btn btn-danger" name="Id" value="@p.Id">Remove</button>
+                            </form>
+                        </h3>
+                        <ul>
+                            <li>Points: @p.Points</li>
+                            <li>NBA Team: @p.NBATeam</li>
+                            <li>Team: @p.FantasyTeam.Name</li>
+                        </ul>
+                    </div>
+                </div>
+        }
+    }
+</div>

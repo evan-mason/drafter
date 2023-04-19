@@ -27,17 +27,13 @@ namespace Drafter.Data
             optionsBuilder.UseSqlServer(_config["ConnectionStrings:DrafterContextDb"]);
         }
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Order>()
-                .HasData(new Order()
-                {
-                    Id = 1,
-                    OrderDate = DateTime.UtcNow,
-                    OrderNumber = "12345"
-                });
-         }*/
-
+            modelBuilder.Entity<User>()
+                .HasOne(a => a.FantasyTeam)
+                .WithOne(a => a.User)
+                .HasForeignKey<FantasyTeam>(f => f.Id);
+         }
     }
 }

@@ -34,10 +34,17 @@ app.UseEndpoints(cfg =>
         new { controller = "App", action = "Index" });
 });
 
-if (args.Length == 1 && args[0].ToLower() == "/seed")
-{
-    RunSeeding(app);
+if (args.Length == 1){
+    if (args[0].ToLower() == "/seed")
+    {
+        RunSeeding(app);
+    }
+    else if (args[0].ToLower() == "/destroy")
+    {
+        RunDestroy(app);
+    }
 }
+
 else
 {
     app.Run();
@@ -50,5 +57,15 @@ static void RunSeeding(WebApplication app)
     {
         var seeder = scope.ServiceProvider.GetService<DrafterSeeder>();
         seeder.Seed();
+    }
+}
+
+static void RunDestroy(WebApplication app)
+{
+    var scopeFactory = app.Services.GetService<IServiceScopeFactory>();
+    using (var scope = scopeFactory.CreateScope())
+    {
+        var seeder = scope.ServiceProvider.GetService<DrafterSeeder>();
+        seeder.Destroy();
     }
 }

@@ -14,7 +14,10 @@ namespace Drafter.Data.Entities
         public string Position { get; set; }
         public string NBATeam { get; set; }
         public decimal Points { get; set; }
-        public FantasyTeam PickedTeam { get; set; }
+        public FantasyTeam FantasyTeam { get; set; }
+        public DateTime DraftTime { get; set; }
+        public int DraftPosition { get; set; }
+        //public NBATeam NBATeam { get; set } NEED TO IMPLEMENT THIS TO SEE TEAMS AND DEPTH CHARTS
 
         public static Player FromCsv(string csvLine, FantasyTeam freeAgentTeam)
         {
@@ -25,7 +28,7 @@ namespace Drafter.Data.Entities
             player.Position = values[2];
             player.NBATeam = values[4];
             player.Points = Convert.ToDecimal(values[29]);
-            player.PickedTeam = freeAgentTeam;
+            player.FantasyTeam = freeAgentTeam;
             return player;
         }
     }
