@@ -10,11 +10,12 @@ namespace Drafter.Data
         IEnumerable<Player> GetPlayerByPosition(string position);
         IEnumerable<Player> GetPlayerByName(string name);
         IEnumerable<FantasyTeam> GetMyTeams(int userId);
+        IEnumerable<Pick> GetPicks();
+        Pick GetNextPick();
         void DraftPlayer(int id, int teamId);
         void UndraftPlayer(int id);
         bool SaveAll();
         //DEBUG METHOD REMOVE LATER
         void CreateKevy();
-        
     }
 }

@@ -5,8 +5,7 @@ version 0.1.0 C# razorpage edition
 
 Structure.
 
-React with polling https://developer.okta.com/blog/2018/09/25/spring-webflux-websockets-react // possible move to server-sent-events
-Front-End And Backend setup with JSON API// perhaps spring boot and spring 5 with https://www.baeldung.com/spring-webflux
+Move to C# MVC ASP.NET. Hoping to use Angular
 
 Methodology
 
@@ -42,3 +41,10 @@ screen admin page
 -- Upload new players CSV -- THIS WORKS ALREADY, BUT CAN RE-SEED IF I WANT
 -- Add and remove players based on master list ## THIS CAN BE DONE VIA DB IF NEEDED
 -- Export Final Draft
+
+Improvements to make
+Make everything async!!! Very important for these api calls
+drafted players should be it's own table, so if we need to remove and reorder players. We can loop through the picked players from pick time and re assign using loop index.
+
+
+

@@ -90,6 +90,20 @@ namespace Drafter.Controllers
             return View(results);
         }
 
+        [HttpGet("Picks")]
+        public IActionResult Picks()
+        {
+            var results = _repository.GetPicks();
+            return View(results);
+        }
+
+        [HttpGet("NextPick")]
+        public IActionResult NextPick()
+        {
+            var results = _repository.GetNextPick();
+            return View(results);
+        }
+
 
         //DEBUG METHOD, REMOVE LATER
         [HttpGet("Create")]

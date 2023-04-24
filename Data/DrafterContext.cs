@@ -20,6 +20,9 @@ namespace Drafter.Data
         public DbSet<FantasyTeam> FantasyTeams { get; set; }
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Draft> Drafts { get; set; }
+        public DbSet<Pick> Picks { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

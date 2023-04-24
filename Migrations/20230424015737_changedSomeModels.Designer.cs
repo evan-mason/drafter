@@ -4,6 +4,7 @@ using Drafter.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Drafter.Migrations
 {
     [DbContext(typeof(DrafterContext))]
-    partial class DrafterContextModelSnapshot : ModelSnapshot
+    [Migration("20230424015737_changedSomeModels")]
+    partial class changedSomeModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,79 +25,18 @@ namespace Drafter.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Drafter.Data.Entities.Draft", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DraftType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rounds")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Drafts");
-                });
-
             modelBuilder.Entity("Drafter.Data.Entities.FantasyTeam", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DraftId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DraftId");
-
                     b.ToTable("FantasyTeams");
-                });
-
-            modelBuilder.Entity("Drafter.Data.Entities.Pick", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("DraftId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FantasyTeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PickNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("PickTakenTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DraftId");
-
-                    b.HasIndex("FantasyTeamId");
-
-                    b.ToTable("Picks");
                 });
 
             modelBuilder.Entity("Drafter.Data.Entities.Player", b =>
@@ -227,10 +169,6 @@ namespace Drafter.Migrations
 
             modelBuilder.Entity("Drafter.Data.Entities.FantasyTeam", b =>
                 {
-                    b.HasOne("Drafter.Data.Entities.Draft", null)
-                        .WithMany("Teams")
-                        .HasForeignKey("DraftId");
-
                     b.HasOne("Drafter.Data.Entities.User", "User")
                         .WithOne("FantasyTeam")
                         .HasForeignKey("Drafter.Data.Entities.FantasyTeam", "Id")
@@ -238,21 +176,6 @@ namespace Drafter.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Drafter.Data.Entities.Pick", b =>
-                {
-                    b.HasOne("Drafter.Data.Entities.Draft", null)
-                        .WithMany("Picks")
-                        .HasForeignKey("DraftId");
-
-                    b.HasOne("Drafter.Data.Entities.FantasyTeam", "FantasyTeam")
-                        .WithMany()
-                        .HasForeignKey("FantasyTeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("FantasyTeam");
                 });
 
             modelBuilder.Entity("Drafter.Data.Entities.Player", b =>
@@ -264,13 +187,6 @@ namespace Drafter.Migrations
                         .IsRequired();
 
                     b.Navigation("FantasyTeam");
-                });
-
-            modelBuilder.Entity("Drafter.Data.Entities.Draft", b =>
-                {
-                    b.Navigation("Picks");
-
-                    b.Navigation("Teams");
                 });
 
             modelBuilder.Entity("Drafter.Data.Entities.FantasyTeam", b =>

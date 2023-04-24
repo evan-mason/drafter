@@ -9,11 +9,36 @@ namespace Drafter.Data.Entities
     public class Player
     {
         public int Id { get; set; }
-        public int Rank { get; set; }
+        public int Rank { get; set; } // THIS COULD POSSIBLY BE REMOVED, ALTHOUGH I WOULD LOVE A POINTS/TOTALPOINTS/ADP RANK
         public string Name { get; set; }
+        //I RECKON THE BELOW IS A LIST OF POSITIONS, OR MAYBE POSITION IS A TYPE WITH FALSE/TRUE POSITION BOOLEANS? RIGHT NOW WE WILL JUST USE STATIC STRINGS
         public string Position { get; set; }
+        public int Age { get; set; }
+        public int GamesPL { get; set; }
+        public int GamesStarted { get; set; }
+        public double Minutes { get; set; }
+        public double FGM { get; set; }
+        public double FGA { get; set; }
+        public double FGP { get; set; }
+        public double ThreePM { get; set; }
+        public double ThreePA { get; set; }
+        public double ThreePP { get; set; }
+        public double TwoPM { get; set; }
+        public double TwoPA { get; set; }
+        public double TwoPP { get; set; }
+        public double FreeThrowPG { get; set; }
+        public double FreeThrowPA { get; set; }
+        public double FreeThrowPP { get; set; }
+        public double ORB { get; set; }
+        public double DRB { get; set; }
+        public double TRB { get; set; }
+        public double AST { get; set; }
+        public double STL { get; set; }
+        public double BLK { get; set; }
+        public double TOV { get; set; }
+
         public string NBATeam { get; set; }
-        public decimal Points { get; set; }
+        public double Points { get; set; }
         public FantasyTeam FantasyTeam { get; set; }
         public DateTime DraftTime { get; set; }
         public int DraftPosition { get; set; }
@@ -26,8 +51,32 @@ namespace Drafter.Data.Entities
             player.Rank = Convert.ToInt16(values[0]);
             player.Name = values[1];
             player.Position = values[2];
+            player.Age = Convert.ToInt16(values[3]);
             player.NBATeam = values[4];
-            player.Points = Convert.ToDecimal(values[29]);
+            player.GamesPL = Convert.ToInt16(values[5]);
+            player.GamesStarted = Convert.ToInt16(values[6]);
+            player.Minutes = Convert.ToDouble(values[7]);
+            player.FGM = Convert.ToDouble(values[8]);
+            player.FGA = Convert.ToDouble(values[9]);
+            player.FGP = Convert.ToDouble(values[10]);
+            player.ThreePM = Convert.ToDouble(values[11]);
+            player.ThreePA = Convert.ToDouble(values[12]);
+            player.ThreePP = Convert.ToDouble(values[13]);
+            player.TwoPM = Convert.ToDouble(values[14]);
+            player.TwoPA = Convert.ToDouble(values[15]);
+            player.TwoPP = Convert.ToDouble(values[16]);
+            player.FreeThrowPG = Convert.ToDouble(values[17]);
+            player.FreeThrowPA = Convert.ToDouble(values[18]);
+            player.FreeThrowPP = Convert.ToDouble(values[19]);
+            player.ORB = Convert.ToDouble(values[20]);
+            player.DRB = Convert.ToDouble(values[21]);
+            player.TRB = Convert.ToDouble(values[22]);
+            player.AST = Convert.ToDouble(values[23]);
+            player.STL = Convert.ToDouble(values[24]);
+            player.BLK = Convert.ToDouble(values[25]);
+            player.TOV = Convert.ToDouble(values[26]);
+            player.BLK = Convert.ToDouble(values[27]);
+            player.Points = Convert.ToDouble(values[29]);
             player.FantasyTeam = freeAgentTeam;
             return player;
         }
