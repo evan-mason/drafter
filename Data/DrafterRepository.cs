@@ -1,4 +1,5 @@
 ﻿using Drafter.Data.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,22 +13,24 @@ namespace Drafter.Data
     {
         private readonly DrafterContext _ctx;
         private readonly ILogger<DrafterRepository> _logger;
+        private readonly UserManager<DrafterUser> _userManager;
 
-        public DrafterRepository(DrafterContext ctx, ILogger<DrafterRepository> logger)
+        public DrafterRepository(DrafterContext ctx, ILogger<DrafterRepository> logger, UserManager<DrafterUser> userManager)
         {
             _ctx = ctx;
             _logger = logger;
+            _userManager = userManager;
         }
         
-        //DEBUG METHOD REMOVE LATER
+        //DEBUG METHOD REMOVE LATER, ALSO IS NOT WORKING
         public void CreateKevy()
         {
             _ctx.Add<FantasyTeam>(new FantasyTeam()
             {
                 Name = "albuquerque isotopes",
-                User = new User()
+                DrafterUser = new DrafterUser()
                 {
-                    Name = "kevy"
+                    UserName = "kevy"
                 }
             });
 
@@ -43,12 +46,15 @@ namespace Drafter.Data
                 .ToList();
         }
 
-        public IEnumerable<Player> GetAllFreeAgentPlayers()
+        public async Task<IEnumerable<Player>> GetAllFreeAgentPlayers()
         {
             _logger.LogInformation("Get all free agents was called");
+
+            DrafterUser FreeAgentUser = await _userManager.FindByNameAsync("AdamSilver23");
+
             return _ctx.Players
                 .OrderByDescending(p => p.Points)
-                .Where(p => p.FantasyTeam.Id == 1)
+                .Where(p => p.FantasyTeam.DrafterUser == FreeAgentUser)
                 .ToList();  
         }
 
@@ -67,11 +73,14 @@ namespace Drafter.Data
                 .ToList();
         }
 
-        public IEnumerable<FantasyTeam> GetMyTeams(int userId)
+        public async Task<IEnumerable<FantasyTeam>> GetMyTeams(string userName) // THIS ISN'T WORKING AS IT'S NOT BEING USED
         {
             _logger.LogInformation("Get all products was called");
+
+            DrafterUser MyUser = await _userManager.FindByNameAsync(userName);
+
             return _ctx.FantasyTeams
-                .Where(u => u.Id == userId)
+                .Where(u => u.DrafterUser == MyUser)
                 .Include(f => f.Players.OrderByDescending(p => p.Points))
                 .ToList();
         }
@@ -81,7 +90,7 @@ namespace Drafter.Data
             return _ctx.SaveChanges() > 0;
         }
 
-        public void DraftPlayer(int id, int teamId)
+        public async Task DraftPlayer(int id, int teamId)
         {
             var player = _ctx.Players
                 .SingleOrDefault(p => p.Id == id);
@@ -92,36 +101,43 @@ namespace Drafter.Data
 
             var currentPick = lastPickPlayer == null ? 0 : lastPickPlayer.DraftPosition + 1; // pick is 0 if null, else it's next number
 
+            DrafterUser adminUser = await _userManager.FindByNameAsync("Admin");
+
             if (player != null)
             {
-                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.Id == teamId);
+                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.DrafterUser == adminUser);
                 player.FantasyTeam = team;
                 player.DraftPosition = currentPick;
                 _ctx.SaveChanges();
             }
         }
 
-        public void UndraftPlayer(int id)
+        public async Task UndraftPlayer(int id)
         {
             var player = _ctx.Players
                 .SingleOrDefault(p => p.Id == id);
 
+            DrafterUser FreeAgentUser = await _userManager.FindByNameAsync("AdamSilver23");
+
             if (player != null)
             {
-                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.Id == 1);
+                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.DrafterUser == FreeAgentUser);
                 player.FantasyTeam = team;
                 player.DraftPosition = 0;
                 _ctx.SaveChanges();
             }
         }
 
-        public IEnumerable<Player> GetTimeline()
+        public async Task<IEnumerable<Player>> GetTimeline()
         {
             _logger.LogInformation("Get timeline was called");
+
+            DrafterUser FreeAgentUser = await _userManager.FindByNameAsync("AdamSilver23");
+
             return _ctx.Players
                 .Include(p => p.FantasyTeam)
                 .OrderBy(p => p.DraftPosition)
-                .Where(p => p.FantasyTeam.Id != 1) // shouldn't need calling but eh.
+                .Where(p => p.FantasyTeam.DrafterUser != FreeAgentUser) // shouldn't need calling but eh.
                 .ToList();
         }
 

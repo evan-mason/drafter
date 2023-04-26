@@ -2,6 +2,7 @@
 using Drafter.Data.Entities;
 using Drafter.Services;
 using Drafter.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,7 @@ namespace Drafter.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet("Players")]
         public IActionResult Players()
         {
@@ -59,6 +61,7 @@ namespace Drafter.Controllers
             return View(results);
         }
 
+        [Authorize]
         [HttpPost("Players")]
         public IActionResult Players(Player model)
         {
@@ -67,19 +70,20 @@ namespace Drafter.Controllers
             var results = _repository.GetAllPlayers();
             return View(results);
         }
-
+        [Authorize]
         [HttpGet("MyTeams")]
         public IActionResult MyTeams()
         {
-            var results = _repository.GetMyTeams(2);
+            var query = _repository.GetMyTeams(this.User.Identity.Name);// THIS SHOULD BE THE USERS ID STRING
+            var results = query.Result;
             return View(results);
         }
-
+        [Authorize]
         [HttpPost("MyTeams")]
         public IActionResult MyTeams(Player model)
         {
             _repository.UndraftPlayer(model.Id);
-            var results = _repository.GetMyTeams(2);
+            var results = _repository.GetMyTeams("2");// THIS SHOULD BE THE USERS ID STRING
             return View(results);
         }
 

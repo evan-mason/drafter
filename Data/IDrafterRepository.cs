@@ -5,15 +5,15 @@ namespace Drafter.Data
     public interface IDrafterRepository
     {
         IEnumerable<Player> GetAllPlayers();
-        IEnumerable<Player> GetAllFreeAgentPlayers();
-        IEnumerable<Player> GetTimeline();
+        Task<IEnumerable<Player>> GetAllFreeAgentPlayers();
+        Task<IEnumerable<Player>> GetTimeline();
         IEnumerable<Player> GetPlayerByPosition(string position);
         IEnumerable<Player> GetPlayerByName(string name);
-        IEnumerable<FantasyTeam> GetMyTeams(int userId);
+        Task<IEnumerable<FantasyTeam>> GetMyTeams(string userId);
         IEnumerable<Pick> GetPicks();
         Pick GetNextPick();
-        void DraftPlayer(int id, int teamId);
-        void UndraftPlayer(int id);
+        Task DraftPlayer(int id, int teamId);
+        Task UndraftPlayer(int id);
         bool SaveAll();
         //DEBUG METHOD REMOVE LATER
         void CreateKevy();

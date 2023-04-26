@@ -11,8 +11,9 @@ namespace Drafter.Data.Entities
   {
     public int Id { get; set; }
     public string Name { get; set; }
-    public User User { get; set; }
-    [ForeignKey("FantasyTeamFK")]
+    public DrafterUser? DrafterUser { get; set; }
+    public string? DrafterUserId { get; set; }
+    [ForeignKey("DrafterUserId")]
     public ICollection<Player> Players { get; set; }
   }
 }

@@ -1,4 +1,5 @@
 ﻿using Drafter.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Drafter.Data
 {
-    public class DrafterContext: DbContext
+    public class DrafterContext: IdentityDbContext<DrafterUser>
     {
         private readonly IConfiguration _config;
 
@@ -18,7 +19,7 @@ namespace Drafter.Data
         }
         public DbSet<Player> Players { get; set; }
         public DbSet<FantasyTeam> FantasyTeams { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<DrafterUser> Users { get; set; }
 
         public DbSet<Draft> Drafts { get; set; }
         public DbSet<Pick> Picks { get; set; }
@@ -33,10 +34,11 @@ namespace Drafter.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<User>()
+            modelBuilder.Entity<DrafterUser>()
                 .HasOne(a => a.FantasyTeam)
-                .WithOne(a => a.User)
-                .HasForeignKey<FantasyTeam>(f => f.Id);
+                .WithOne(a => a.DrafterUser)
+                .HasForeignKey<FantasyTeam>(f => f.DrafterUserId)
+                .IsRequired(false);
          }
     }
 }
