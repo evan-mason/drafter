@@ -12,7 +12,7 @@ namespace Drafter.Data
         Task<IEnumerable<FantasyTeam>> GetMyTeams(string userId);
         IEnumerable<Pick> GetPicks();
         Pick GetNextPick();
-        Task DraftPlayer(int id, int teamId);
+        Task DraftPlayer(int id, string Name);
         Task UndraftPlayer(int id);
         bool SaveAll();
         //DEBUG METHOD REMOVE LATER

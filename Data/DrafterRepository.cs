@@ -90,7 +90,7 @@ namespace Drafter.Data
             return _ctx.SaveChanges() > 0;
         }
 
-        public async Task DraftPlayer(int id, int teamId)
+        public async Task DraftPlayer(int id, string userName)
         {
             var player = _ctx.Players
                 .SingleOrDefault(p => p.Id == id);
@@ -101,7 +101,7 @@ namespace Drafter.Data
 
             var currentPick = lastPickPlayer == null ? 0 : lastPickPlayer.DraftPosition + 1; // pick is 0 if null, else it's next number
 
-            DrafterUser adminUser = await _userManager.FindByNameAsync("Admin");
+            DrafterUser adminUser = await _userManager.FindByNameAsync(userName);
 
             if (player != null)
             {

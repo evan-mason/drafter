@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Drafter.Controllers
 {
@@ -65,8 +66,7 @@ namespace Drafter.Controllers
         [HttpPost("Players")]
         public IActionResult Players(Player model)
         {
-            int teamId = 2;
-            _repository.DraftPlayer(model.Id, teamId);
+            _repository.DraftPlayer(model.Id, this.User.Identity.Name).Wait(); // WAIT FIXES ISSUES WITH THREADSAFE ISSUES. https://stackoverflow.com/questions/48767910/entity-framework-core-a-second-operation-started-on-this-context-before-a-previ
             var results = _repository.GetAllPlayers();
             return View(results);
         }
@@ -74,7 +74,7 @@ namespace Drafter.Controllers
         [HttpGet("MyTeams")]
         public IActionResult MyTeams()
         {
-            var query = _repository.GetMyTeams(this.User.Identity.Name);// THIS SHOULD BE THE USERS ID STRING
+            var query = _repository.GetMyTeams(this.User.Identity.Name);
             var results = query.Result;
             return View(results);
         }
@@ -83,14 +83,15 @@ namespace Drafter.Controllers
         public IActionResult MyTeams(Player model)
         {
             _repository.UndraftPlayer(model.Id);
-            var results = _repository.GetMyTeams("2");// THIS SHOULD BE THE USERS ID STRING
+            var results = _repository.GetMyTeams(this.User.Identity.Name);
             return View(results);
         }
 
         [HttpGet("Timeline")]
         public IActionResult Timeline()
         {
-            var results = _repository.GetTimeline();
+            var query = _repository.GetTimeline();
+            var results = query.Result;
             return View(results);
         }
 
