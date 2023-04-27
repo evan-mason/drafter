@@ -43,8 +43,10 @@ screen admin page
 -- Export Final Draft
 
 Improvements to make
-Make everything async!!! Very important for these api calls
-drafted players should be it's own table, so if we need to remove and reorder players. We can loop through the picked players from pick time and re assign using loop index.
+- extract methods from API's to own apis and create services to handle object creation/manipulation. Controllers are doing too much.
+- Make everything async!!! Very important for these api calls. Remove wait synchronous calls that I had to add.
+- drafted players should be it's own table, so if we need to remove and reorder players. We can loop through the picked players from pick time and re assign using loop index.
+- change login url and controller routes
 
 
 

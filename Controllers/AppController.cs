@@ -82,8 +82,9 @@ namespace Drafter.Controllers
         [HttpPost("MyTeams")]
         public IActionResult MyTeams(Player model)
         {
-            _repository.UndraftPlayer(model.Id);
-            var results = _repository.GetMyTeams(this.User.Identity.Name);
+            _repository.UndraftPlayer(model.Id).Wait();
+            var query = _repository.GetMyTeams(this.User.Identity.Name);
+            var results = query.Result;
             return View(results);
         }
 

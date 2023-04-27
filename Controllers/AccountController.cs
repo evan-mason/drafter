@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +64,40 @@ namespace Drafter.Controllers
 
             return View();
         }
-        
+
+        public IActionResult Register()
+        {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("MyTeams", "App"); // Will look for MyTeams action in App controller and go there
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                DrafterUser newUser = new DrafterUser()
+                {
+                    Email = model.Email,
+                    UserName = model.Username
+                };
+                
+                var result = await _userManager.CreateAsync(newUser, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Players", "App");
+                }
+            }
+            ModelState.AddModelError("", "Failed to register");
+
+            return View();
+        }
+
         [HttpGet]
         public async Task<IActionResult> Logout()
         {

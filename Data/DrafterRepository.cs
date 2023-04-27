@@ -126,6 +126,19 @@ namespace Drafter.Data
                 player.DraftPosition = 0;
                 _ctx.SaveChanges();
             }
+
+            //Drafted re-order / fix
+
+            List<Player> draftedPlayers = _ctx.Players
+                .OrderByDescending(p => p.DraftPosition)
+                .Where(p => p.FantasyTeam.DrafterUser != FreeAgentUser)
+                .ToList();
+
+            for (int i = 0; i < draftedPlayers.Count; i++)
+            {
+                draftedPlayers[i].DraftPosition = i+1;
+            }
+            _ctx.SaveChanges();
         }
 
         public async Task<IEnumerable<Player>> GetTimeline()
