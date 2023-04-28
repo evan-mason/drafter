@@ -116,7 +116,7 @@ namespace Drafter.Controllers
 
         [Authorize]
         [HttpPost("CreateTeam")]
-        public IActionResult CreateTeam([FromBody] FantasyTeamViewModel model)
+        public IActionResult CreateTeam(FantasyTeamViewModel model)
         {
             try
             {

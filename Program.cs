@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +37,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddTransient<IMailService, NullMailService>();
 builder.Services.AddDbContext<DrafterContext>();
 builder.Services.AddTransient<DrafterSeeder>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IDrafterRepository, DrafterRepository>();
 
 var app = builder.Build();
