@@ -1,5 +1,4 @@
-﻿using AspNetCore;
-using AutoMapper;
+﻿using AutoMapper;
 using Drafter.Data;
 using Drafter.Data.Entities;
 using Drafter.Services;
