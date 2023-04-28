@@ -1,8 +1,11 @@
-﻿using Drafter.Data;
+﻿using AspNetCore;
+using AutoMapper;
+using Drafter.Data;
 using Drafter.Data.Entities;
 using Drafter.Services;
 using Drafter.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,11 +20,13 @@ namespace Drafter.Controllers
     {
         private readonly IMailService _mailService;
         private readonly IDrafterRepository _repository;
+        private readonly IMapper _mapper;
 
-        public AppController(IMailService mailService, IDrafterRepository repository)
+        public AppController(IMailService mailService, IDrafterRepository repository, IMapper mapper)
         {
             _mailService = mailService;
             _repository = repository;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -110,13 +115,40 @@ namespace Drafter.Controllers
             return View(results);
         }
 
-
-        //DEBUG METHOD, REMOVE LATER
-        [HttpGet("Create")]
-        public IActionResult CreateKevy()
+        [Authorize]
+        [HttpPost("CreateTeam")]
+        public IActionResult CreateTeam([FromBody] FantasyTeamViewModel model)
         {
-            _repository.CreateKevy();
-            return RedirectToPage("Players");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var newTeam = _mapper.Map<FantasyTeamViewModel, FantasyTeam>(model);
+                    var username = this.User.Identity.Name;
+
+                    _repository.CreateFantasyTeam(newTeam, username);
+                    if (_repository.SaveAll())
+                    {
+                        return RedirectToAction("MyTeams", "App"); // THIS SHOULD PROVIDE CREATED FOR API, BUT I WANT TO GO HERE
+                    }
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Failed create new team: {ex}");
+            }
+            return BadRequest("Failed to save new team");
+        }
+
+        [Authorize]
+        [HttpGet("CreateTeam")]
+        public IActionResult CreateTeam()
+        {
+            return View();
         }
     }
 }

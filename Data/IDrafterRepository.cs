@@ -1,4 +1,5 @@
 ﻿using Drafter.Data.Entities;
+using Drafter.ViewModels;
 
 namespace Drafter.Data
 {
@@ -15,7 +16,6 @@ namespace Drafter.Data
         Task DraftPlayer(int id, string Name);
         Task UndraftPlayer(int id);
         bool SaveAll();
-        //DEBUG METHOD REMOVE LATER
-        void CreateKevy();
+        Task CreateFantasyTeam(FantasyTeam? model, string? username);
     }
 }

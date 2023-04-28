@@ -21,21 +21,6 @@ namespace Drafter.Data
             _logger = logger;
             _userManager = userManager;
         }
-        
-        //DEBUG METHOD REMOVE LATER, ALSO IS NOT WORKING
-        public void CreateKevy()
-        {
-            _ctx.Add<FantasyTeam>(new FantasyTeam()
-            {
-                Name = "albuquerque isotopes",
-                DrafterUser = new DrafterUser()
-                {
-                    UserName = "kevy"
-                }
-            });
-
-            _ctx.SaveChanges();
-        }
 
         public IEnumerable<Player> GetAllPlayers()
         {
@@ -85,7 +70,7 @@ namespace Drafter.Data
                 .ToList();
         }
 
-        public bool SaveAll()
+        public bool SaveAll() // CHECKS FOR SUCCESS.
         {
             return _ctx.SaveChanges() > 0;
         }
@@ -174,6 +159,18 @@ namespace Drafter.Data
                 return NextPick;
             }
             else return new Pick { PickNumber = 9999 };
+        }
+
+        public async Task CreateFantasyTeam(FantasyTeam? fantasyTeam, string? username)
+        {
+            if (fantasyTeam != null && username != null)
+            {
+                DrafterUser creator = await _userManager.FindByNameAsync(username);
+
+                fantasyTeam.DrafterUser = creator;
+                await _ctx.FantasyTeams.AddAsync(fantasyTeam);
+                await _ctx.SaveChangesAsync();
+            }
         }
     }
 }
