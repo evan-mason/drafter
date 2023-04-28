@@ -168,9 +168,50 @@ namespace Drafter.Data
                 DrafterUser creator = await _userManager.FindByNameAsync(username);
 
                 fantasyTeam.DrafterUser = creator;
-                await _ctx.FantasyTeams.AddAsync(fantasyTeam);
-                await _ctx.SaveChangesAsync();
+                await _ctx.FantasyTeams.AddAsync(fantasyTeam);  
+                //BELOW SHOULD BE REMOVED WHEN WE PICK THE DRAFT WE WANT TO JOIN
+                Draft defaultDraft = _ctx.Drafts
+                    .Include(d => d.Teams)
+                    .FirstOrDefault();
+                defaultDraft.Teams.Add(fantasyTeam);
             }
+        }
+
+        public Draft GetDraftSettings()
+        {
+            return _ctx.Drafts
+                .Include(d => d.Teams)
+                .ThenInclude(t => t.DrafterUser)
+                .FirstOrDefault();
+        }
+
+        public void CreateDraft(string username)
+        {
+
+        }
+
+        public void generateDraft()
+        {
+            Draft defaultDraft = _ctx.Drafts
+                .Include(d => d.Teams)
+                .FirstOrDefault();
+
+            defaultDraft.Picks = new List<Pick>();
+            int rounds = defaultDraft.Rounds;
+            int pickNumber = 0;
+            for (int i = 0; i < rounds; i++)
+            {
+                foreach (FantasyTeam team in defaultDraft.Teams)
+                {
+                    pickNumber++;
+                    defaultDraft.Picks.Add(new Pick
+                    {
+                        PickNumber = pickNumber,
+                        FantasyTeam = team
+                    });
+                }
+            }
+            _ctx.SaveChanges();
         }
     }
 }

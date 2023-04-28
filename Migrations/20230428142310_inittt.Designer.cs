@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Drafter.Migrations
 {
     [DbContext(typeof(DrafterContext))]
-    [Migration("20230426120729_INIT")]
-    partial class INIT
+    [Migration("20230428142310_inittt")]
+    partial class inittt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace Drafter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AdminId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -47,7 +50,12 @@ namespace Drafter.Migrations
                     b.Property<int>("Rounds")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AdminId");
 
                     b.ToTable("Drafts");
                 });
@@ -129,7 +137,6 @@ namespace Drafter.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("DrafterUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
@@ -141,7 +148,8 @@ namespace Drafter.Migrations
                     b.HasIndex("DraftId");
 
                     b.HasIndex("DrafterUserId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[DrafterUserId] IS NOT NULL");
 
                     b.ToTable("FantasyTeams");
                 });
@@ -419,6 +427,15 @@ namespace Drafter.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Drafter.Data.Entities.Draft", b =>
+                {
+                    b.HasOne("Drafter.Data.Entities.DrafterUser", "Admin")
+                        .WithMany()
+                        .HasForeignKey("AdminId");
+
+                    b.Navigation("Admin");
+                });
+
             modelBuilder.Entity("Drafter.Data.Entities.FantasyTeam", b =>
                 {
                     b.HasOne("Drafter.Data.Entities.Draft", null)
@@ -427,9 +444,7 @@ namespace Drafter.Migrations
 
                     b.HasOne("Drafter.Data.Entities.DrafterUser", "DrafterUser")
                         .WithOne("FantasyTeam")
-                        .HasForeignKey("Drafter.Data.Entities.FantasyTeam", "DrafterUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Drafter.Data.Entities.FantasyTeam", "DrafterUserId");
 
                     b.Navigation("DrafterUser");
                 });

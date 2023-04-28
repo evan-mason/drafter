@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Drafter.Migrations
 {
     /// <inheritdoc />
-    public partial class INIT : Migration
+    public partial class inittt : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,22 +48,6 @@ namespace Drafter.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Drafts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DraftType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rounds = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Drafts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,13 +157,36 @@ namespace Drafter.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Drafts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdminId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DraftType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rounds = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Drafts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Drafts_AspNetUsers_AdminId",
+                        column: x => x.AdminId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FantasyTeams",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DrafterUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DrafterUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     DraftId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -189,8 +196,7 @@ namespace Drafter.Migrations
                         name: "FK_FantasyTeams_AspNetUsers_DrafterUserId",
                         column: x => x.DrafterUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_FantasyTeams_Drafts_DraftId",
                         column: x => x.DraftId,
@@ -314,10 +320,16 @@ namespace Drafter.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Drafts_AdminId",
+                table: "Drafts",
+                column: "AdminId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FantasyTeams_DrafterUserId",
                 table: "FantasyTeams",
                 column: "DrafterUserId",
-                unique: true);
+                unique: true,
+                filter: "[DrafterUserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FantasyTeams_DraftId",
@@ -371,10 +383,10 @@ namespace Drafter.Migrations
                 name: "FantasyTeams");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Drafts");
 
             migrationBuilder.DropTable(
-                name: "Drafts");
+                name: "AspNetUsers");
         }
     }
 }

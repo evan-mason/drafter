@@ -125,7 +125,7 @@ namespace Drafter.Controllers
                     var newTeam = _mapper.Map<FantasyTeamViewModel, FantasyTeam>(model);
                     var username = this.User.Identity.Name;
 
-                    _repository.CreateFantasyTeam(newTeam, username);
+                    _repository.CreateFantasyTeam(newTeam, username).Wait(); // I WANT TO REMOVE THIS SO BAD
                     if (_repository.SaveAll())
                     {
                         return RedirectToAction("MyTeams", "App"); // THIS SHOULD PROVIDE CREATED FOR API, BUT I WANT TO GO HERE
@@ -148,6 +148,22 @@ namespace Drafter.Controllers
         public IActionResult CreateTeam()
         {
             return View();
+        }
+
+        [Authorize]
+        [HttpGet("DraftSettings")]
+        public IActionResult DraftSettings()
+        {
+            var results = _repository.GetDraftSettings();
+            return View(results);
+        }
+
+        [Authorize]
+        [HttpPost("DraftSettings")]
+        public IActionResult GenerateDraft()
+        {
+            _repository.generateDraft();
+            return RedirectToAction("Picks", "App");
         }
     }
 }

@@ -47,6 +47,7 @@ Improvements to make
 - Make everything async!!! Very important for these api calls. Remove wait synchronous calls that I had to add.
 - drafted players should be it's own table, so if we need to remove and reorder players. We can loop through the picked players from pick time and re assign using loop index.
 - change login url and controller routes
-
+- have more than one draft
+- have more than one team per user
 
 

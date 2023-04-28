@@ -1,0 +1,33 @@
+﻿@model Draft // This is the same as a List, I could use this too
+<h1>Draft Settings</h1>
+<div class="row">
+    <div class="offset-md-4 col-md-4 ">
+        <div class="border bg-light rounded p-1">
+            <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
+            <h3>Draft Name = @Model.Name </h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="offset-md-4 col-md-4">
+        <div class="border bg-light rounded p-1">
+            <h4>Admin: @Model.Admin</h4>
+            <h4>Draft Type: @Model.DraftType</h4>
+            <h4>Date Created: @Model.DateCreated</h4>
+            <h4>Start Time: @Model.StartTime</h4>
+            <h4>Rounds: @Model.Rounds</h4>
+            <h2>Teams: @Model.Teams.Count</h2>
+            <ol>
+                @foreach (var t in Model.Teams)
+                {
+                    <li>@t.DrafterUser.UserName's @t.Name's </li>
+                }
+            </ol>
+            <form method="post">
+                <div class="form-group">
+                    <input type="submit" value="Ready! Generate Picks!" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

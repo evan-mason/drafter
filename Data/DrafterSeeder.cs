@@ -61,27 +61,13 @@ namespace Drafter.Data
                 var testDraft = new Draft() // THIS SHOULD BE A NEW DRAFT FUNCTION
                 {
                     Name = "Test Draft",
+                    Admin = user2forteam,
                     DateCreated = DateTime.Now,
+                    StartTime = DateTime.Now.AddMinutes(30),
                     DraftType = draftType,
                     Rounds = rounds,
                     Teams = teams
                 };
-
-                // GENERATE PICKS FUNCTION
-                testDraft.Picks = new List<Pick>();
-                int pickNumber = 0;
-                for (int i = 0; i < rounds; i++)
-                {
-                    foreach (FantasyTeam team in teams)
-                    {
-                        pickNumber++;
-                        testDraft.Picks.Add( new Pick
-                        {
-                            PickNumber = pickNumber,
-                            FantasyTeam = team
-                        });
-                    }
-                }
                 // INITIALISED PICKS ABOVE
                 _ctx.Drafts.Add(testDraft);
 

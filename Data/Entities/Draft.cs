@@ -11,7 +11,9 @@ namespace Drafter.Data.Entities
         public int Id { get; set; }
 
         public string Name { get; set; }
+        public DrafterUser Admin { get; set; }
         public DateTime DateCreated { get; set; }
+        public DateTime StartTime { get; set; }
 
         public string DraftType { get; set; }
         public int Rounds { get; set; } // THIS ALSO IS NUMBER OF PLAYERS TECHNICALLY
