@@ -185,12 +185,17 @@ namespace Drafter.Data
                 .FirstOrDefault();
         }
 
-        public void CreateDraft(string username)
+        public async Task CreateDraft(Draft draft, string username)
         {
-
+            DrafterUser creator = await _userManager.FindByNameAsync(username);
+            Draft newDraft = draft;
+            newDraft.Admin = creator;
+            newDraft.DateCreated = DateTime.UtcNow;
+            newDraft.StartTime = DateTime.UtcNow.AddMinutes(20);
+            await _ctx.Drafts.AddAsync(newDraft);
         }
 
-        public void generateDraft()
+        public void GenerateDraft()
         {
             Draft defaultDraft = _ctx.Drafts
                 .Include(d => d.Teams)

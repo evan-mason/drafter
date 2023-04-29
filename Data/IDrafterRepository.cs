@@ -18,6 +18,7 @@ namespace Drafter.Data
         bool SaveAll();
         Task CreateFantasyTeam(FantasyTeam? model, string? username);
         Draft GetDraftSettings();
-        public void generateDraft();
+        public void GenerateDraft();
+        public Task CreateDraft(Draft newDraft, string username);
     }
 }

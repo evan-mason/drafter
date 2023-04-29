@@ -1,7 +1,11 @@
 # drafter
 React NBA Drafting application built for the boys.
 
-version 0.1.0 C# razorpage edition
+version 0.2.0 C# heaps of modules and backend working situation. Drafting works with history
+
+Coming in next update.
+Updating remainning seeds+oder and picking users.
+chooseable draft type
 
 Structure.
 
@@ -49,5 +53,6 @@ Improvements to make
 - change login url and controller routes
 - have more than one draft
 - have more than one team per user
+- remove admin team and user as it's a stupid implementation for it to make the seeder work
 
 

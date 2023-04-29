@@ -14,7 +14,6 @@ namespace Drafter.Data.Entities
         public DrafterUser Admin { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime StartTime { get; set; }
-
         public string DraftType { get; set; }
         public int Rounds { get; set; } // THIS ALSO IS NUMBER OF PLAYERS TECHNICALLY
         public ICollection<FantasyTeam> Teams { get; set; } // THE ORDER OF THIS COLLECTION IS THE PICK ORDER.

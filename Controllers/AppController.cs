@@ -162,8 +162,44 @@ namespace Drafter.Controllers
         [HttpPost("DraftSettings")]
         public IActionResult GenerateDraft()
         {
-            _repository.generateDraft();
+            _repository.GenerateDraft();
             return RedirectToAction("Picks", "App");
+        }
+
+        [Authorize]
+        [HttpGet("CreateDraft")]
+        public IActionResult CreateDraft()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost("CreateDraft")]
+        public IActionResult CreateDraft(DraftViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var newDraft = _mapper.Map<DraftViewModel, Draft>(model);
+                    var username = this.User.Identity.Name;
+
+                    _repository.CreateDraft(newDraft, username).Wait(); // I WANT TO REMOVE THIS SO BAD
+                    if (_repository.SaveAll())
+                    {
+                        return RedirectToAction("MyTeams", "App"); // THIS SHOULD PROVIDE CREATED FOR API, BUT I WANT TO GO HERE
+                    }
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Failed create new team: {ex}");
+            }
+            return BadRequest("Failed to save new team");
         }
     }
 }

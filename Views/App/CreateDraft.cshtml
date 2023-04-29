@@ -1,0 +1,32 @@
+﻿@model DraftViewModel 
+<h1>Create Draft</h1>
+<div class="row">
+</div>
+<div class="row">
+    <div class="offset-md-4 col-md-4">
+        <div class="border bg-light rounded p-1">
+            <h4>Create Draft Details:</h4>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly "> </div>
+                <div class="form-group">
+                    <label asp-for="Name">Draft Name:</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DraftType">Draft Type:</label>
+                    <input asp-for="DraftType" class=" form-control" />
+                    <span asp-validation-for="DraftType"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Rounds">Rounds:</label>
+                    <input asp-for="Rounds" class="form-control" />
+                    <span asp-validation-for="Rounds"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create Draft" class="btn btn-success" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
