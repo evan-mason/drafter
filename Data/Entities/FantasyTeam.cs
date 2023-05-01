@@ -13,6 +13,7 @@ namespace Drafter.Data.Entities
     public string Name { get; set; }
     public DrafterUser? DrafterUser { get; set; }
     public string? DrafterUserId { get; set; }
+    public int DraftOrder { get; set; }
     [ForeignKey("DrafterUserId")]
     public ICollection<Player> Players { get; set; }
   }

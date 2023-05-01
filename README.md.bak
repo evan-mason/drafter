@@ -1,12 +1,10 @@
 # drafter
 React NBA Drafting application built for the boys.
 
-version 0.2.0 C# heaps of modules and backend working situation. Drafting works with history
+version 0.2.5 C# draft only works if you're next up. Snake and Linear both work as Types. 
 
 Coming in next update.
 Updating remainning seeds+oder and picking users.
-chooseable draft type
-
 
 Structure.
 
@@ -55,5 +53,6 @@ Improvements to make
 - have more than one draft
 - have more than one team per user
 - remove admin team and user as it's a stupid implementation for it to make the seeder work
+- pull everything out into services where possible. Rather computing within repositories
 
 

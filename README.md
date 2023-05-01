@@ -1,11 +1,8 @@
 # drafter
 React NBA Drafting application built for the boys.
 
-version 0.2.0 C# heaps of modules and backend working situation. Drafting works with history
-
+version 0.2.6 C# Removal of some bugs and custom ordering now works within the DB.
 Coming in next update.
-Updating remainning seeds+oder and picking users.
-chooseable draft type
 
 Structure.
 

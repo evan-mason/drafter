@@ -9,7 +9,14 @@
                 <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
                 <h3>@p.Name - @p.Position 
                     <form method="post" >
+                        @if (p.DraftTime == DateTime.MinValue)
+                        {
                         <button id="draftButton" class="btn btn-success" name="Id" value="@p.Id">Draft</button>
+                        }
+                        else
+                        {
+                        <button id="draftButton" class="btn btn-success" name="Id" value="" disabled>Drafted</button>
+                        }
                     </form>
                 </h3>
                 <ul>

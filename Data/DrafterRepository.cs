@@ -1,5 +1,6 @@
 ﻿using Drafter.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -86,15 +87,27 @@ namespace Drafter.Data
 
             var currentPick = lastPickPlayer == null ? 0 : lastPickPlayer.DraftPosition + 1; // pick is 0 if null, else it's next number
 
-            DrafterUser adminUser = await _userManager.FindByNameAsync(userName);
+            DrafterUser SelectingUser = await _userManager.FindByNameAsync(userName);
+
+            if (GetNextPick().FantasyTeam.DrafterUser != SelectingUser)
+            {
+                return;
+            }
 
             if (player != null)
             {
-                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.DrafterUser == adminUser);
+                var team = _ctx.FantasyTeams.SingleOrDefault(F => F.DrafterUser == SelectingUser);
                 player.FantasyTeam = team;
                 player.DraftPosition = currentPick;
-                _ctx.SaveChanges();
+                player.DraftTime = DateTime.Now;
+                var pickToDelete = _ctx.Picks.FirstOrDefault();
+                if (pickToDelete != null)
+                {
+                    _ctx.Picks.Remove(pickToDelete);
+                }
             }
+
+            _ctx.SaveChanges();
         }
 
         public async Task UndraftPlayer(int id)
@@ -108,6 +121,7 @@ namespace Drafter.Data
             {
                 var team = _ctx.FantasyTeams.SingleOrDefault(F => F.DrafterUser == FreeAgentUser);
                 player.FantasyTeam = team;
+                player.DraftTime = DateTime.MinValue;
                 player.DraftPosition = 0;
                 _ctx.SaveChanges();
             }
@@ -168,6 +182,7 @@ namespace Drafter.Data
                 DrafterUser creator = await _userManager.FindByNameAsync(username);
 
                 fantasyTeam.DrafterUser = creator;
+                fantasyTeam.DraftOrder = _ctx.FantasyTeams.Count();
                 await _ctx.FantasyTeams.AddAsync(fantasyTeam);  
                 //BELOW SHOULD BE REMOVED WHEN WE PICK THE DRAFT WE WANT TO JOIN
                 Draft defaultDraft = _ctx.Drafts
@@ -180,7 +195,7 @@ namespace Drafter.Data
         public Draft GetDraftSettings()
         {
             return _ctx.Drafts
-                .Include(d => d.Teams)
+                .Include(d => d.Teams.OrderBy(t => t.DraftOrder))
                 .ThenInclude(t => t.DrafterUser)
                 .FirstOrDefault();
         }
@@ -198,7 +213,7 @@ namespace Drafter.Data
         public void GenerateDraft()
         {
             Draft defaultDraft = _ctx.Drafts // WE WANT TO PULL THIS OUT OF THE ABOVE METHOD PARAMS AT SOME POINT
-                .Include(d => d.Teams)
+                .Include(d => d.Teams.OrderBy(t => t.DraftOrder))
                 .FirstOrDefault();
 
             string draftType = defaultDraft.DraftType;
