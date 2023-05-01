@@ -23,22 +23,6 @@
                     <li>@t.DrafterUser.UserName's @t.Name's </li>
                 }
             </ol>
-            <h3>Draft Order</h3>
-            @(Html.Awe().Grid("GridReord")
-                .Url(Url.Action("MealsGrid", "Data"))
-                .Mod(o => o.MovableRows())
-                .Height(300)
-                .Paging(false)
-                .Groupable(false)
-                .Sortable(false)
-                .Columns(
-                new Column { Bind = "Id", Width = 100 },
-                new Column { Bind = "Name", Width = 200 },
-                new Column { Bind = "Description" }.Mod(o => o.Autohide())))
-            <br />
-            <button type="button" onclick="getIds()" class="awe-btn">get ids</button>
-            <div id="log" class="log"></div>
-
             <form method="post">
                 <div class="form-group">
                     <input type="submit" value="Ready!" class="btn btn-success" />
