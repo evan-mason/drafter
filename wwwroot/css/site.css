@@ -1,134 +1,136 @@
-﻿/* body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+﻿body, ul, fieldset, textarea, img, legend, button, i, pre
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
 
-input[type=submit] {
-  width: auto;
+body
+{
+    background-color: #fafafa;
+    font-family: Roboto, "Segoe UI", Oxygen-Sans, Ubuntu, Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    line-height: 1.42857143;
+    font-size: 15px;
+    color: #262626;
 }
 
-input, textarea {
-  font-size: 18px;
-  width: 200px;
+.awe-col, .elabel, .menu, h1, h2, h3, b {
+    font-family: "Segoe UI", Oxygen-Sans, Ubuntu, Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    }
+
+h1, h2, h3
+{
+    
+    font-size: 1.5em;
+    color: #444;
+    font-weight: normal;
 }
 
-
-label {
-  font-size: 16px;
+.main 
+{
+    margin: 1em;
 }
 
-#theForm {
-  background-color: #d0d0d0;
+input[type="text"], textarea
+{
+    margin: 0;
+    padding: 5px 8px 6px;
+    color: #333;
+    border: 1px solid #D5D5D5;
+    border-top-color: #B5B5B5;
+    border-radius: 1px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-  #theForm input[type=submit] {
-    background-color: green;
-    color: white;
-  }
-
-ul.products-props {
-  font-size: small;
+input[type="text"] {
+    width: 200px;
 }
 
-  ul.products-props li {
-    list-style-type: none;
-  }
-
-.product-info {
-  border: 1px solid gray;
-  display: inline-block;
-  padding: 8px 2px;
-  margin: 2px;
-  width: 450px;
-  background-color: lightgray;
-  border-radius: 5px;
+/* Styles for validation helpers*/
+@media (max-width: 767px)
+{
+    .field-validation-error
+    {
+        display: block;
+    }
 }
 
-  .product-info img {
-    margin: 3px;
-    float: left;
-    border: 1px solid black;
-    max-width: 150px;
-  }
-
-#login-block {
-  float: right;
+.field-validation-error, .validation-summary-errors
+{
+    color: #ff0000;
 }
 
-  #login-block .toggle-item {
-    text-align: right;
-  }
+.validation-summary-errors ul
+{
+    list-style: none;
+}
 
-  #login-block .popup-form {
+.field-validation-valid
+{
     display: none;
-    background-color: grey;
-    border: solid 1px black;
-    padding: 2px;
-    font-size: 10px;
-  } */
-/* body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-input[type=submit] {
-  width: auto;
+.input-validation-error
+{
+    background-color: #ffeeee;
 }
 
-input, textarea {
-  font-size: 18px;
-  width: 200px;
+/* form layout */
+.efield
+{
+    padding: 5px 0;
 }
 
-
-label {
-  font-size: 16px;
-}
-
-#theForm {
-  background-color: #d0d0d0;
-}
-
-  #theForm input[type=submit] {
-    background-color: green;
-    color: white;
-  }
-
-ul.products-props {
-  font-size: small;
-}
-
-  ul.products-props li {
-    list-style-type: none;
-  }
-
-.product-info {
-  border: 1px solid gray;
-  display: inline-block;
-  padding: 8px 2px;
-  margin: 2px;
-  width: 450px;
-  background-color: lightgray;
-  border-radius: 5px;
-}
-
-  .product-info img {
-    margin: 3px;
-    float: left;
-    border: 1px solid black;
-    max-width: 150px;
-  }
-
-#login-block {
-  float: right;
-}
-
-  #login-block .toggle-item {
+.elabel
+{
     text-align: right;
-  }
+    width: 150px;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    vertical-align: top;
+    margin-top: 1px;
+    padding-right: 3px;
+}
 
-  #login-block .popup-form {
-    display: none;
-    background-color: grey;
-    border: solid 1px black;
-    padding: 2px;
-    font-size: 10px;
-  } */
+.elabel label {
+    font-weight: 600;
+}
+
+@media (max-width: 480px)
+{
+    .elabel
+    {
+        text-align: left;
+        display: block;
+    }
+}
+
+.einput
+{
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    vertical-align: top;
+}
+
+.einput .o-dd, .einput .awe-datepicker-field, .einput .awe-lookup-field, .einput, .einput .awe-multilookup-field, .einput  .etxt
+{
+    min-width: 15em;
+}
+
+.awe-popup .einput .awe-multilookup-field .awe-display {
+    max-height: 7.3em;
+    overflow-y: auto;
+}
+
+/* misc */
+.bar
+{
+    padding: 5px 0;
+}
+
+.mbtn
+{
+    padding: 0.4em 0.9em;
+}
