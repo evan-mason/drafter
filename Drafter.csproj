@@ -22,7 +22,17 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
     <PackageReference Include="Microsoft.Identity.Web" Version="2.9.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Omu.Awem">
+      <HintPath>wwwroot\lib\mvcawesome\Omu.Awem.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.AwesomeMvc">
+      <HintPath>wwwroot\lib\mvcawesome\Omu.AwesomeMvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

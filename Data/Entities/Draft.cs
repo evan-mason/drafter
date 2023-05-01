@@ -16,7 +16,7 @@ namespace Drafter.Data.Entities
         public DateTime StartTime { get; set; }
         public string DraftType { get; set; }
         public int Rounds { get; set; } // THIS ALSO IS NUMBER OF PLAYERS TECHNICALLY
-        public ICollection<FantasyTeam> Teams { get; set; } // THE ORDER OF THIS COLLECTION IS THE PICK ORDER.
-        public ICollection<Pick> Picks { get; set; }
+        public IList<FantasyTeam> Teams { get; set; } // THE ORDER OF THIS COLLECTION IS THE PICK ORDER.
+        public IList<Pick> Picks { get; set; }
     }
 }

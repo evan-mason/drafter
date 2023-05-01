@@ -197,23 +197,39 @@ namespace Drafter.Data
 
         public void GenerateDraft()
         {
-            Draft defaultDraft = _ctx.Drafts
+            Draft defaultDraft = _ctx.Drafts // WE WANT TO PULL THIS OUT OF THE ABOVE METHOD PARAMS AT SOME POINT
                 .Include(d => d.Teams)
                 .FirstOrDefault();
 
+            string draftType = defaultDraft.DraftType;
             defaultDraft.Picks = new List<Pick>();
             int rounds = defaultDraft.Rounds;
             int pickNumber = 0;
-            for (int i = 0; i < rounds; i++)
+            for (int round = 1; round <= rounds; round++)
             {
-                foreach (FantasyTeam team in defaultDraft.Teams)
+                if (draftType == "Snake" && round % 2 == 0)
                 {
-                    pickNumber++;
-                    defaultDraft.Picks.Add(new Pick
+                    for (int team = defaultDraft.Teams.Count; team > 0; team--)
                     {
-                        PickNumber = pickNumber,
-                        FantasyTeam = team
-                    });
+                        pickNumber++;
+                        defaultDraft.Picks.Add(new Pick
+                        {
+                            PickNumber = pickNumber,
+                            FantasyTeam = defaultDraft.Teams[team-1]
+                        });
+                    }
+                }
+                else // LINEAR NOT SPECIFIED BUT COULD BE DOWN THE LINE
+                {
+                    for (int team = 0; team < defaultDraft.Teams.Count; team++)
+                    {
+                        pickNumber++;
+                        defaultDraft.Picks.Add(new Pick
+                        {
+                            PickNumber = pickNumber,
+                            FantasyTeam = defaultDraft.Teams[team]
+                        });
+                    }
                 }
             }
             _ctx.SaveChanges();

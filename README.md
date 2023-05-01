@@ -54,5 +54,6 @@ Improvements to make
 - have more than one draft
 - have more than one team per user
 - remove admin team and user as it's a stupid implementation for it to make the seeder work
+- pull everything out into services where possible. Rather computing within repositories
 
 
