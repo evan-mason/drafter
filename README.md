@@ -4,6 +4,8 @@ React NBA Drafting application built for the boys.
 version 0.2.6 C# Removal of some bugs and custom ordering now works within the DB.
 Coming in next update.
 
+Optional angular frontend added with two main pages.
+
 Structure.
 
 Move to C# MVC ASP.NET. Hoping to use Angular
