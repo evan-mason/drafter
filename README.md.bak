@@ -1,10 +1,10 @@
 # drafter
 React NBA Drafting application built for the boys.
 
-version 0.2.5 C# draft only works if you're next up. Snake and Linear both work as Types. 
-
+version 0.2.6 C# Removal of some bugs and custom ordering now works within the DB.
 Coming in next update.
-Updating remainning seeds+oder and picking users.
+
+Angular frontend added with two main pages.
 
 Structure.
 
