@@ -151,6 +151,13 @@ namespace Drafter.Controllers
         }
 
         [Authorize]
+        [HttpGet("Dashboard")]
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
+        [Authorize]
         [HttpGet("DraftSettings")]
         public IActionResult DraftSettings()
         {
