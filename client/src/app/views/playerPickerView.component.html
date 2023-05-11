@@ -1,9 +1,10 @@
 ﻿<div class="row">
+    <h3>PLAYERPICKER</h3>
     <div *ngFor="let p of store.players" class="col-md-2">
         <div class="border bg-light rounded p-1">
             <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
             <h3>
-            {{ p.Name }} - {{ p.Position }}
+            {{ p.name }} - {{ p.position }}
             <!--><form method="post">
                     @if (p.DraftTime == DateTime.MinValue)
                     {
@@ -17,9 +18,9 @@
             -->
             </h3>
             <ul>
-                <li>Points: {{ p.Points }}</li>
-                <li>NBA Team: {{ p.NBATeam }}</li>
-                <li>Team: {{ p.FantasyTeam }}</li>
+                <li>Points: {{ p.points }}</li>
+                <li>NBA Team: {{ p.nbaTeam }}</li>
+                <li>Team: {{ p.fantasyTeam }}</li>
             </ul>
         </div>
     </div>

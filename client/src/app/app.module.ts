@@ -1,7 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { Store } from './services/store.service';
 import PlayerPickerView from './views/playerPickerView.component';
 
 @NgModule({
@@ -10,9 +12,10 @@ import PlayerPickerView from './views/playerPickerView.component';
         PlayerPickerView
   ],
   imports: [
-    BrowserModule
+        BrowserModule,
+        HttpClientModule
   ],
-  providers: [],
+  providers: [Store],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
