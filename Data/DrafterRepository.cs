@@ -32,6 +32,16 @@ namespace Drafter.Data
                 .ToList();
         }
 
+        public IEnumerable<PlayerDto> GetAllPlayersDashboard()
+        {
+            _logger.LogInformation("Get all players was called");
+            return _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .OrderByDescending(p => p.Points)
+                .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .ToList();
+        }
+
         public async Task<IEnumerable<Player>> GetAllFreeAgentPlayers()
         {
             _logger.LogInformation("Get all free agents was called");

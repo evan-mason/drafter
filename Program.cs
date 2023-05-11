@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System.Reflection;
 using System.Text;
 
@@ -32,7 +33,8 @@ builder.Services.AddAuthentication()
     });
 
 builder.Services.AddControllersWithViews()
-    .AddRazorRuntimeCompilation();
+    .AddRazorRuntimeCompilation()
+    .AddNewtonsoftJson(cfg => cfg.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IMailService, NullMailService>();
 builder.Services.AddDbContext<DrafterContext>();
