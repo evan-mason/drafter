@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({ // the template needs to be converted to a html template
   selector: 'dashboard',
-  template: `<player-picker></player-picker>`, 
+  templateUrl: "app.component.html",
   styles: []
 })
 export class AppComponent {

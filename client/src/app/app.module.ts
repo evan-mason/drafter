@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { Store } from './services/store.service';
 import PlayerPickerView from './views/playerPickerView.component';
+import MyTeamView from './views/myTeamView.component';
 
 @NgModule({
   declarations: [
         AppComponent,
-        PlayerPickerView
+        PlayerPickerView,
+        MyTeamView
   ],
   imports: [
         BrowserModule,
