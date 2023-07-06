@@ -1,19 +1,57 @@
-﻿<div class="row">
-    <h3>PLAYERPICKER</h3>
-    <div *ngFor="let p of store.players" class="col-md-3">
-        <div class="border bg-light rounded p-1">
-            <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
-            <h3>
-                {{ p.name }} - {{ p.position }}
-                <form method="post">
-                    <button id="draftButton" class="btn btn-success" name="Id" value="" [disabled]="">Draft</button>
-                </form>
-            </h3>
-            <ul>
-                <li>Points: {{ p.points }}</li>
-                <li>NBA Team: {{ p.nbaTeam }}</li>
-                <li>Team: {{ p.fantasyTeam }}</li>
-            </ul>
+﻿<h3>PLAYERPICKER</h3>
+<p-table 
+    #dt1
+    [value]="store.players"
+    [globalFilterFields]="['name','nbaTeam','fantasyTeam']"
+    [paginator]="true" [rows]="25" 
+    [showCurrentPageReport]="true" 
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} players" 
+    [tableStyle]="{ 'min-width': '50rem' }" 
+    styleClass="p-datatable-gridlines"
+>
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1, searchText)"></button>
+            <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input pInputText #searchText type="text" (input)="dt1.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />
+            </span>
         </div>
-    </div>
-</div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="name">Name</th>
+            <!--<th pSortableColumn="position">Position</th>-->
+            <p-columnFilter field="position" matchMode="equals" [showMenu]="false">
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-dropdown [ngModel]="value" [options]="positionOptions" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
+                        <ng-template let-option pTemplate="item">
+                            <p-tag [value]="option.value"></p-tag>
+                        </ng-template>
+                    </p-dropdown>
+                </ng-template>
+            </p-columnFilter>
+            <th pSortableColumn="points">Points</th>
+            <th pSortableColumn="nbaTeam">NBA TEAM</th>
+            <th pSortableColumn="fantasyTeam">TEAM</th>
+            <th>Draft'em</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-p>
+        <tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.position }}</td>
+            <td>{{ p.points }}</td>
+            <td>{{ p.nbaTeam }}</td>
+            <td>{{ p.fantasyTeam }}</td>
+            <td><button type="button" pButton pRipple icon="pi pi-plus" (click)="draftPlayer()"></button>
+                <!--
+                    <form method="post">
+                    <button id="draftButton" class="btn btn-success" name="Id" value="" [disabled]="">Draft</button>
+                    </form>
+                -->
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

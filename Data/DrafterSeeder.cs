@@ -28,7 +28,7 @@ namespace Drafter.Data
                     UserName = "AdamSilver23",
                     Email = "NBACommish@hotmail.com"
                 };
-                var result1 = await _userManager.CreateAsync(user1, "P@ssw0rd!fasdf1@@");
+                var result1 = await _userManager.CreateAsync(user1, "P@ssw0rd!");
                 if (result1 != IdentityResult.Success) throw new InvalidOperationException("Could not create new users in seeder");
                 
                 DrafterUser user1forteam = await _userManager.FindByNameAsync(user1.UserName);
