@@ -16,3 +16,16 @@ button.p-element.p-button.p-component.p-button-icon-only{
 tbody.p-element.p-datatable-tbody>tr>td {
     padding-left: 1rem;
 }
+
+dashboard-pick{
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.mat-mdc-card {
+    display: inline-block !important;
+}
+
+mat-card-content.mat-mdc-card-content {
+    white-space: normal !important;
+}

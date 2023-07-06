@@ -14,6 +14,7 @@ export class Store {
 
     public players: PlayerDto[] = [];
     public myPlayers: PlayerDto[] = [];
+    public timeline: PlayerDto[] = [];
     //public nextPick: PickDto[] = [];
     public picks: PickDto[] = [];
 
@@ -45,6 +46,14 @@ export class Store {
         return this.http.get<[]>("/api/playersview/picksdashboard") // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
                 this.picks = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTimeline(): Observable<void> {
+        return this.http.get<[]>("/api/playersview/timelinedashboard") // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.timeline = data; // set the data we return back into our any array
                 return
             }));
     }

@@ -179,6 +179,20 @@ namespace Drafter.Data
                 .ToList();
         }
 
+        public async Task<IEnumerable<PlayerDto>> GetTimelineDashboard()
+        {
+            _logger.LogInformation("Get timeline: repo hit");
+
+            DrafterUser FreeAgentUser = await _userManager.FindByNameAsync("AdamSilver23");
+
+            return _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .OrderBy(p => p.DraftPosition)
+                .Where(p => p.FantasyTeam.DrafterUser != FreeAgentUser) // shouldn't need calling but eh.
+                .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam })
+                .ToList();
+        }
+
         public IEnumerable<Pick> GetPicks()
         {
             return _ctx.Picks

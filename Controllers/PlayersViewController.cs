@@ -92,5 +92,24 @@ namespace Drafter.Controllers
                 return BadRequest("Failed to get next pick for dashboard");
             }
         }
+
+        [HttpGet("timelinedashboard")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<Pick>> GetTimelineDashboard()
+        {
+            _logger.LogInformation("Get timeline endpoint was hit");
+            try
+            {
+                var result = await _repository.GetTimelineDashboard();
+                _logger.LogInformation("Get timeline completed");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get timeline for dashboard: {ex}");
+                return BadRequest("Failed to get timeline for dashboard");
+            }
+        }
     }
 }

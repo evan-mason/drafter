@@ -6,15 +6,12 @@ import { Store } from '../services/store.service';
     templateUrl: "dashboardTimelineView.component.html",
     styles: []
 })
-export default class DashboardTimelineView { //implements OnInit{
+export default class DashboardTimelineView implements OnInit{
 
-    constructor(public store: Store) {
+    constructor(public store: Store) { }
 
+    ngOnInit(): void {
+        this.store.loadTimeline()
+            .subscribe();
     }
-
-    // ngOnInit(): void {
-    //     this.store.loadPlayers()
-    //         .subscribe();
-    // }
-
 }
