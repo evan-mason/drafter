@@ -1,8 +1,8 @@
 # drafter
 React NBA Drafting application built for the boys.
 
-version 0.3.0 
-Dashboard page prototype completed.
+version 0.3.1
+Dashboard page prototype completed. With better formatting.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
