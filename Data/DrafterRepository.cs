@@ -188,12 +188,34 @@ namespace Drafter.Data
                 .ToList();
         }
 
+        public Task<List<Pick>> GetPicksForDashboard()
+        {
+            return _ctx.Picks
+                .OrderBy(p => p.PickNumber)
+                .Include(p => p.FantasyTeam)
+                .Where(p => p.PickTakenTime == DateTime.MinValue)
+                .ToListAsync();
+        }
+
         public Pick GetNextPick()
         {
             var NextPick = _ctx.Picks
                 .Where(p => p.PickTakenTime == DateTime.MinValue)
                 .Include(p => p.FantasyTeam)
                 .FirstOrDefault();
+            if (NextPick != null)
+            {
+                return NextPick;
+            }
+            else return new Pick { PickNumber = 9999 };
+        }
+
+        public async Task<Pick> GetNextPickDashboard()
+        {
+            var NextPick = await _ctx.Picks
+                .Where(p => p.PickTakenTime == DateTime.MinValue)
+                .Include(p => p.FantasyTeam)
+                .FirstOrDefaultAsync();
             if (NextPick != null)
             {
                 return NextPick;

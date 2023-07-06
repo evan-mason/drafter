@@ -6,15 +6,12 @@ import { Store } from '../services/store.service';
     templateUrl: "dashboardPickView.component.html",
     styles: []
 })
-export default class DashboardPickView { //implements OnInit{
+export default class DashboardPickView implements OnInit{
 
-    constructor(public store: Store) {
+    constructor(public store: Store) {}
 
+    ngOnInit(): void {
+        this.store.loadPicks()
+            .subscribe();
     }
-
-    // ngOnInit(): void {
-    //     this.store.loadPlayers()
-    //         .subscribe();
-    // }
-
 }

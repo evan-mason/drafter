@@ -49,6 +49,8 @@ Improvements to make
 - have more than one team per user 5 if ever
 - remove admin team and user as it's a stupid implementation for it to make the seeder work Phase 4
 - pull everything out into services where possible. Rather computing within repositories Phase 4/5
+- Dashboard picks API has a very fat unneccessary response
+- Pull out mat card when it was implemented in dashboard picks commit 6/7/2023
 
 
 IMPORTANT COMMANDS

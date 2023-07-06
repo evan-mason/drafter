@@ -41,7 +41,7 @@ namespace Drafter.Controllers
             }
         }
 
-        [HttpGet("MyTeamDashboard")]
+        [HttpGet("myteamdashboard")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetMyTeamDashboard()
@@ -49,12 +49,47 @@ namespace Drafter.Controllers
 
             try
             {
-                return Ok(_repository.GetMyPlayersDashboard(this.User.Identity.Name).Result);
+                var result = await _repository.GetMyPlayersDashboard(this.User.Identity!.Name!);
+                return Ok(result);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to get products: {ex}");
-                return BadRequest("Failed to get products");
+                _logger.LogError($"Failed to get team on dashboard: {ex}");
+                return BadRequest("Failed to get team on dashboard");
+            }
+        }
+
+        [HttpGet("picksdashboard")] //NOTBEING USED
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<List<Pick>>> GetPicksDashboard()
+        {
+            try
+            {
+                var result = await _repository.GetPicksForDashboard();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get picks for dashboard: {ex}");
+                return BadRequest("Failed to get picks for dashboard");
+            }
+        }
+
+        [HttpGet("nextpickdashboard")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<Pick>> GetNextPickDashboard()
+        {
+            try
+            {
+                var result = await _repository.GetNextPickDashboard();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get next pick for dashboard: {ex}");
+                return BadRequest("Failed to get next pick for dashboard");
             }
         }
     }

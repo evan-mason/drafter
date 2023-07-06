@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card'; // FOR DASHBOARD PICKS
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
@@ -14,6 +15,7 @@ import PlayerPickerView from './views/playerPickerView.component';
 import MyTeamView from './views/myTeamView.component';
 import DashboardPickView from './views/dashboardPickView.component';
 import DashboardTimelineView from './views/dashboardTimelineView.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import DashboardTimelineView from './views/dashboardTimelineView.component';
         DropdownModule,
         TagModule,
         ButtonModule,
-        InputTextModule
+        InputTextModule,
+        MatCardModule,
+        BrowserAnimationsModule
   ],
   providers: [Store],
   bootstrap: [AppComponent]

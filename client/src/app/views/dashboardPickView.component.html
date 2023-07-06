@@ -1,22 +1,17 @@
-<div class="row">
-    <div class="col-md-4">
-        <div class="border bg-light rounded p-1">
-            <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
-            <h3>Pick: @Model.PickNumber</h3>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="border bg-light rounded p-1">
-            <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
-            <h3>@Model.FantasyTeam.Name You're on the clock!</h3>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="border bg-light rounded p-1">
-            <!-- <img src="~/img/p.ArtId.jpg" class="image-fliud" /> -->
-            <h4>@Model.FantasyTeam.Name needs</h4>
-            <p>PG/SG</p>
-            <p>Recommends picking: Joel Embiid</p>
-        </div>
-    </div>
-</div>
+<mat-card class="col-md-4" *ngFor="let pick of store.picks">
+    <mat-card-header>
+      <img
+      mat-card-sm-image
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      />
+      <mat-card-title-group>
+        <mat-card-title>Pick {{ pick.pickNumber }} </mat-card-title>
+        <mat-card-subtitle>{{ pick.fantasyTeam.name }}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>@Model.FantasyTeam.Name You're on the clock!
+        @Model.FantasyTeam.Name needs
+        PG/SG
+        Recommends picking: Joel Embiid
+    </mat-card-content>
+  </mat-card>

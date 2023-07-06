@@ -7,7 +7,7 @@ Dashboard page prototype completed.
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
 
-I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me.
+I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Design
 
@@ -49,6 +49,7 @@ Improvements to make
 - have more than one team per user 5 if ever
 - remove admin team and user as it's a stupid implementation for it to make the seeder work Phase 4
 - pull everything out into services where possible. Rather computing within repositories Phase 4/5
+- Dashboard picks API has a very fat unneccessary response
 
 
 IMPORTANT COMMANDS

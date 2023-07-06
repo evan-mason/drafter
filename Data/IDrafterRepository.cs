@@ -15,7 +15,9 @@ namespace Drafter.Data
         IEnumerable<Player> GetPlayerByName(string name);
         Task<IEnumerable<FantasyTeam>> GetMyTeam(string userId);
         IEnumerable<Pick> GetPicks();
+        Task<List<Pick>> GetPicksForDashboard();
         Pick GetNextPick();
+        Task<Pick> GetNextPickDashboard();
         Task DraftPlayer(int id, string Name);
         Task UndraftPlayer(int id);
         bool SaveAll();
