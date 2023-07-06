@@ -78,7 +78,7 @@ namespace Drafter.Controllers
         [HttpGet("MyTeams")]
         public IActionResult MyTeams()
         {
-            var query = _repository.GetMyTeams(this.User.Identity.Name);
+            var query = _repository.GetMyTeam(this.User.Identity.Name);
             var results = query.Result;
             return View(results);
         }
@@ -87,7 +87,7 @@ namespace Drafter.Controllers
         public IActionResult MyTeams(Player model)
         {
             _repository.UndraftPlayer(model.Id).Wait();
-            var query = _repository.GetMyTeams(this.User.Identity.Name);
+            var query = _repository.GetMyTeam(this.User.Identity.Name);
             var results = query.Result;
             return View(results);
         }

@@ -69,7 +69,7 @@ namespace Drafter.Data
                 .ToList();
         }
 
-        public async Task<IEnumerable<FantasyTeam>> GetMyTeams(string userName) // THIS ISN'T WORKING AS IT'S NOT BEING USED
+        public async Task<IEnumerable<FantasyTeam>> GetMyTeam(string userName) // THIS ISN'T WORKING AS IT'S NOT BEING USED
         {
             _logger.LogInformation("Get all products was called");
 
@@ -78,6 +78,22 @@ namespace Drafter.Data
             return _ctx.FantasyTeams
                 .Where(u => u.DrafterUser == MyUser)
                 .Include(f => f.Players.OrderByDescending(p => p.Points))
+                .ToList();
+        }
+
+        public async Task<IEnumerable<PlayerDto>> GetMyPlayersDashboard(string userName)
+        {
+            _logger.LogInformation("Get all players was called");
+            DrafterUser MyUser = await _userManager.FindByNameAsync(userName);
+
+            FantasyTeam MyTeam = await _ctx.FantasyTeams
+                .Where(u => u.DrafterUser == MyUser)
+                .FirstOrDefaultAsync();
+
+            return _ctx.Players
+                .Where(u => u.FantasyTeam == MyTeam)
+                .OrderByDescending(p => p.Points)
+                .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam})
                 .ToList();
         }
 

@@ -7,11 +7,13 @@ namespace Drafter.Data
     {
         IEnumerable<Player> GetAllPlayers();
         IEnumerable<PlayerDto> GetAllPlayersDashboard();
+
+        Task<IEnumerable<PlayerDto>> GetMyPlayersDashboard(string userName);
         Task<IEnumerable<Player>> GetAllFreeAgentPlayers();
         Task<IEnumerable<Player>> GetTimeline();
         IEnumerable<Player> GetPlayerByPosition(string position);
         IEnumerable<Player> GetPlayerByName(string name);
-        Task<IEnumerable<FantasyTeam>> GetMyTeams(string userId);
+        Task<IEnumerable<FantasyTeam>> GetMyTeam(string userId);
         IEnumerable<Pick> GetPicks();
         Pick GetNextPick();
         Task DraftPlayer(int id, string Name);

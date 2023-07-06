@@ -12,11 +12,20 @@ export class Store {
     }
 
     public players: PlayerDto[] = [];
+    public myPlayers: PlayerDto[] = [];
 
     loadPlayers(): Observable<void> {
         return this.http.get<[]>("/api/playersview") // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
                 this.players = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadMyPlayers(): Observable<void> {
+        return this.http.get<[]>("/api/playersview/myteamdashboard") // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.myPlayers = data; // set the data we return back into our any array
                 return
             }));
     }

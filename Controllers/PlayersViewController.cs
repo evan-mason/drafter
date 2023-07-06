@@ -1,5 +1,6 @@
 ﻿using Drafter.Data;
 using Drafter.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,23 @@ namespace Drafter.Controllers
             try
             {
                 return Ok(_repository.GetAllPlayersDashboard());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
+        [HttpGet("MyTeamDashboard")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetMyTeamDashboard()
+        {
+
+            try
+            {
+                return Ok(_repository.GetMyPlayersDashboard(this.User.Identity.Name).Result);
             }
             catch (Exception ex)
             {
