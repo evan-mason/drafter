@@ -112,5 +112,23 @@ namespace Drafter.Controllers
                 return BadRequest("Failed to get timeline for dashboard");
             }
         }
+        [HttpPost("draftplayerdashboard")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult> DraftPlayerDashboard(int id)
+        {
+            _logger.LogInformation("draft player endpoint was hit");
+            try
+            {
+                await _repository.DraftPlayerDashboard(id, this.User.Identity!.Name!);
+                _logger.LogInformation("post draft player completed");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to draft player for dashboard: {ex}");
+                return BadRequest("Failed to draft player for dashboard");
+            }
+        }
     }
 }
