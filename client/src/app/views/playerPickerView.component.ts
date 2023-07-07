@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Table } from 'primeng/table';
 import { Store } from '../services/store.service';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
 
 @Component({
@@ -30,10 +30,13 @@ export default class PlayerPickerView implements OnInit{
         ];
     }
 
-    draftPlayer(player: number): Observable<any> {
+    draftPlayer(player: number){
         console.log(player);
-        return this.http.post<any>("/api/playersview/draftplayerdashboard", player);
-    } // this is for muting errors
+        let queryParams = new HttpParams().set('id', player);
+        console.log(queryParams.toString());
+        this.http.post<any>("/api/playersview/draftplayerdashboard", queryParams).subscribe();
+
+    } 
 
     clear(table: Table, searchText: HTMLInputElement) { // this is to make the clear button work on the table
         table.clear();
