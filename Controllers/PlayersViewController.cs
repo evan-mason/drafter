@@ -27,12 +27,13 @@ namespace Drafter.Controllers
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public ActionResult<IEnumerable<PlayerDto>> Get()
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> Get()
         {
 
             try
             {
-                return Ok(_repository.GetAllPlayersDashboard());
+                var result = await _repository.GetAllPlayersDashboard();
+                return Ok(result);
             }
             catch (Exception ex)
             {

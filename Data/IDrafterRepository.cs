@@ -6,7 +6,7 @@ namespace Drafter.Data
     public interface IDrafterRepository
     {
         IEnumerable<Player> GetAllPlayers();
-        IEnumerable<PlayerDto> GetAllPlayersDashboard();
+        Task<IEnumerable<PlayerDto>> GetAllPlayersDashboard();
 
         Task<IEnumerable<PlayerDto>> GetMyPlayersDashboard(string userName);
         Task<IEnumerable<Player>> GetAllFreeAgentPlayers();

@@ -32,14 +32,14 @@ namespace Drafter.Data
                 .ToList();
         }
 
-        public IEnumerable<PlayerDto> GetAllPlayersDashboard()
+        public async Task<IEnumerable<PlayerDto>> GetAllPlayersDashboard()
         {
             _logger.LogInformation("Get all players was called");
-            return _ctx.Players
+            return await _ctx.Players
                 .Include(p => p.FantasyTeam)
                 .OrderByDescending(p => p.Points)
                 .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
-                .ToList();
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Player>> GetAllFreeAgentPlayers()
@@ -48,10 +48,10 @@ namespace Drafter.Data
 
             DrafterUser FreeAgentUser = await _userManager.FindByNameAsync("AdamSilver23");
 
-            return _ctx.Players
+            return await _ctx.Players
                 .OrderByDescending(p => p.Points)
                 .Where(p => p.FantasyTeam.DrafterUser == FreeAgentUser)
-                .ToList();  
+                .ToListAsync();  
         }
 
         public IEnumerable<Player> GetPlayerByName(string name)
@@ -75,10 +75,10 @@ namespace Drafter.Data
 
             DrafterUser MyUser = await _userManager.FindByNameAsync(userName);
 
-            return _ctx.FantasyTeams
+            return await _ctx.FantasyTeams
                 .Where(u => u.DrafterUser == MyUser)
                 .Include(f => f.Players.OrderByDescending(p => p.Points))
-                .ToList();
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<PlayerDto>> GetMyPlayersDashboard(string userName)
@@ -90,11 +90,11 @@ namespace Drafter.Data
                 .Where(u => u.DrafterUser == MyUser)
                 .FirstOrDefaultAsync();
 
-            return _ctx.Players
+            return await _ctx.Players
                 .Where(u => u.FantasyTeam == MyTeam)
                 .OrderByDescending(p => p.Points)
                 .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam})
-                .ToList();
+                .ToListAsync();
         }
 
         public bool SaveAll() // CHECKS FOR SUCCESS.
@@ -202,9 +202,9 @@ namespace Drafter.Data
                 .ToList();
         }
 
-        public Task<List<Pick>> GetPicksForDashboard()
+        public async Task<List<Pick>> GetPicksForDashboard()
         {
-            return _ctx.Picks
+            return await _ctx.Picks
                 .OrderBy(p => p.PickNumber)
                 .Include(p => p.FantasyTeam)
                 .Where(p => p.PickTakenTime == DateTime.MinValue)
@@ -247,9 +247,9 @@ namespace Drafter.Data
                 fantasyTeam.DraftOrder = _ctx.FantasyTeams.Count();
                 await _ctx.FantasyTeams.AddAsync(fantasyTeam);  
                 //BELOW SHOULD BE REMOVED WHEN WE PICK THE DRAFT WE WANT TO JOIN
-                Draft defaultDraft = _ctx.Drafts
+                Draft defaultDraft = await _ctx.Drafts
                     .Include(d => d.Teams)
-                    .FirstOrDefault();
+                    .FirstOrDefaultAsync();
                 defaultDraft.Teams.Add(fantasyTeam);
             }
         }
