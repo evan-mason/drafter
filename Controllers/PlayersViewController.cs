@@ -115,7 +115,7 @@ namespace Drafter.Controllers
         [HttpPost("draftplayerdashboard")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult> DraftPlayerDashboard(int id)
+        public async Task<ActionResult> DraftPlayerDashboard([FromBody] int id)
         {
             _logger.LogInformation("draft player endpoint was hit");
             try

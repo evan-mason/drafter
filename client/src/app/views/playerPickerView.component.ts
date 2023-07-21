@@ -32,10 +32,7 @@ export default class PlayerPickerView implements OnInit{
 
     draftPlayer(player: number){
         console.log(player);
-        let queryParams = new HttpParams().set('id', player);
-        console.log(queryParams.toString());
-        this.http.post<any>("/api/playersview/draftplayerdashboard", queryParams).subscribe();
-
+        this.http.post<any>("/api/playersview/draftplayerdashboard", { id: player }).subscribe();
     } 
 
     clear(table: Table, searchText: HTMLInputElement) { // this is to make the clear button work on the table
