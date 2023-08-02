@@ -1,12 +1,6 @@
 ﻿using Drafter.Data;
 using Drafter.Data.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Drafter.Controllers
 {
@@ -115,14 +109,14 @@ namespace Drafter.Controllers
         [HttpPost("draftplayerdashboard")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult> DraftPlayerDashboard([FromBody] int id)
+        public async Task<ActionResult<PlayerDto>> DraftPlayerDashboard([FromBody] PlayerDto playerDto)
         {
             _logger.LogInformation("draft player endpoint was hit");
             try
             {
-                await _repository.DraftPlayerDashboard(id, this.User.Identity!.Name!);
+                var result = await _repository.DraftPlayerDashboard(playerDto, this.User.Identity!.Name!);
                 _logger.LogInformation("post draft player completed");
-                return Ok();
+                return Ok(result);
             }
             catch (Exception ex)
             {

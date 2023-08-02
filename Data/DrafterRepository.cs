@@ -312,10 +312,10 @@ namespace Drafter.Data
             _ctx.SaveChanges();
         }
 
-        public async Task DraftPlayerDashboard(int id, string userName)
+        public async Task<PlayerDto> DraftPlayerDashboard(PlayerDto playerDto, string userName)
         {
             var player = _ctx.Players
-                .SingleOrDefault(p => p.Id == id);
+                .SingleOrDefault(p => p.Id == playerDto.Id);
 
             var lastPickPlayer = await _ctx.Players// this is so we can get the next draft number
                 .OrderByDescending(p => p.DraftPosition)
@@ -325,25 +325,31 @@ namespace Drafter.Data
 
             DrafterUser SelectingUser = await _userManager.FindByNameAsync(userName);
 
-            if (GetNextPick().FantasyTeam.DrafterUser != SelectingUser)
+            if (GetNextPick().FantasyTeam.DrafterUser == SelectingUser)
             {
-                return;
-            }
-
-            if (player != null)
-            {
-                var team = await _ctx.FantasyTeams.SingleOrDefaultAsync(F => F.DrafterUser == SelectingUser);
-                player.FantasyTeam = team;
-                player.DraftPosition = currentPick;
-                player.DraftTime = DateTime.Now;
-                var pickToDelete = await _ctx.Picks.FirstOrDefaultAsync();
-                if (pickToDelete != null)
+                if (player != null)
                 {
-                    _ctx.Picks.Remove(pickToDelete);
+                    var team = await _ctx.FantasyTeams.SingleOrDefaultAsync(F => F.DrafterUser == SelectingUser);
+                    player.FantasyTeam = team;
+                    player.DraftPosition = currentPick;
+                    player.DraftTime = DateTime.Now;
+                    var pickToDelete = await _ctx.Picks.FirstOrDefaultAsync();
+                    if (pickToDelete != null)
+                    {
+                        _ctx.Picks.Remove(pickToDelete);
+                    }
+                    _ctx.SaveChanges();
                 }
             }
 
-            _ctx.SaveChanges();
+            return new PlayerDto() { 
+                Id = player.Id, 
+                Name = player.Name, 
+                Position = player.Position, 
+                Points = player.Points, 
+                NBATeam = player.NBATeam, 
+                FantasyTeam = player.FantasyTeam.Name 
+            };
         }
     }
 }

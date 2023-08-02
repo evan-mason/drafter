@@ -20,7 +20,7 @@ namespace Drafter.Data
         Pick GetNextPick();
         Task<Pick> GetNextPickDashboard();
         Task DraftPlayer(int id, string Name);
-        Task DraftPlayerDashboard(int id, string userName);
+        Task<PlayerDto> DraftPlayerDashboard(PlayerDto playerDto, string userName);
         Task UndraftPlayer(int id);
         bool SaveAll();
         Task CreateFantasyTeam(FantasyTeam? model, string? username);

@@ -58,4 +58,13 @@ export class Store {
             }));
     }
 
+    draftPlayer(player: PlayerDto): Observable<void>{
+        console.log(player);
+        let draftedFreeAgentIndex : number = this.players.findIndex(p => p.id == player.id)!;
+        return this.http.post<PlayerDto>("/api/playersview/draftplayerdashboard", player) // we're getting the new player back, this is because we need it's new team.
+            .pipe(map(playerDto => {
+                this.myPlayers.push(player); // puts the returned player into our list
+                this.players[draftedFreeAgentIndex] = playerDto; // puts the returned player into the main list with changed attributes
+            }));
+    }
 }
