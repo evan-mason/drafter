@@ -15,6 +15,7 @@ screens USER
 -- F/A player (with sorting) #Phase 1 complete
 -- Other Teams
 -- Your Team
+-- Watch list #Phase 2
 -- Timer/Draft State
 -- Depth Charts #Phase 2
 -- Projected stats using ESPN projections with our scoring system, last years stats also. Phase 2
