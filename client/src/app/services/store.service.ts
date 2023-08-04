@@ -15,6 +15,7 @@ export class Store {
     public players: PlayerDto[] = [];
     public myPlayers: PlayerDto[] = [];
     public timeline: PlayerDto[] = [];
+    public lastPickTime: any;
     //public nextPick: PickDto[] = [];
     public picks: PickDto[] = [];
 
@@ -58,6 +59,13 @@ export class Store {
             }));
     }
 
+    loadTimer(): Observable<void> {
+        return this.http.get<any>("/api/playersview/lastpicktime") // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.lastPickTime = new Date(data); // set the data we return back into our any array
+            }));
+    }
+
     draftPlayer(player: PlayerDto): Observable<void>{
         console.log(player);
         let draftedFreeAgentIndex : number = this.players.findIndex(p => p.id == player.id)!;
@@ -65,6 +73,9 @@ export class Store {
             .pipe(map(playerDto => {
                 this.myPlayers.push(player); // puts the returned player into our list
                 this.players[draftedFreeAgentIndex] = playerDto; // puts the returned player into the main list with changed attributes
+                this.picks.shift(); // removes the first pick from the list
+                this.timeline.push(player); // adds the player to the timeline
+                //this.lastPickTime(new Date()); // sets the last pick time to now although it doesn't work. time format is incorrect.
             }));
     }
 }

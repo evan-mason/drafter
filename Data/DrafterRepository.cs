@@ -1,12 +1,6 @@
 ﻿using Drafter.Data.Entities;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Drafter.Data
 {
@@ -202,6 +196,20 @@ namespace Drafter.Data
                 .ToList();
         }
 
+        public async Task<DateTime> GetLastPickTime()
+        {
+            var lastPick = await _ctx.Picks
+                .OrderByDescending(p => p.PickTakenTime)
+                .FirstOrDefaultAsync();
+
+            if (lastPick != null)
+            {
+                return lastPick.PickTakenTime;
+            }
+
+            else return DateTime.MinValue;
+        }
+
         public async Task<List<Pick>> GetPicksForDashboard()
         {
             return await _ctx.Picks
@@ -317,11 +325,10 @@ namespace Drafter.Data
             var player = _ctx.Players
                 .SingleOrDefault(p => p.Id == playerDto.Id);
 
-            var lastPickPlayer = await _ctx.Players// this is so we can get the next draft number
-                .OrderByDescending(p => p.DraftPosition)
+            var thisPick = await _ctx.Picks 
+                .OrderBy(p => p.PickNumber)
+                .Where(p => p.PickTakenTime == DateTime.MinValue)
                 .FirstOrDefaultAsync();
-
-            var currentPick = lastPickPlayer == null ? 0 : lastPickPlayer.DraftPosition + 1; // pick is 0 if null, else it's next number
 
             DrafterUser SelectingUser = await _userManager.FindByNameAsync(userName);
 
@@ -331,13 +338,10 @@ namespace Drafter.Data
                 {
                     var team = await _ctx.FantasyTeams.SingleOrDefaultAsync(F => F.DrafterUser == SelectingUser);
                     player.FantasyTeam = team;
-                    player.DraftPosition = currentPick;
+                    player.DraftPosition = thisPick.PickNumber;
                     player.DraftTime = DateTime.Now;
-                    var pickToDelete = await _ctx.Picks.FirstOrDefaultAsync();
-                    if (pickToDelete != null)
-                    {
-                        _ctx.Picks.Remove(pickToDelete);
-                    }
+                    thisPick!.PickTakenTime = DateTime.UtcNow;
+
                     _ctx.SaveChanges();
                 }
             }

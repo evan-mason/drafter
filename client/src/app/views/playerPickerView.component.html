@@ -2,6 +2,7 @@
 <p-table 
     #dt1
     [value]="store.players"
+    selectionMode="single" [(selection)]="playerDto" dataKey="id" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
     [globalFilterFields]="['name','nbaTeam','fantasyTeam']"
     [paginator]="true" [rows]="25" 
     [showCurrentPageReport]="true" 
@@ -39,7 +40,7 @@
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-p>
-        <tr>
+        <tr [pSelectableRow]="p">
             <td>{{ p.name }}</td>
             <td>{{ p.position }}</td>
             <td>{{ p.points }}</td>

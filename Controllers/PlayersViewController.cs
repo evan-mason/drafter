@@ -88,6 +88,23 @@ namespace Drafter.Controllers
             }
         }
 
+        [HttpGet("lastpicktime")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<DateTime>> GetLastPickTime()
+        {
+            try
+            {
+                var result = await _repository.GetLastPickTime();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get last pick time for dashboard: {ex}");
+                return BadRequest("Failed to get last pick time for dashboard");
+            }
+        }
+
         [HttpGet("timelinedashboard")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]

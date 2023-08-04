@@ -16,6 +16,7 @@ import MyTeamView from './views/myTeamView.component';
 import DashboardPickView from './views/dashboardPickView.component';
 import DashboardTimelineView from './views/dashboardTimelineView.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import DashboardTime from './views/dashboardTime.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         PlayerPickerView,
         MyTeamView,
         DashboardPickView,
-        DashboardTimelineView
+        DashboardTimelineView,
+        DashboardTime
   ],
   imports: [
         BrowserModule,

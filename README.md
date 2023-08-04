@@ -15,7 +15,7 @@ screens USER
 -- F/A player (with sorting) #Phase 1 complete
 -- Other Teams
 -- Your Team
--- Watch list #Phase 2
+-- Watch list #Phase 2 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available).
 -- Timer/Draft State
 -- Depth Charts #Phase 2
 -- Projected stats using ESPN projections with our scoring system, last years stats also. Phase 2
@@ -33,6 +33,11 @@ screens PRESENTER Phase 3
 -- Timer/Draft State
 -- End of draft summaries with videos
 -- Summaries include best team, worst pick, best shooters, tallest team, etc etc. Phase 4
+
+PRESENTER IDEA ARCHETECTURE
+-- It will be based on a carosel structure, hopefully css can control the animation to switch from slides to fades if need be.
+-- not sure about the video yet. But hopefully I can rip youtube videos locally.
+-- we need to hide the values of 
 
 screen admin page
 -- Settings
@@ -53,6 +58,9 @@ Improvements to make
 - Dashboard picks API has a very fat unneccessary response
 - Pull out mat card when it was implemented in dashboard picks commit 6/7/2023
 - Fix API slowness. No idea what's happening here atm.
+- Handle draftplayerdashboard exception when drafting a player that's not avaliable.
+- draftPlayer picking player does not reset time when done locally.
+- Fix timer when it goes into negative
 
 
 IMPORTANT COMMANDS

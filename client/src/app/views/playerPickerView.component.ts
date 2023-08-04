@@ -12,6 +12,7 @@ import { PlayerDto } from '../shared/PlayerDto';
 export default class PlayerPickerView implements OnInit{
 
     positionOptions!: any[];
+    playerDto!: PlayerDto;
 
     constructor(public store: Store, private http: HttpClient) {
 
@@ -39,10 +40,17 @@ export default class PlayerPickerView implements OnInit{
         this.store.draftPlayer(player)
             .subscribe();
     }
-        
 
     getEventValue($event:any) :string {
         return $event.target.value;
-    } 
+    }
+
+    onRowUnselect($event: any) {
+        console.log($event)
+    }
+
+    onRowSelect($event: any) {
+        console.log($event)
+    }
 
 }
