@@ -23,21 +23,26 @@ screens USER
 -- fuck you button (if a player was picked that you wanted) Phase 2
 -- review pick thats been 1/5 stars Phase 2
 -- picks timeline
+-- add the message service that appears when you select a row here (row selection > events) https://primeng.org/table#selection-events
 
 screens PRESENTER Phase 3
--- Last pick video
+-- Last pick video // not handled in carousel https://videogular.github.io/ngx-videogular/docs/ this will be a hidden full screen absolute position object. unhides on pick. hides and pauses after certain amount of minutes.
+   we need to download the videos locally fml i wanna die, the server will serve them using the wwwroot.
 -- Last pick stats
+-- other random stats and current teams. 10 second cycle.
 -- Next team picking
 -- F/A playerlist
 -- picks timeline
 -- Timer/Draft State
 -- End of draft summaries with videos
+-- play sound on pick. draft sound.
 -- Summaries include best team, worst pick, best shooters, tallest team, etc etc. Phase 4
 
 PRESENTER IDEA ARCHETECTURE
--- It will be based on a carosel structure, hopefully css can control the animation to switch from slides to fades if need be.
--- not sure about the video yet. But hopefully I can rip youtube videos locally.
--- we need to hide the values of 
+-- It will be based on a carosel structure, hopefully css can control the animation to switch from slides to fades if need be. -- sorted
+-- not sure about the video yet. But hopefully I can rip youtube videos locally. -- this can be an that triggers if pick was < 5 seconds ago. If window is open. play video?
+-- we need to hide the values of the picked player if we want it to be a surprise, maybe a 30 second window before a new pick is revealed? depending on a setting.
+   meaning we need to create a setting for the draft for this.
 
 screen admin page
 -- Settings
