@@ -9,12 +9,13 @@
             <th>NBA Team</th>
         </tr>
     </ng-template>
+    <p>I would like the below to be forecasted points later on</p>
     <ng-template pTemplate="body" let-p>
         <tr>
             <td>PG (sortable)</td>
             <td>{{ p.name }}</td>
             <td>{{ p.position }}</td>
-            <td>{{ p.points }}</td>
+            <td>{{ p.fantasyPoints |  number : '0.0-4'}}</td>
             <td>{{ p.nbaTeam }}</td>
         </tr>
     </ng-template>

@@ -44,7 +44,7 @@
         <tr [pSelectableRow]="p">
             <td>{{ p.name }}</td>
             <td>{{ p.position }}</td>
-            <td>{{ p.fantasyPoints}}</td>
+            <td>{{ p.fantasyPoints |  number : '0.0-4'}}</td>
             <td>{{ p.nbaTeam }}</td>
             <td>{{ p.fantasyTeam }}</td>
             <td><button type="button" pButton pRipple icon="pi pi-plus" (click)="draftPlayer(p)"></button>

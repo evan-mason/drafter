@@ -1,21 +1,30 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.6.2
-Player picker basic is feature complete.
+version 0.6.3
+Truncating numbers to 4 dp.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
 
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
+Next Features Priority
+-- Interval Refresh
+-- Deployment
+-- Player Pictures
+-- Triple Double etc addition
+-- Pick Rater and f you button
+-- Next best pick Algorithm
+-- Phase 3
+
 Design
 
 screens USER
 -- F/A player (with sorting) #Phase 1 complete
--- Other Teams
+-- Other Teams 3 / 4 as it is searchable
 -- Your Team
--- Watch list #Phase 2 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available).
+-- Watch list #Phase 4 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available).
 -- Timer/Draft State
 -- Depth Charts #Phase 3 / 4
 -- Projected stats using ESPN projections with our scoring system, last years stats also. Phase 2
@@ -25,7 +34,7 @@ screens USER
 -- picks timeline
 -- add the message service that appears when you select a row here (row selection > events) https://primeng.org/table#selection-events
 -- forecasting 2023-2024 using with our scoring system
--- Have a system that predicts rookies and allows to see only rookies etc, or injured players that didn't play that year. (CHECKK INJURY SITUATION)
+-- Have a system that predicts rookies and allows to see only rookies etc, or injured players that didn't play that year. (CHECK INJURY SITUATION. EX. Lonzo Ball is not listed)
 
 screens PRESENTER Phase 3
 -- Last pick video // not handled in carousel https://videogular.github.io/ngx-videogular/docs/ this will be a hidden full screen absolute position object. unhides on pick. hides and pauses after certain amount of minutes.
@@ -65,7 +74,7 @@ Improvements to make
 - change login url and controller routes # Phase 4
 - have more than one draft Phase 5 if ever
 - have more than one team per user 5 if ever
-- remove admin team and user as it's a stupid implementation for it to make the seeder work Phase 4
+- remove admin team and user as it's a stupid implementation for it to make the seeder work Phase 5
 - pull everything out into services where possible. Rather computing within repositories Phase 4/5
 - Dashboard picks API has a very fat unneccessary response
 - Pull out mat card when it was implemented in dashboard picks commit 6/7/2023
@@ -85,4 +94,4 @@ dotnet ef migrations add <nameofmigration> "Creates a new migration based on mod
 dotnet ef database update "Updates database after migrations are made or the db/schema needs to be created."
 
 dotnet run /destory "kills the DB entirely"
-dotnet run /seed "imports the players from playersMaster"
+dotnet run /seed "imports the players from data/playersMaster"

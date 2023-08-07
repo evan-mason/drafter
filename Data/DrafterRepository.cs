@@ -107,7 +107,7 @@ namespace Drafter.Data
             return await _ctx.Players
                 .Where(u => u.FantasyTeam == MyTeam)
                 .OrderByDescending(p => p.FantasyPointsAverage)
-                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.Points, NBATeam = p.NBATeam})
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsAverage, NBATeam = p.NBATeam}) // this should be changed to be forecasted average
                 .ToListAsync();
         }
 
