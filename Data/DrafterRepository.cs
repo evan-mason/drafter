@@ -31,8 +31,8 @@ namespace Drafter.Data
             _logger.LogInformation("Get all players was called");
             return await _ctx.Players
                 .Include(p => p.FantasyTeam)
-                .OrderByDescending(p => p.Points)
-                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .OrderByDescending(p => p.FantasyPointsAverage)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.Points, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
                 .ToListAsync();
         }
 
@@ -69,7 +69,7 @@ namespace Drafter.Data
         {
             return _ctx.Players
                 .Where(p => p.Position == position)
-                .OrderByDescending(p => p.Points)
+                .OrderByDescending(p => p.FantasyPointsAverage)
                 .ToList();
         }
 
@@ -81,7 +81,7 @@ namespace Drafter.Data
 
             return await _ctx.FantasyTeams
                 .Where(u => u.DrafterUser == MyUser)
-                .Include(f => f.Players.OrderByDescending(p => p.Points))
+                .Include(f => f.Players.OrderByDescending(p => p.FantasyPointsAverage))
                 .ToListAsync();
         }
 
@@ -96,8 +96,8 @@ namespace Drafter.Data
 
             return await _ctx.Players
                 .Where(u => u.FantasyTeam == MyTeam)
-                .OrderByDescending(p => p.Points)
-                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam})
+                .OrderByDescending(p => p.FantasyPointsAverage)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.Points, NBATeam = p.NBATeam})
                 .ToListAsync();
         }
 
@@ -193,7 +193,7 @@ namespace Drafter.Data
                 .Include(p => p.FantasyTeam)
                 .OrderBy(p => p.DraftPosition)
                 .Where(p => p.FantasyTeam.DrafterUser != FreeAgentUser) // shouldn't need calling but eh.
-                .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, Points = p.Points, NBATeam = p.NBATeam })
+                .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsAverage, NBATeam = p.NBATeam })
                 .ToList();
         }
 
@@ -360,7 +360,7 @@ namespace Drafter.Data
                 Id = player.Id, 
                 Name = player.Name, 
                 Position = player.Position, 
-                Points = player.Points, 
+                FantasyPoints = player.Points, 
                 NBATeam = player.NBATeam, 
                 FantasyTeam = player.FantasyTeam.Name 
             };

@@ -12,7 +12,7 @@ namespace Drafter.Data.Entities
         public string Name { get; set; }
         public string Position { get; set; }
         public string NBATeam { get; set; }
-        public double Points { get; set; }
+        public double FantasyPoints { get; set; }
         public string FantasyTeam { get; set; }
     }
 }

@@ -3,6 +3,6 @@
     name: string
     position: string
     nbaTeam: string
-    points: number
+    fantasyPoints: number
     fantasyTeam: string
 }

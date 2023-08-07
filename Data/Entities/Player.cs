@@ -123,10 +123,33 @@ namespace Drafter.Data.Entities
             player.BLKTotal = Convert.ToInt16(values[44]);
             player.TOVTotal = Convert.ToInt16(values[45]);
             player.pointsTotal = Convert.ToInt16(values[47]);
+            //player.DDTotal = Convert.ToInt16(values[48]);
+            //player.TDTotal = Convert.ToInt16(values[49]);
+            //player.QDTotal = Convert.ToInt16(values[50]);
             player.FantasyPointsTotal = scoringConfig.Value.Point * player.Points;
+            player.FantasyPointsTotal = getFantasyPoints(player, scoringConfig);
             player.FantasyPointsAverage = player.FantasyPointsTotal / player.GamesPL;
             player.FantasyTeam = freeAgentTeam;
             return player;
+        }
+
+        public static double getFantasyPoints(Player player, IOptions<ScoringConfig> scoringConfig)
+        {
+            return (player.pointsTotal * scoringConfig.Value.Point)
+                + (player.ASTTotal * scoringConfig.Value.Assist)
+                + (player.ORBTotal * scoringConfig.Value.OffensiveRebound)
+                + (player.DRBTotal * scoringConfig.Value.DefensiveRebound)
+                + (player.BLKTotal * scoringConfig.Value.Block)
+                + (player.STLTotal * scoringConfig.Value.Steal)
+                + (player.TOVTotal * scoringConfig.Value.Turnover)
+                //+ (player.DDTotal * scoringConfig.Value.DoubleDouble)
+                //+ (player.TDTotal * scoringConfig.Value.TripleDouble)
+                //+ (player.QDTotal * scoringConfig.Value.QuadrupleDouble)
+                + (player.FGMTotal * scoringConfig.Value.FGM)
+                + (player.FGATotal * scoringConfig.Value.FGA)
+                + (player.FreeThrowTotal * scoringConfig.Value.FTM)
+                + (player.FreeThrowPATotal * scoringConfig.Value.FTA)
+                + (player.ThreePMTotal * scoringConfig.Value.ThreePM);
         }
     }
 }

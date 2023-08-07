@@ -14,7 +14,7 @@ export default class PlayerPickerView implements OnInit{
     positionOptions!: any[];
     playerDto!: PlayerDto;
     tableTypes!: any[];
-    tableType: any = '';
+    tableType: any = 'Averages';
 
     constructor(public store: Store, private http: HttpClient) {
 
@@ -35,7 +35,7 @@ export default class PlayerPickerView implements OnInit{
         this.tableTypes = [
             { name: "Averages" , value: "Averages"},
             { name: "Totals" , value: "Totals"},
-            { name: "Forecasted" , value: "Forecasted"}
+            { name: "Forecasted", value: "Forecasted" }
         ]
     }
 
