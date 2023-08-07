@@ -24,6 +24,8 @@ screens USER
 -- review pick thats been 1/5 stars Phase 2
 -- picks timeline
 -- add the message service that appears when you select a row here (row selection > events) https://primeng.org/table#selection-events
+-- forecasting 2023-2024 using with our scoring system
+-- Have a system that predicts rookies and allows to see only rookies etc, or injured players that didn't play that year. (CHECKK INJURY SITUATION)
 
 screens PRESENTER Phase 3
 -- Last pick video // not handled in carousel https://videogular.github.io/ngx-videogular/docs/ this will be a hidden full screen absolute position object. unhides on pick. hides and pauses after certain amount of minutes.
