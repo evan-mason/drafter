@@ -99,3 +99,9 @@ dotnet run /seed "imports the players from data/playersMaster"
 Deployment
 
 Install .nethosting core hosting bundle 
+run app pool as physical windows USER
+go to C:\Windows\System32\inetserv\Config and change applicationHost.config file. Make applicationPoolDefaults setProfileEnvironment="true"
+
+follow https://app.pluralsight.com/course-player?clipId=911d1a47-1a19-4bee-90d7-050594ca2e74 as close as possible and look at event viewer logs whenever possible.
+
+use the SQL string when publishing
