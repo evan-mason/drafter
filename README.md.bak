@@ -23,7 +23,7 @@ Design
 screens USER
 -- F/A player (with sorting) #Phase 1 complete
 -- Other Teams 3 / 4 as it is searchable
--- Your Team
+-- Your Team, sortable list phase 4
 -- Watch list #Phase 4 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available).
 -- Timer/Draft State
 -- Depth Charts #Phase 3 / 4
@@ -94,4 +94,4 @@ dotnet ef migrations add <nameofmigration> "Creates a new migration based on mod
 dotnet ef database update "Updates database after migrations are made or the db/schema needs to be created."
 
 dotnet run /destory "kills the DB entirely"
-dotnet run /seed "imports the players from playersMaster"
+dotnet run /seed "imports the players from data/playersMaster"

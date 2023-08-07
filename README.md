@@ -1,7 +1,7 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.6.3
+version 0.6.4
 Truncating numbers to 4 dp.
 
 Methodology
@@ -23,7 +23,7 @@ Design
 screens USER
 -- F/A player (with sorting) #Phase 1 complete
 -- Other Teams 3 / 4 as it is searchable
--- Your Team
+-- Your Team, sortable list phase 4
 -- Watch list #Phase 4 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available).
 -- Timer/Draft State
 -- Depth Charts #Phase 3 / 4
