@@ -280,6 +280,10 @@ namespace Drafter.Migrations
                     b.Property<int>("ORBTotal")
                         .HasColumnType("int");
 
+                    b.Property<string>("PlayerPictureId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Points")
                         .HasColumnType("float");
 

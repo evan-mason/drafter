@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Drafter.Migrations
 {
     [DbContext(typeof(DrafterContext))]
-    [Migration("20230807060327_init")]
+    [Migration("20230807090307_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -282,6 +282,10 @@ namespace Drafter.Migrations
 
                     b.Property<int>("ORBTotal")
                         .HasColumnType("int");
+
+                    b.Property<string>("PlayerPictureId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Points")
                         .HasColumnType("float");

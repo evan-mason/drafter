@@ -10,9 +10,9 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- Interval Refresh
 -- Deployment
--- Player Pictures
+-- Interval Refresh
+-- Player Pictures // DONE
 -- Triple Double etc addition
 -- Pick Rater and f you button
 -- Next best pick Algorithm
@@ -24,7 +24,7 @@ screens USER
 -- F/A player (with sorting) #Phase 1 complete
 -- Other Teams 3 / 4 as it is searchable
 -- Your Team, sortable list phase 4
--- Watch list #Phase 4 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available).
+-- Watch list #Phase 4 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available). should also be selectable.
 -- Timer/Draft State
 -- Depth Charts #Phase 3 / 4
 -- Projected stats using ESPN projections with our scoring system, last years stats also. Phase 2

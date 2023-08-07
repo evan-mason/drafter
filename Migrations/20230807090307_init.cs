@@ -287,7 +287,8 @@ namespace Drafter.Migrations
                     BLKTotal = table.Column<int>(type: "int", nullable: false),
                     TOVTotal = table.Column<int>(type: "int", nullable: false),
                     FantasyPointsAverage = table.Column<double>(type: "float", nullable: false),
-                    FantasyPointsTotal = table.Column<double>(type: "float", nullable: false)
+                    FantasyPointsTotal = table.Column<double>(type: "float", nullable: false),
+                    PlayerPictureId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

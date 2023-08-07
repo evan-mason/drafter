@@ -71,6 +71,9 @@ namespace Drafter.Data.Entities
         public double FantasyPointsAverage { get; set; }
         public double FantasyPointsTotal { get; set; }
 
+        // Other useful columns
+        public string PlayerPictureId { get; set; }
+
         //public NBATeam NBATeam { get; set } NEED TO IMPLEMENT THIS TO SEE TEAMS AND DEPTH CHARTS
 
         public static Player FromCsv(string csvLine, FantasyTeam freeAgentTeam, IOptions<ScoringConfig> scoringConfig)
@@ -123,9 +126,10 @@ namespace Drafter.Data.Entities
             player.BLKTotal = Convert.ToInt16(values[44]);
             player.TOVTotal = Convert.ToInt16(values[45]);
             player.pointsTotal = Convert.ToInt16(values[47]);
-            //player.DDTotal = Convert.ToInt16(values[48]);
-            //player.TDTotal = Convert.ToInt16(values[49]);
-            //player.QDTotal = Convert.ToInt16(values[50]);
+            player.PlayerPictureId =values[48];
+            //player.DDTotal = Convert.ToInt16(values[49]);
+            //player.TDTotal = Convert.ToInt16(values[50]);
+            //player.QDTotal = Convert.ToInt16(values[51]);
             player.FantasyPointsTotal = scoringConfig.Value.Point * player.Points;
             player.FantasyPointsTotal = getFantasyPoints(player, scoringConfig);
             player.FantasyPointsAverage = player.FantasyPointsTotal / player.GamesPL;

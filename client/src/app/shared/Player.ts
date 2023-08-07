@@ -53,4 +53,5 @@ export interface Player {
     tovTotal: number
     fantasyPointsAverage: number
     fantasyPointsTotal: number
+    playerPictureId: string
 }
