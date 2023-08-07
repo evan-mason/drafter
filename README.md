@@ -95,3 +95,7 @@ dotnet ef database update "Updates database after migrations are made or the db/
 
 dotnet run /destory "kills the DB entirely"
 dotnet run /seed "imports the players from data/playersMaster"
+
+Deployment
+
+Install .nethosting core hosting bundle 
