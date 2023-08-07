@@ -1,8 +1,8 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.5.0
-Dashboard working with buggy timer.
+version 0.6.2
+Player picker basic is complete.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
@@ -17,7 +17,7 @@ screens USER
 -- Your Team
 -- Watch list #Phase 2 -- Watch list v2 adding notes and where what pick you think they should go (will highligh if still available).
 -- Timer/Draft State
--- Depth Charts #Phase 2
+-- Depth Charts #Phase 3 / 4
 -- Projected stats using ESPN projections with our scoring system, last years stats also. Phase 2
 -- Next best pick, and next best at position. 
 -- fuck you button (if a player was picked that you wanted) Phase 2

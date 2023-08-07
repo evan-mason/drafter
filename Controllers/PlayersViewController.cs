@@ -18,15 +18,33 @@ namespace Drafter.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        [HttpGet("playersaverage")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<IEnumerable<PlayerDto>>> Get()
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersAverageDashboard()
         {
 
             try
             {
                 var result = await _repository.GetAllPlayersDashboard();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
+        [HttpGet("playerstotal")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersTotalDashboard()
+        {
+
+            try
+            {
+                var result = await _repository.GetAllPlayersDashboardTotal();
                 return Ok(result);
             }
             catch (Exception ex)

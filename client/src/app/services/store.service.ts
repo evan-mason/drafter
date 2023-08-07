@@ -22,20 +22,31 @@ export class Store {
     public selectedPlayer: any;
 
     loadPlayers(): Observable<void> {
-        return this.http.get<[]>("/api/playersview") // we use a get from the players url we expect, and are saying we expect an array type back
+        return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
                 this.players = data; // set the data we return back into our any array
                 return
             }));
     }
 
-    /*loadPlayersWithType(): Observable<void> { // This will get a differing point value for overall table points.
-        return this.http.get<[]>("/api/playersview") // we use a get from the players url we expect, and are saying we expect an array type back
-            .pipe(map(data => {
-                this.players = data; // set the data we return back into our any array
-                return
-            }));
-    }*/
+    loadPlayersWithType(tableType: string): Observable<void> { // This will get a differing point value for overall table points.
+        if (tableType === "Totals") {
+
+            return this.http.get<[]>("/api/playersview/playerstotal") // we use a get from the players url we expect, and are saying we expect an array type back
+                .pipe(map(data => {
+                    this.players = data; // set the data we return back into our any array
+                    return
+                }));
+        }
+
+        else {
+            return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
+                .pipe(map(data => {
+                    this.players = data; // set the data we return back into our any array
+                    return
+                }));
+        }
+    }
 
     loadMyPlayers(): Observable<void> {
         return this.http.get<[]>("/api/playersview/myteamdashboard") // we use a get from the players url we expect, and are saying we expect an array type back

@@ -34,4 +34,23 @@ export interface Player {
     fantasyTeam: FantasyTeam
     draftTime: string
     draftPosition: number
+    pointsTotal: number
+    minutesTotal: number
+    fgmTotal: number
+    fgaTotal: number
+    threePMTotal: number
+    threePATotal: number
+    twoPMTotal: number
+    twoPATotal: number
+    freeThrowTotal: number
+    freeThrowPATotal: number
+    orbTotal: number
+    drbTotal: number
+    trbTotal: number
+    astTotal: number
+    stlTotal: number
+    blkTotal: number
+    tovTotal: number
+    fantasyPointsAverage: number
+    fantasyPointsTotal: number
 }
