@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Drafter.Configuration;
+using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,9 +15,15 @@ namespace Drafter.Data.Entities
         public string Name { get; set; }
         //I RECKON THE BELOW IS A LIST OF POSITIONS, OR MAYBE POSITION IS A TYPE WITH FALSE/TRUE POSITION BOOLEANS? RIGHT NOW WE WILL JUST USE STATIC STRINGS
         public string Position { get; set; }
+        public string NBATeam { get; set; }
+        public FantasyTeam FantasyTeam { get; set; }
+        public DateTime DraftTime { get; set; }
+        public int DraftPosition { get; set; }
         public int Age { get; set; }
         public int GamesPL { get; set; }
         public int GamesStarted { get; set; }
+        // Averages
+        public double Points { get; set; }
         public double Minutes { get; set; }
         public double FGM { get; set; }
         public double FGA { get; set; }
@@ -37,14 +45,35 @@ namespace Drafter.Data.Entities
         public double BLK { get; set; }
         public double TOV { get; set; }
 
-        public string NBATeam { get; set; }
-        public double Points { get; set; }
-        public FantasyTeam FantasyTeam { get; set; }
-        public DateTime DraftTime { get; set; }
-        public int DraftPosition { get; set; }
+        // Totals
+
+        public int pointsTotal { get; set; }
+        public int minutesTotal { get; set; }
+        public int FGMTotal { get; set; }
+        public int FGATotal { get; set; }
+        public int ThreePMTotal { get; set; }
+        public int ThreePATotal { get; set; }
+        public int TwoPMTotal { get; set; }
+        public int TwoPATotal { get; set; }
+        public int FreeThrowTotal { get; set; }
+        public int FreeThrowPATotal { get; set; }
+        public int ORBTotal { get; set; }
+        public int DRBTotal { get; set; }
+        public int TRBTotal { get; set; }
+        public int ASTTotal { get; set; }
+        public int STLTotal { get; set; }
+        public int BLKTotal { get; set; }
+        public int TOVTotal { get; set; }        
+
+        // Forecast to complete
+
+        // Fantasy Points
+        public double FantasyPointsAverage { get; set; }
+        public double FantasyPointsTotal { get; set; }
+
         //public NBATeam NBATeam { get; set } NEED TO IMPLEMENT THIS TO SEE TEAMS AND DEPTH CHARTS
 
-        public static Player FromCsv(string csvLine, FantasyTeam freeAgentTeam)
+        public static Player FromCsv(string csvLine, FantasyTeam freeAgentTeam, IOptions<ScoringConfig> scoringConfig)
         {
             string[] values = csvLine.Split(',');
             Player player = new Player();
@@ -77,6 +106,25 @@ namespace Drafter.Data.Entities
             player.TOV = Convert.ToDouble(values[26]);
             player.BLK = Convert.ToDouble(values[27]);
             player.Points = Convert.ToDouble(values[29]);
+            player.minutesTotal = Convert.ToInt16(values[30]);
+            player.FGMTotal = Convert.ToInt16(values[31]);
+            player.FGATotal = Convert.ToInt16(values[32]);
+            player.ThreePMTotal = Convert.ToInt16(values[33]);
+            player.ThreePATotal = Convert.ToInt16(values[34]);
+            player.TwoPMTotal = Convert.ToInt16(values[35]);
+            player.TwoPATotal = Convert.ToInt16(values[36]);
+            player.FreeThrowTotal = Convert.ToInt16(values[37]);
+            player.FreeThrowPATotal = Convert.ToInt16(values[38]);
+            player.ORBTotal = Convert.ToInt16(values[39]);
+            player.DRBTotal = Convert.ToInt16(values[40]);
+            player.TRBTotal = Convert.ToInt16(values[41]);
+            player.ASTTotal = Convert.ToInt16(values[42]);
+            player.STLTotal = Convert.ToInt16(values[43]);
+            player.BLKTotal = Convert.ToInt16(values[44]);
+            player.TOVTotal = Convert.ToInt16(values[45]);
+            player.pointsTotal = Convert.ToInt16(values[47]);
+            player.FantasyPointsTotal = scoringConfig.Value.Point * player.Points;
+            player.FantasyPointsAverage = player.FantasyPointsTotal / player.GamesPL;
             player.FantasyTeam = freeAgentTeam;
             return player;
         }

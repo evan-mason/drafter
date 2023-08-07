@@ -194,14 +194,23 @@ namespace Drafter.Migrations
                     b.Property<double>("AST")
                         .HasColumnType("float");
 
+                    b.Property<int>("ASTTotal")
+                        .HasColumnType("int");
+
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<double>("BLK")
                         .HasColumnType("float");
 
+                    b.Property<int>("BLKTotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("DRB")
                         .HasColumnType("float");
+
+                    b.Property<int>("DRBTotal")
+                        .HasColumnType("int");
 
                     b.Property<int>("DraftPosition")
                         .HasColumnType("int");
@@ -215,20 +224,38 @@ namespace Drafter.Migrations
                     b.Property<double>("FGA")
                         .HasColumnType("float");
 
+                    b.Property<int>("FGATotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("FGM")
                         .HasColumnType("float");
+
+                    b.Property<int>("FGMTotal")
+                        .HasColumnType("int");
 
                     b.Property<double>("FGP")
                         .HasColumnType("float");
 
+                    b.Property<double>("FantasyPointsAverage")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FantasyPointsTotal")
+                        .HasColumnType("float");
+
                     b.Property<double>("FreeThrowPA")
                         .HasColumnType("float");
+
+                    b.Property<int>("FreeThrowPATotal")
+                        .HasColumnType("int");
 
                     b.Property<double>("FreeThrowPG")
                         .HasColumnType("float");
 
                     b.Property<double>("FreeThrowPP")
                         .HasColumnType("float");
+
+                    b.Property<int>("FreeThrowTotal")
+                        .HasColumnType("int");
 
                     b.Property<int>("GamesPL")
                         .HasColumnType("int");
@@ -250,6 +277,9 @@ namespace Drafter.Migrations
                     b.Property<double>("ORB")
                         .HasColumnType("float");
 
+                    b.Property<int>("ORBTotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("Points")
                         .HasColumnType("float");
 
@@ -263,17 +293,32 @@ namespace Drafter.Migrations
                     b.Property<double>("STL")
                         .HasColumnType("float");
 
+                    b.Property<int>("STLTotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("TOV")
                         .HasColumnType("float");
+
+                    b.Property<int>("TOVTotal")
+                        .HasColumnType("int");
 
                     b.Property<double>("TRB")
                         .HasColumnType("float");
 
+                    b.Property<int>("TRBTotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("ThreePA")
                         .HasColumnType("float");
 
+                    b.Property<int>("ThreePATotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("ThreePM")
                         .HasColumnType("float");
+
+                    b.Property<int>("ThreePMTotal")
+                        .HasColumnType("int");
 
                     b.Property<double>("ThreePP")
                         .HasColumnType("float");
@@ -281,11 +326,23 @@ namespace Drafter.Migrations
                     b.Property<double>("TwoPA")
                         .HasColumnType("float");
 
+                    b.Property<int>("TwoPATotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("TwoPM")
                         .HasColumnType("float");
 
+                    b.Property<int>("TwoPMTotal")
+                        .HasColumnType("int");
+
                     b.Property<double>("TwoPP")
                         .HasColumnType("float");
+
+                    b.Property<int>("minutesTotal")
+                        .HasColumnType("int");
+
+                    b.Property<int>("pointsTotal")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

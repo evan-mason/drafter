@@ -1,5 +1,7 @@
-﻿using Drafter.Data.Entities;
+﻿using Drafter.Configuration;
+using Drafter.Data.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace Drafter.Data
 {
@@ -8,12 +10,14 @@ namespace Drafter.Data
         private readonly DrafterContext _ctx;
         private readonly IWebHostEnvironment _env;
         private readonly UserManager<DrafterUser> _userManager;
+        private readonly IOptions<ScoringConfig> _scoringConfig;
 
-        public DrafterSeeder(DrafterContext ctx, IWebHostEnvironment env, UserManager<DrafterUser> userManager)
+        public DrafterSeeder(DrafterContext ctx, IWebHostEnvironment env, UserManager<DrafterUser> userManager, IOptions<ScoringConfig> scoringConfig)
         {
             _ctx = ctx;
             _env = env;
             _userManager = userManager;
+            _scoringConfig = scoringConfig;
         }
 
         public async Task Seed()
@@ -38,11 +42,12 @@ namespace Drafter.Data
                     DrafterUser = user1forteam
                 };
                 _ctx.FantasyTeams.Add(freeAgentTeam);
+
                 // REMOVE ABOVE FREE AGENT TEAM CREATOIN
-                var filePath = Path.Combine(_env.ContentRootPath,"Data/players.csv");
+                var filePath = Path.Combine(_env.ContentRootPath,"Data/playersMaster.csv");
                 IEnumerable<Player> players = File.ReadAllLines(filePath)
                     .Skip(1)
-                    .Select(p => Player.FromCsv(p,freeAgentTeam))
+                    .Select(p => Player.FromCsv(p,freeAgentTeam, _scoringConfig))
                     .ToList();
 
                 _ctx.Players.AddRange(players);

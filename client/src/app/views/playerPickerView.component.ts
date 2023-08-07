@@ -13,6 +13,8 @@ export default class PlayerPickerView implements OnInit{
 
     positionOptions!: any[];
     playerDto!: PlayerDto;
+    tableTypes!: any[];
+    tableType: any = '';
 
     constructor(public store: Store, private http: HttpClient) {
 
@@ -29,6 +31,12 @@ export default class PlayerPickerView implements OnInit{
             { label: 'PF', value: 'PF' },
             { label: 'C', value: 'C' }
         ];
+
+        this.tableTypes = [
+            { name: "Averages" , value: "Averages"},
+            { name: "Totals" , value: "Totals"},
+            { name: "Forecasted" , value: "Forecasted"}
+        ]
     }
 
     clear(table: Table, searchText: HTMLInputElement) { // this is to make the clear button work on the table
@@ -45,12 +53,18 @@ export default class PlayerPickerView implements OnInit{
         return $event.target.value;
     }
 
-    onRowUnselect($event: any) {
+    onRowUnselect($event: any) { // not implemented
+        
         console.log($event)
     }
 
-    onRowSelect($event: any) {
-        console.log($event)
+    onRowSelect(event: any) {
+        this.store.loadSelectedPlayer(event.data.id).subscribe();
     }
 
+    onTableTypeChange() {
+        console.log(this.tableType);
+        this.store.loadPlayers().subscribe();
+        //this.store.loadPlayersWithType().subscribe();
+    }
 }

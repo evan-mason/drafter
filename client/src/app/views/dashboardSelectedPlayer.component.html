@@ -1,0 +1,77 @@
+<mat-card class="col-md-4" *ngIf="store.selectedPlayer; let selectedPlayer">
+    <mat-card-header>
+      <img
+      mat-card-sm-image
+      src="https://cdn.nba.com/headshots/nba/latest/260x190/203500.png"
+      />
+      <mat-card-title-group>
+          <mat-card-title>Pick {{ selectedPlayer.name }} </mat-card-title>
+          <mat-card-subtitle>{{ selectedPlayer.nbaTeam }}</mat-card-subtitle>
+          <mat-card-subtitle>{{ selectedPlayer.position }}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <table>
+            <tr>
+                <th></th>
+                <th> 2022-2023 </th>
+            </tr>
+            <tr>
+                <td>Points</td>
+                <td>{{ selectedPlayer.points }}</td>
+            </tr>
+            <tr>
+                <td>Minutes</td>
+                <td>{{ selectedPlayer.minutes }}</td>
+            </tr>
+            <tr>
+                <td>FGM</td>
+                <td>{{ selectedPlayer.fgm }}</td>
+            </tr>
+            <tr>
+                <td>FGA</td>
+                <td>{{ selectedPlayer.fga }}</td>
+            </tr>
+            <tr>
+                <td>3PM</td>
+                <td>{{ selectedPlayer.threePM }}</td>
+            </tr>
+            <tr>
+                <td>3PA</td>
+                <td>{{ selectedPlayer.threePA }}</td>
+            </tr>
+            <tr>
+                <td>ORB</td>
+                <td>{{ selectedPlayer.orb }}</td>
+            </tr>
+            <tr>
+                <td>DFB</td>
+                <td>{{ selectedPlayer.drb }}</td>
+            </tr>
+            <tr>
+                <td>Assists</td>
+                <td>{{ selectedPlayer.ast }}</td>
+            </tr>
+            <tr>
+                <td>Steals</td>
+                <td>{{ selectedPlayer.stl }}</td>
+            </tr>
+            <tr>
+                <td>Blocks</td>
+                <td>{{ selectedPlayer.blk }}</td>
+            </tr>
+            <tr>
+                <td>Turnovers</td>
+                <td>{{ selectedPlayer.tov }}</td>
+            </tr>
+            <tr>
+                <td>Games Played</td>
+                <td>{{ selectedPlayer.gamesPL }}</td>
+            </tr>
+            <tr>
+                <td>Games Started</td>
+                <td>{{ selectedPlayer.gamesStarted }}</td>
+            </tr>
+        </table>
+    </mat-card-content>
+  </mat-card>

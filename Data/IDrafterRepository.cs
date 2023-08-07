@@ -7,7 +7,7 @@ namespace Drafter.Data
     {
         IEnumerable<Player> GetAllPlayers();
         Task<IEnumerable<PlayerDto>> GetAllPlayersDashboard();
-
+        Task<Player> GetSelectedPlayerDashboard(int id); 
         Task<IEnumerable<PlayerDto>> GetMyPlayersDashboard(string userName);
         Task<IEnumerable<Player>> GetAllFreeAgentPlayers();
         Task<IEnumerable<Player>> GetTimeline();

@@ -1,3 +1,4 @@
+using Drafter.Configuration;
 using Drafter.Data;
 using Drafter.Data.Entities;
 using Drafter.Services;
@@ -41,6 +42,8 @@ builder.Services.AddDbContext<DrafterContext>();
 builder.Services.AddTransient<DrafterSeeder>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IDrafterRepository, DrafterRepository>();
+builder.Services.AddOptions();
+builder.Services.Configure<ScoringConfig>(_config.GetSection("ScoringConfig"));
 
 var app = builder.Build();
 

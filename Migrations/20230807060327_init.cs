@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Drafter.Migrations
 {
     /// <inheritdoc />
-    public partial class inittt : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -187,6 +187,7 @@ namespace Drafter.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DrafterUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    DraftOrder = table.Column<int>(type: "int", nullable: false),
                     DraftId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -240,9 +241,14 @@ namespace Drafter.Migrations
                     Rank = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NBATeam = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DrafterUserId = table.Column<int>(type: "int", nullable: false),
+                    DraftTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DraftPosition = table.Column<int>(type: "int", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     GamesPL = table.Column<int>(type: "int", nullable: false),
                     GamesStarted = table.Column<int>(type: "int", nullable: false),
+                    Points = table.Column<double>(type: "float", nullable: false),
                     Minutes = table.Column<double>(type: "float", nullable: false),
                     FGM = table.Column<double>(type: "float", nullable: false),
                     FGA = table.Column<double>(type: "float", nullable: false),
@@ -263,11 +269,25 @@ namespace Drafter.Migrations
                     STL = table.Column<double>(type: "float", nullable: false),
                     BLK = table.Column<double>(type: "float", nullable: false),
                     TOV = table.Column<double>(type: "float", nullable: false),
-                    NBATeam = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Points = table.Column<double>(type: "float", nullable: false),
-                    DrafterUserId = table.Column<int>(type: "int", nullable: false),
-                    DraftTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DraftPosition = table.Column<int>(type: "int", nullable: false)
+                    pointsTotal = table.Column<int>(type: "int", nullable: false),
+                    minutesTotal = table.Column<int>(type: "int", nullable: false),
+                    FGMTotal = table.Column<int>(type: "int", nullable: false),
+                    FGATotal = table.Column<int>(type: "int", nullable: false),
+                    ThreePMTotal = table.Column<int>(type: "int", nullable: false),
+                    ThreePATotal = table.Column<int>(type: "int", nullable: false),
+                    TwoPMTotal = table.Column<int>(type: "int", nullable: false),
+                    TwoPATotal = table.Column<int>(type: "int", nullable: false),
+                    FreeThrowTotal = table.Column<int>(type: "int", nullable: false),
+                    FreeThrowPATotal = table.Column<int>(type: "int", nullable: false),
+                    ORBTotal = table.Column<int>(type: "int", nullable: false),
+                    DRBTotal = table.Column<int>(type: "int", nullable: false),
+                    TRBTotal = table.Column<int>(type: "int", nullable: false),
+                    ASTTotal = table.Column<int>(type: "int", nullable: false),
+                    STLTotal = table.Column<int>(type: "int", nullable: false),
+                    BLKTotal = table.Column<int>(type: "int", nullable: false),
+                    TOVTotal = table.Column<int>(type: "int", nullable: false),
+                    FantasyPointsAverage = table.Column<double>(type: "float", nullable: false),
+                    FantasyPointsTotal = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

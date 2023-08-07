@@ -4,5 +4,5 @@
     drafterUser: any
     drafterUserId: string
     draftOrder: number
-    players: any
+    players: any[]
   }

@@ -1,8 +1,8 @@
 # drafter
-React NBA Drafting application built for the boys.
+Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.3.1
-Dashboard page prototype completed. With better formatting.
+version 0.6.0
+Player custom scoring first implementations.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
@@ -35,7 +35,7 @@ screens PRESENTER Phase 3
 -- picks timeline
 -- Timer/Draft State
 -- End of draft summaries with videos
--- play sound on pick. draft sound.
+-- play sound on pick. draft sound. https://stackoverflow.com/questions/44883501/play-sound-in-angular-4
 -- Summaries include best team, worst pick, best shooters, tallest team, etc etc. Phase 4
 
 PRESENTER IDEA ARCHETECTURE
@@ -50,6 +50,11 @@ screen admin page
 -- Upload new players CSV -- THIS WORKS ALREADY, BUT CAN RE-SEED IF I WANT
 -- Add and remove players based on master list ## THIS CAN BE DONE VIA DB IF NEEDED
 -- Export Final Draft Phase 2
+
+EXTRA FEATURES TO CONSIDER
+-- compare players. use a checkbox and it will create a popup that will put all the players together (2 probably) then have red/green text.
+-- Addition of rotowire news. see http://nbasense.com/nba-api/StatsProd/StatsCms/Rotowire/RotowirePlayer#request-example player ids are same as here https://www.nba.com/players
+
 
 Improvements to make
 - extract methods from API's to own apis and create services to handle object creation/manipulation. Controllers are doing too much. Phase 4
@@ -76,3 +81,6 @@ sqllocaldb start ProjectsV13 "Starts required sql server"
 
 dotnet ef migrations add <nameofmigration> "Creates a new migration based on model changes"
 dotnet ef database update "Updates database after migrations are made or the db/schema needs to be created."
+
+dotnet run /destory "kills the DB entirely"
+dotnet run /seed "imports the players from playersMaster"

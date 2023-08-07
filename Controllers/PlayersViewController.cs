@@ -36,6 +36,24 @@ namespace Drafter.Controllers
             }
         }
 
+        [HttpGet("selectedplayer")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<Player>>> GetSelectedPlayer(int id)
+        {
+
+            try
+            {
+                var result = await _repository.GetSelectedPlayerDashboard(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
         [HttpGet("myteamdashboard")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]

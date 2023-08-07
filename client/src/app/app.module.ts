@@ -8,6 +8,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 import { AppComponent } from './app.component';
 import { Store } from './services/store.service';
@@ -17,6 +18,7 @@ import DashboardPickView from './views/dashboardPickView.component';
 import DashboardTimelineView from './views/dashboardTimelineView.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import DashboardTime from './views/dashboardTime.component';
+import DashboardSelectedPlayer from './views/dashboardSelectedPlayer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import DashboardTime from './views/dashboardTime.component';
         MyTeamView,
         DashboardPickView,
         DashboardTimelineView,
-        DashboardTime
+        DashboardTime,
+        DashboardSelectedPlayer
   ],
   imports: [
         BrowserModule,
@@ -37,7 +40,8 @@ import DashboardTime from './views/dashboardTime.component';
         ButtonModule,
         InputTextModule,
         MatCardModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        SelectButtonModule
   ],
   providers: [Store],
   bootstrap: [AppComponent]

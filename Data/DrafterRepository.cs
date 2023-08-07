@@ -36,6 +36,16 @@ namespace Drafter.Data
                 .ToListAsync();
         }
 
+        public async Task<Player> GetSelectedPlayerDashboard(int id)
+        {
+            _logger.LogInformation("Get selected player with id: " + id + " was called");
+            return await _ctx.Players
+                .Where(p => p.Id == id)
+                .Include(p => p.FantasyTeam)
+                .OrderByDescending(p => p.Points)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<IEnumerable<Player>> GetAllFreeAgentPlayers()
         {
             _logger.LogInformation("Get all free agents was called");
