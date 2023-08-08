@@ -1,8 +1,8 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.6.4
-Truncating numbers to 4 dp.
+version 0.7.0
+We are refreshing automatically with new data.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
@@ -10,8 +10,8 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- Deployment
--- Interval Refresh
+-- Deployment // Done
+-- Interval Refresh // 5 seconds but can be improved.
 -- Player Pictures // DONE
 -- Triple Double etc addition
 -- Pick Rater and f you button
@@ -82,7 +82,11 @@ Improvements to make
 - Handle draftplayerdashboard exception when drafting a player that's not avaliable.
 - draftPlayer picking player does not reset time when done locally.
 - Fix timer when it goes into negative
+- interval refresh should only refresh if there's new data. I didn't manage to do this but it will help relieve the server if we can implment.
+- tickTock() in the timer, we convert to seconds from milliseconds then back to seconds again. This is stupid.
 
+IMPORTANT FIXES TO MAKE
+- Pagination resets if I attempt to reload the player picker. So I have disabled it for now.
 
 IMPORTANT COMMANDS
 

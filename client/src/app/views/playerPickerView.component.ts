@@ -63,8 +63,7 @@ export default class PlayerPickerView implements OnInit{
     }
 
     onTableTypeChange() {
-        console.log(this.tableType);
-        //this.store.loadPlayers().subscribe();
-        this.store.loadPlayersWithType(this.tableType).subscribe();
+        this.store.setTableType(this.tableType);
+        this.store.loadPlayersWithType().subscribe();
     }
 }

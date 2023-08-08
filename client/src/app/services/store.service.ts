@@ -10,16 +10,18 @@ import { Player } from "../shared/Player";
 export class Store {
 
     constructor(private http: HttpClient) {
-
+        this.refresh();
     }
 
     public players: PlayerDto[] = [];
     public myPlayers: PlayerDto[] = [];
     public timeline: PlayerDto[] = [];
     public lastPickTime: any;
+    public newPickTime: any;
     //public nextPick: PickDto[] = [];
     public picks: PickDto[] = [];
     public selectedPlayer: any;
+    public tableType: any = 'Averages';
 
     loadPlayers(): Observable<void> {
         return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
@@ -29,9 +31,8 @@ export class Store {
             }));
     }
 
-    loadPlayersWithType(tableType: string): Observable<void> { // This will get a differing point value for overall table points.
-        if (tableType === "Totals") {
-
+    loadPlayersWithType(): Observable<void> { // This will get a differing point value for overall table points.
+        if (this.tableType === "Totals") {
             return this.http.get<[]>("/api/playersview/playerstotal") // we use a get from the players url we expect, and are saying we expect an array type back
                 .pipe(map(data => {
                     this.players = data; // set the data we return back into our any array
@@ -108,5 +109,30 @@ export class Store {
                 this.timeline.push(player); // adds the player to the timeline
                 //this.lastPickTime(new Date()); // sets the last pick time to now although it doesn't work. time format is incorrect.
             }));
+    }
+
+    refresh(): void { // move logic to presenter when completed
+        setInterval(() => { // the following logic didn't work so I will just refresh every 5 seconds for everyone
+            /*const oldPickTime = new Date(this.lastPickTime.getTime()); // THIS IS FOR A DEEP COPY, LOOK INTO lodash if we are going to keep doing this type of thing
+            this.loadTimer().subscribe();
+            const newPickTime = new Date(this.lastPickTime.getTime());
+            console.log("Loaded new timer");
+            console.log("old timer = " + oldPickTime);
+            console.log("new timer = " + newPickTime);
+            if (newPickTime !== oldPickTime) {
+                console.log("Player was picked in the last 5 seconds!!!!")
+                // refresh everything that isn't me
+            }*/
+
+            //this.loadPlayersWithType().subscribe();
+            this.loadPicks().subscribe();
+            this.loadTimeline().subscribe();
+            this.loadTimer().subscribe();
+
+        }, 5000);
+    }
+
+    setTableType(tableType: string): void {
+        this.tableType = tableType;
     }
 }

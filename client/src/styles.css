@@ -22,6 +22,11 @@ dashboard-pick{
     white-space: nowrap;
 }
 
+dashboard-timeline {
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
 .mat-mdc-card {
     display: inline-block !important;
 }

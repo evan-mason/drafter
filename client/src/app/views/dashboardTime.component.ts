@@ -29,6 +29,6 @@ export default class DashboardTime implements OnInit{
     tickTock() {
         this.lastPickTime = new Date(this.store.lastPickTime);
         this.timerMilliseconds = this.lastPickTime - new Date().getTime() + 300000; //
-        this.timer = Math.floor(this.timerMilliseconds / 1000); //convert to seconds
+        this.timer = Math.floor(this.timerMilliseconds / 1000); //convert to seconds // this is stupid because we are converting back into milliseconds in the html
     }
 }
