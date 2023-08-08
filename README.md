@@ -87,6 +87,7 @@ Improvements to make
 
 IMPORTANT FIXES TO MAKE
 - Pagination resets if I attempt to reload the player picker. So I have disabled it for now.
+- You can currently steal other users picks, as well as you can redraft your own players and the picks will be deleted
 
 IMPORTANT COMMANDS
 
