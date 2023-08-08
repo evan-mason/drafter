@@ -124,7 +124,7 @@ export class Store {
                 // refresh everything that isn't me
             }*/
 
-            //this.loadPlayersWithType().subscribe();
+            this.loadPlayersWithType().subscribe();
             this.loadPicks().subscribe();
             this.loadTimeline().subscribe();
             this.loadTimer().subscribe();
