@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    font-family: var(--font-family);
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+    padding: 0;
+}
+
+button.p-element.p-button.p-component.p-button-icon-only{
+    width: 26px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+tbody.p-element.p-datatable-tbody>tr>td {
+    padding-left: 1rem;
+}
+
+dashboard-pick{
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.mat-mdc-card {
+    display: inline-block !important;
+}
+
+mat-card-content.mat-mdc-card-content {
+    white-space: normal !important;
+}
