@@ -158,6 +158,13 @@ namespace Drafter.Controllers
         }
 
         [Authorize]
+        [HttpGet("Presenter")]
+        public IActionResult Presenter()
+        {
+            return View();
+        }
+
+        [Authorize]
         [HttpGet("DraftSettings")]
         public IActionResult DraftSettings()
         {
