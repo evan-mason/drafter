@@ -49,6 +49,24 @@ screens PRESENTER Phase 3
 -- play sound on pick. draft sound. https://stackoverflow.com/questions/44883501/play-sound-in-angular-4
 -- Summaries include best team, worst pick, best shooters, tallest team, etc etc. Phase 4
 
+allow setting up of full application under one page infrastructure. Phase 5
+-- team/draft create is removed from top menu
+-- login and register is removed from top menu to be handled by angular
+-- import CSV will seed the players rather than using the command line
+
+Phase 6 AI Adam silver
+-- use AI voice generator to create a voice that will announce the picks. 
+-- we can leverage a speech to text with a custom AI voice. Or. We can record snips and piece them together to create the total pick announcement
+-- P1 {With the {} pick, of the "Draft"}P2{the "team name " selects}P3{ "player" from}P4{the "NBA team"}
+-- The wording can be modified for the above as fit
+
+Phase 7, Android/IOS web app 
+-- make everything mobile friendly
+
+Phase 8 convert to native app
+-- https://betterprogramming.pub/how-to-convert-your-angular-application-to-a-native-mobile-app-android-and-ios-c212b38976df
+-- Make sure we are able to change the url string on load, so we can change the server ip where we need to. House to house etc.
+
 PRESENTER IDEA ARCHETECTURE
 -- It will be based on a carosel structure, hopefully css can control the animation to switch from slides to fades if need be. -- sorted
 -- not sure about the video yet. But hopefully I can rip youtube videos locally. -- this can be an that triggers if pick was < 5 seconds ago. If window is open. play video?
