@@ -1,4 +1,4 @@
-<mat-card class="col-md-4" *ngFor="let pick of store.picks">
+<mat-card class="col-md-4" *ngFor="let pick of store.picks; index as i">
     <mat-card-header>
       <img
       mat-card-sm-image
@@ -9,9 +9,8 @@
         <mat-card-subtitle>{{ pick.fantasyTeam.name }}</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
-    <mat-card-content>@Model.FantasyTeam.Name You're on the clock!
-        @Model.FantasyTeam.Name needs
-        PG/SG
-        Recommends picking: Joel Embiid
+    <mat-card-content *ngIf="i===0"> {{ pick.fantasyTeam.drafterUser }} You're on the clock!
+      {{ pick.fantasyTeam.name }} needs PG / SG
+        Drafter Recommends picking: Joel Embiid (C)
     </mat-card-content>
   </mat-card>

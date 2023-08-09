@@ -9,6 +9,7 @@ import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { RatingModule } from 'primeng/rating';
 
 import { AppComponent } from './app.component';
 import { Store } from './services/store.service';
@@ -19,6 +20,7 @@ import DashboardTimelineView from './views/dashboardTimelineView.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import DashboardTime from './views/dashboardTime.component';
 import DashboardSelectedPlayer from './views/dashboardSelectedPlayer.component';
+import { ReversePipe } from './pipes/reversePipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import DashboardSelectedPlayer from './views/dashboardSelectedPlayer.component';
         DashboardPickView,
         DashboardTimelineView,
         DashboardTime,
-        DashboardSelectedPlayer
+        DashboardSelectedPlayer,
+        ReversePipe
   ],
   imports: [
         BrowserModule,
@@ -41,7 +44,8 @@ import DashboardSelectedPlayer from './views/dashboardSelectedPlayer.component';
         InputTextModule,
         MatCardModule,
         BrowserAnimationsModule,
-        SelectButtonModule
+        SelectButtonModule,
+        RatingModule
   ],
   providers: [Store],
   bootstrap: [AppComponent]

@@ -1,15 +1,15 @@
-<mat-card class="col-md-4" *ngFor="let player of store.timeline; index as i">
+<mat-card class="col-md-4" *ngFor="let player of store.timeline | reverse ">
     <mat-card-header>
         <img mat-card-sm-image
              src="https://material.angular.io/assets/img/examples/shiba2.jpg" />
         <mat-card-title-group>
-            <mat-card-title>Pick {{ i+1 }}. {{ player.name }}. } </mat-card-title>
+            <mat-card-title>Pick player.draftPosition. {{ player.name }}. } </mat-card-title>
             <mat-card-subtitle>{{ player.nbaTeam }}. {{ player.position }}.</mat-card-subtitle>
         </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
         {{ player.fantasyTeam }}
-        Rate Pick: # PICK RATER HERE#
+        <p>Rate Pick: <p-rating [(ngModel)]="ratingValue" [cancel]="false"></p-rating><button id="rateButton" class="btn btn-primary" name="rateButton" value="@p.Id">Submit Rating</button></p>
         <button id="draftButton" class="btn btn-primary" name="Stolen" value="@p.Id">Stolen</button>
     </mat-card-content>
 </mat-card>

@@ -8,6 +8,8 @@ import { Store } from '../services/store.service';
 })
 export default class DashboardTimelineView implements OnInit{
 
+    public ratingValue: any;
+
     constructor(public store: Store) { }
 
     ngOnInit(): void {
