@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '../services/store.service';
 
 @Component({
-    selector: 'dashboard-time',
-    templateUrl: "dashboardTime.component.html",
+    selector: 'presenter-time',
+    templateUrl: "presenterTime.component.html",
     styles: []
 })
-export default class DashboardTime implements OnInit{
+export default class PresenterTime implements OnInit{
 
     public timer: any;
     public timerMilliseconds: any;

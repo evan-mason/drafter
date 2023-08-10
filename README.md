@@ -39,6 +39,8 @@ screens USER
 screens PRESENTER Phase 3
 -- Last pick video // not handled in carousel https://videogular.github.io/ngx-videogular/docs/ this will be a hidden full screen absolute position object. unhides on pick. hides and pauses after certain amount of minutes.
    we need to download the videos locally fml i wanna die, the server will serve them using the wwwroot.
+-- https://stackoverflow.com/questions/44301213/videogular2-set-next-video-and-play-automatically for setting up next video etc
+
 -- Last pick stats
 -- other random stats and current teams. 10 second cycle.
 -- Next team picking

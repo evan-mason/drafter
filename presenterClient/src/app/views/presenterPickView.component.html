@@ -1,0 +1,8 @@
+<mat-card class="col-md-1" *ngFor="let pick of store.picks">
+      <mat-card-title-group>
+          <div class="pick-border">
+              <mat-card-title>Pick {{ pick.pickNumber }} </mat-card-title>
+              <mat-card-subtitle>{{ pick.fantasyTeam.name }}</mat-card-subtitle>
+          </div>
+      </mat-card-title-group>
+  </mat-card>

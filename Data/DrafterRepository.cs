@@ -239,6 +239,16 @@ namespace Drafter.Data
                 .ToListAsync();
         }
 
+        public async Task<List<Pick>> GetPicksForPresenter()
+        {
+            return await _ctx.Picks
+                .OrderBy(p => p.PickNumber)
+                .Include(p => p.FantasyTeam)
+                .Where(p => p.PickTakenTime == DateTime.MinValue)
+                .Take(12)
+                .ToListAsync();
+        }
+
         public Pick GetNextPick()
         {
             var NextPick = _ctx.Picks

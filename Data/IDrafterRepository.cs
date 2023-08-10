@@ -18,6 +18,7 @@ namespace Drafter.Data
         Task<IEnumerable<FantasyTeam>> GetMyTeam(string userId);
         IEnumerable<Pick> GetPicks();
         Task<List<Pick>> GetPicksForDashboard();
+        Task<List<Pick>> GetPicksForPresenter();
         Task<DateTime> GetLastPickTime();
         Pick GetNextPick();
         Task<Pick> GetNextPickDashboard();

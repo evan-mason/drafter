@@ -4,44 +4,42 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card'; // FOR DASHBOARD PICKS
 import { TableModule } from 'primeng/table';
-import { DropdownModule } from 'primeng/dropdown';
-import { TagModule } from 'primeng/tag';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { SelectButtonModule } from 'primeng/selectbutton';
+
+//For Video Functionality
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 
 import { AppComponent } from './app.component';
 import { Store } from './services/store.service';
-import PlayerPickerView from './views/playerPickerView.component';
 import MyTeamView from './views/myTeamView.component';
-import DashboardPickView from './views/dashboardPickView.component';
-import DashboardTimelineView from './views/dashboardTimelineView.component';
+import PresenterPickView from './views/presenterPickView.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import DashboardTime from './views/dashboardTime.component';
-import DashboardSelectedPlayer from './views/dashboardSelectedPlayer.component';
+import PresenterTime from './views/presenterTime.component';
+import PresenterVideoPlayer from './views/presenterVideoPlayer.component';
 
 @NgModule({
   declarations: [
         AppComponent,
-        PlayerPickerView,
         MyTeamView,
-        DashboardPickView,
-        DashboardTimelineView,
-        DashboardTime,
-        DashboardSelectedPlayer
+        PresenterPickView,
+        PresenterTime,
+        PresenterVideoPlayer
   ],
   imports: [
         BrowserModule,
         HttpClientModule,
         FormsModule, // used in position filter for table module.
         TableModule,
-        DropdownModule,
-        TagModule,
-        ButtonModule,
-        InputTextModule,
         MatCardModule,
         BrowserAnimationsModule,
-        SelectButtonModule
+
+        // For Videos
+        VgCoreModule,
+        VgControlsModule,
+        VgOverlayPlayModule,
+        VgBufferingModule
   ],
   providers: [Store],
   bootstrap: [AppComponent]

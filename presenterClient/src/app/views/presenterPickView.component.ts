@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '../services/store.service';
 
 @Component({
-    selector: 'dashboard-pick',
-    templateUrl: "dashboardPickView.component.html",
-    styles: []
+    selector: 'presenter-pick',
+    templateUrl: "presenterPickView.component.html",
+    styleUrls: ['presenterPickView.component.css']
 })
-export default class DashboardPickView implements OnInit{
+export default class PresenterPickView implements OnInit{
 
     constructor(public store: Store) {}
 
