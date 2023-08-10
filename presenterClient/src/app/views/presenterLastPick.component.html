@@ -1,6 +1,6 @@
-<mat-card class="col-md-4" *ngIf=let store.previousPick">
+<mat-card *ngIf="store.previousPick; let pick">
       <mat-card-title-group>
-        <mat-card-title>Pick {{ pick.pickNumber }} </mat-card-title>
-        <mat-card-subtitle>{{ pick.fantasyTeam.name }}</mat-card-subtitle>
+        <mat-card-title>Pick {{ pick.id }} </mat-card-title>
+        <mat-card-subtitle> {{ pick.name }} ({{ pick.position }}). FROM {{ pick.nbaTeam}} TO {{ pick.fantasyTeam}}</mat-card-subtitle>
       </mat-card-title-group>
-  </mat-card>
+</mat-card>

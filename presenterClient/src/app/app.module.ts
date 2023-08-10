@@ -13,19 +13,21 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 
 import { AppComponent } from './app.component';
 import { Store } from './services/store.service';
-import MyTeamView from './views/myTeamView.component';
 import PresenterPickView from './views/presenterPickView.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import PresenterTime from './views/presenterTime.component';
 import PresenterVideoPlayer from './views/presenterVideoPlayer.component';
+import AllTeamsView from './views/allTeamsView.component';
+import PresenterLastPick from './views/presenterLastPick.component';
 
 @NgModule({
   declarations: [
         AppComponent,
-        MyTeamView,
+        AllTeamsView,
         PresenterPickView,
         PresenterTime,
-        PresenterVideoPlayer
+        PresenterVideoPlayer,
+        PresenterLastPick
   ],
   imports: [
         BrowserModule,

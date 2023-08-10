@@ -15,8 +15,8 @@ export default class PresenterVideoPlayer implements OnInit{
     constructor() { }
 
     ngOnInit(): void {
-        setTimeout(() => this.videoUrl = 'luka1080', 10000);
-        setTimeout(() => this.videoUrl = 'lebron1080', 30000); // second video will play 30 seconds after window init
+        //setTimeout(() => this.videoUrl = 'luka1080', 10000);
+        //setTimeout(() => this.videoUrl = 'lebron1080', 30000); // second video will play 30 seconds after window init
     }
 
     onPlayerReady(api: VgApiService) {

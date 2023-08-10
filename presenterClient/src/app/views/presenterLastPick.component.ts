@@ -8,7 +8,7 @@ import { Store } from '../services/store.service';
 })
 export default class PresenterLastPick implements OnInit{
 
-    constructor(public store: Store) {}
+    constructor(public store: Store) { }
 
     ngOnInit(): void {
         this.store.loadPreviousPick()

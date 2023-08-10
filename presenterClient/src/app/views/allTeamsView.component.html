@@ -1,5 +1,5 @@
-<h2>Teams</h2>
-<p-table [value]="store.myPlayers" styleClass="p-datatable-gridlines"> 
+<h2>Team: {{ store.currentTeamName }}</h2>
+<p-table [value]="store.currentTeam" styleClass="p-datatable-gridlines"> 
  <ng-template pTemplate="header"> 
         <tr>
             <th>My Position</th>

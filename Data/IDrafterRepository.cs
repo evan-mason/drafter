@@ -10,6 +10,9 @@ namespace Drafter.Data
         Task<IEnumerable<PlayerDto>> GetAllPlayersDashboardTotal();
         Task<Player> GetSelectedPlayerDashboard(int id); 
         Task<IEnumerable<PlayerDto>> GetMyPlayersDashboard(string userName);
+        Task<IEnumerable<PlayerDto>> GetTeamPresenter(int drafterPlayerId);
+        Task<String> GetTeamNamePresenter(int drafterPlayerId);
+        Task<int> GetTotalTeamsPresenter();
         Task<IEnumerable<Player>> GetAllFreeAgentPlayers();
         Task<IEnumerable<Player>> GetTimeline();
         Task<IEnumerable<PlayerDto>> GetTimelineDashboard();

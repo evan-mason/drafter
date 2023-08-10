@@ -1,8 +1,8 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.7.0
-We are refreshing automatically with new data.
+version 0.8.0
+Presenter page with working videa that's fullscreen and disabled. Rotating teams added and working. Picks to come shown. Just needs next availiable and recommending.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
@@ -40,16 +40,21 @@ screens PRESENTER Phase 3
 -- Last pick video // not handled in carousel https://videogular.github.io/ngx-videogular/docs/ this will be a hidden full screen absolute position object. unhides on pick. hides and pauses after certain amount of minutes.
    we need to download the videos locally fml i wanna die, the server will serve them using the wwwroot.
 -- https://stackoverflow.com/questions/44301213/videogular2-set-next-video-and-play-automatically for setting up next video etc
-
 -- Last pick stats
 -- other random stats and current teams. 10 second cycle.
 -- Next team picking
--- F/A playerlist
 -- picks timeline
 -- Timer/Draft State
 -- End of draft summaries with videos
 -- play sound on pick. draft sound. https://stackoverflow.com/questions/44883501/play-sound-in-angular-4
 -- Summaries include best team, worst pick, best shooters, tallest team, etc etc. Phase 4
+
+screens for above
+-- last picked player stats
+-- random NBA QnA with hiding answers that reveal
+-- random NBA trivia
+-- best at posistion
+-- next picking team maybe?
 
 allow setting up of full application under one page infrastructure. Phase 5
 -- team/draft create is removed from top menu

@@ -13,15 +13,27 @@ export class Store {
     }
 
     public previousPick: any;
-    public myPlayers: PlayerDto[] = [];
+    public currentTeamName: string = "";
+    public currentTeam: PlayerDto[] = [];
     public lastPickTime: any;
     //public nextPick: PickDto[] = [];
     public picks: PickDto[] = [];
+    public totalTeams: number = 0;
 
-    loadMyPlayers(): Observable<void> {
-        return this.http.get<[]>("/api/presenter/myteamdashboard") // we use a get from the players url we expect, and are saying we expect an array type back
+    loadTeam(teamNumber: number): Observable<void> {
+        let queryParams = new HttpParams().append("id", teamNumber);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
-                this.myPlayers = data; // set the data we return back into our any array
+                this.currentTeam = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeamName(teamNumber: number): Observable<void> {
+        let queryParams = new HttpParams().append("id", teamNumber);
+        return this.http.get<string>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.currentTeamName = data;
                 return
             }));
     }
@@ -37,12 +49,12 @@ export class Store {
     loadPreviousPick(){ // placeholder for now
 
         const previousPick: PlayerDto = {
-            id: 0,
-            name: "Example previous pick",
-            position: "",
-            nbaTeam: "",
-            fantasyPoints: 0,
-            fantasyTeam: ""
+            id: 5,
+            name: "Kyrie",
+            position: "C",
+            nbaTeam: "mavs",
+            fantasyPoints: 20,
+            fantasyTeam: "kevy1"
         }
 
         this.previousPick = previousPick;
@@ -52,6 +64,13 @@ export class Store {
         return this.http.get<any>("/api/presenter/lastpicktime") // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
                 this.lastPickTime = new Date(data); // set the data we return back into our any array
+            }));
+    }
+
+    loadTotalTeams(): Observable<void> {
+        return this.http.get<number>("/api/presenter/totalTeams") 
+            .pipe(map(data => {
+                this.totalTeams = data;
             }));
     }
 }

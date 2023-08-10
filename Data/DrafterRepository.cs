@@ -111,6 +111,40 @@ namespace Drafter.Data
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<PlayerDto>> GetTeamPresenter(int drafterPlayerId)
+        {
+            _logger.LogInformation("Get current team was called");
+
+            FantasyTeam MyTeam = await _ctx.FantasyTeams
+                .Where(u => u.Id == drafterPlayerId)
+                .FirstOrDefaultAsync();
+
+            return await _ctx.Players
+                .Where(u => u.FantasyTeam == MyTeam)
+                .OrderByDescending(p => p.FantasyPointsAverage)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsAverage, NBATeam = p.NBATeam }) // this should be changed to be forecasted average
+                .ToListAsync();
+        }
+
+        public async Task<String> GetTeamNamePresenter(int drafterPlayerId)
+        {
+            _logger.LogInformation("Get current team name was called");
+
+            return await _ctx.FantasyTeams
+                .Where(u => u.Id == drafterPlayerId)
+                .Select(p => new String(p.Name))
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<int> GetTotalTeamsPresenter()
+        {
+            _logger.LogInformation("Get total teams called");
+
+            return await _ctx.FantasyTeams
+                .Where(u => u.Id != 1)
+                .CountAsync();
+        }
+
         public bool SaveAll() // CHECKS FOR SUCCESS.
         {
             return _ctx.SaveChanges() > 0;
