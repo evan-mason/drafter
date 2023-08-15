@@ -19,6 +19,8 @@ import PresenterTime from './views/presenterTime.component';
 import PresenterVideoPlayer from './views/presenterVideoPlayer.component';
 import AllTeamsView from './views/allTeamsView.component';
 import PresenterLastPick from './views/presenterLastPick.component';
+import PresenterNextBests from './views/presenterNextBests.component';
+import presenterViewer from './views/presenterViewer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import PresenterLastPick from './views/presenterLastPick.component';
         PresenterPickView,
         PresenterTime,
         PresenterVideoPlayer,
-        PresenterLastPick
+        PresenterLastPick,
+        PresenterNextBests,
+        presenterViewer
   ],
   imports: [
         BrowserModule,

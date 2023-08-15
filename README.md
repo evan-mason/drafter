@@ -49,12 +49,14 @@ screens PRESENTER Phase 3
 -- play sound on pick. draft sound. https://stackoverflow.com/questions/44883501/play-sound-in-angular-4
 -- Summaries include best team, worst pick, best shooters, tallest team, etc etc. Phase 4
 
-screens for above
--- last picked player stats
--- random NBA QnA with hiding answers that reveal
--- random NBA trivia
--- best at posistion
--- next picking team maybe?
+screens for above - we create a html template that we can grab. Making these screens fully dynamic and less hard coded for trivia/info pages. Phase 4
+https://stackoverflow.com/questions/46327430/retrieve-html-from-server-and-display-with-angular
+https://stackoverflow.com/questions/46798683/css-hide-element-after-5-seconds-show-it
+-- last picked player stats {player.getlastplayer} on rotate
+-- random NBA QnA with hiding answers that reveal {post.title} {post.content} on rotate
+   random NBA trivia {post.title} {post.content} {post.reveal} on rotate bundled in with above.
+-- best at posistion on rotate
+-- next picking team maybe? on rotate
 
 allow setting up of full application under one page infrastructure. Phase 5
 -- team/draft create is removed from top menu

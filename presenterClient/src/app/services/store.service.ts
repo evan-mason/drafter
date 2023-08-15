@@ -15,6 +15,7 @@ export class Store {
     public previousPick: any;
     public currentTeamName: string = "";
     public currentTeam: PlayerDto[] = [];
+    public nextBests: PlayerDto[] = [];
     public lastPickTime: any;
     //public nextPick: PickDto[] = [];
     public picks: PickDto[] = [];
@@ -44,6 +45,53 @@ export class Store {
                 this.picks = data; // set the data we return back into our any array
                 return
             }));
+    }
+
+    loadNextBests() {
+        const nextBests: PlayerDto[] = [
+            // generate list of 5 sample PlayerDto's
+            {
+                id: 1,
+                name: "Kyrie",
+                position: "C",
+                nbaTeam: "mavs",
+                fantasyPoints: 20,
+                fantasyTeam: "kevy1"
+            },
+            {
+                id: 2,
+                name: "Kobe",
+                position: "C",
+                nbaTeam: "mavs",
+                fantasyPoints: 20,
+                fantasyTeam: "kevy1"
+            },
+            {
+                id: 3,
+                name: "Lebron",
+                position: "C",
+                nbaTeam: "mavs",
+                fantasyPoints: 20,
+                fantasyTeam: "kevy1"
+            },
+            {
+                id: 4,
+                name: "Kyrie",
+                position: "C",
+                nbaTeam: "mavs",
+                fantasyPoints: 20,
+                fantasyTeam: "kevy1"
+            },
+            {
+                id: 5,
+                name: "Kyrie",
+                position: "C",
+                nbaTeam: "mavs",
+                fantasyPoints: 20,
+                fantasyTeam: "kevy1"
+            }
+        ]
+        this.nextBests = nextBests;
     }
 
     loadPreviousPick(){ // placeholder for now
