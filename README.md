@@ -1,8 +1,8 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.8.0
-Presenter page with working videa that's fullscreen and disabled. Rotating teams added and working. Picks to come shown. Just needs next availiable and recommending.
+version 0.8.1
+Presenter page has working viewer now. Just needs next availiable and recommending.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
@@ -10,12 +10,11 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- Deployment // Done
 -- Interval Refresh // 5 seconds but can be improved.
--- Player Pictures // DONE
--- Triple Double etc addition
--- Pick Rater and f you button
+-- Triple Double etc addition to stats calculations
 -- Next best pick Algorithm
+-- fix the pages in the table resetting on refresh
+-- hook up drafting function to the presenter page, which then sets the video into motion. 
 -- Phase 3
 
 Design
@@ -113,7 +112,6 @@ Improvements to make
 - tickTock() in the timer, we convert to seconds from milliseconds then back to seconds again. This is stupid.
 
 IMPORTANT FIXES TO MAKE
-- Pagination resets if I attempt to reload the player picker. So I have disabled it for now.
 - You can currently steal other users picks, as well as you can redraft your own players and the picks will be deleted
 
 IMPORTANT COMMANDS

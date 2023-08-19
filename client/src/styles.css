@@ -34,3 +34,8 @@ dashboard-timeline {
 mat-card-content.mat-mdc-card-content {
     white-space: normal !important;
 }
+
+.mat-mdc-card-sm-image {
+    width: 110px !important;
+    height: 80px;
+}

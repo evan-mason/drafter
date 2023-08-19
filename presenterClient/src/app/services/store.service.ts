@@ -1,6 +1,6 @@
 ﻿import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { map } from "rxjs/operators";
 import { PlayerDto } from "../shared/PlayerDto";
 import { PickDto } from "../shared/PickDto";
@@ -20,6 +20,12 @@ export class Store {
     //public nextPick: PickDto[] = [];
     public picks: PickDto[] = [];
     public totalTeams: number = 0;
+    // for viewer
+    public currentPage: number = 0;
+    public totalPages: number = 6;
+    private pageSub$ = new Subject<number>();
+    public page$ = this.pageSub$.asObservable();
+    
 
     loadTeam(teamNumber: number): Observable<void> {
         let queryParams = new HttpParams().append("id", teamNumber);
@@ -120,5 +126,18 @@ export class Store {
             .pipe(map(data => {
                 this.totalTeams = data;
             }));
+    }
+
+    nextPage() { // I can pull this out of here if I like, but I think I'm going to want to emit next from the store in some other area.
+        this.currentPage++;
+        if (this.currentPage === this.totalPages) { // this is because if 2 is the first team 3 is the second team and so on. total teams is one more than the count.
+            this.currentPage = 0;
+        }
+        this.pageSub$.next(this.currentPage);
+    }
+
+    setPage(pageNumber : number) { // unused but might be cool to use somewhere. Could have a secret page 5 or something.
+        this.currentPage = pageNumber;
+        this.pageSub$.next(this.currentPage);
     }
 }
