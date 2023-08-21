@@ -15,8 +15,7 @@ export default class PlayerPickerView implements OnInit{
     playerDto!: PlayerDto;
     tableTypes!: any[];
     tableType: any = 'Averages';
-    allPlayers: Boolean = true;
-    playerStatus!: any[];
+    playerStatuses!: any[];
 
     constructor(public store: Store, private http: HttpClient) {
 
@@ -40,7 +39,7 @@ export default class PlayerPickerView implements OnInit{
             { name: "Forecasted", value: "Forecasted" }
         ]
 
-        this.playerStatus = [
+        this.playerStatuses = [
             { label: "All", value: true },
             { label: "Available", value: false }
         ]
@@ -61,7 +60,6 @@ export default class PlayerPickerView implements OnInit{
     }
 
     onRowUnselect($event: any) { // not implemented
-        console.log(this.allPlayers);
     }
 
     onRowSelect(event: any) {

@@ -14,7 +14,7 @@
         <div class="flex">
             <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1, searchText)"></button>
             <p-selectButton [options]="tableTypes" [(ngModel)]="tableType" [multiple]="false" optionLabel="name" optionValue="value" (onChange)="onTableTypeChange()"></p-selectButton>
-            <p-selectButton [options]="playerStatus" [(ngModel)]="allPlayers" optionLabel="label" optionValue="value"></p-selectButton>
+            <p-selectButton [options]="playerStatuses" [(ngModel)]="store.allPlayers" optionLabel="label" optionValue="value" (onChange)="onTableTypeChange()"></p-selectButton>
             <span class="p-input-icon-left ml-auto">
                 <i class="pi pi-search"></i>
                 <input pInputText #searchText type="text" (input)="dt1.filterGlobal(getEventValue($event), 'contains')" placeholder="Search keyword" />

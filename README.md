@@ -11,10 +11,12 @@ I think I will probe to check for changes every 5 seconds as this is the easiest
 
 Next Features Priority
 -- Interval Refresh // 5 seconds but can be improved.
--- Triple Double etc addition to stats calculations
+-- Triple Double etc addition to stats calculations.
 -- Next best pick Algorithm
--- fix the pages in the table resetting on refresh
+-- fix the pages in the table resetting on refresh.
 -- hook up drafting function to the presenter page, which then sets the video into motion. 
+-- remove placeholder objects for calls to the database repository.
+-- make with projections work. See rotowire for paid projections.
 -- Phase 3
 
 Design

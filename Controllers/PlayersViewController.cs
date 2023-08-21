@@ -36,6 +36,24 @@ namespace Drafter.Controllers
             }
         }
 
+        [HttpGet("freeplayersaverage")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetFreePlayersAverageDashboard()
+        {
+
+            try
+            {
+                var result = await _repository.GetFreePlayersDashboard();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
         [HttpGet("playerstotal")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -45,6 +63,24 @@ namespace Drafter.Controllers
             try
             {
                 var result = await _repository.GetAllPlayersDashboardTotal();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
+        [HttpGet("freeplayerstotal")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetFreePlayersTotalDashboard()
+        {
+
+            try
+            {
+                var result = await _repository.GetFreePlayersDashboardTotal();
                 return Ok(result);
             }
             catch (Exception ex)

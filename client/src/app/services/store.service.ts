@@ -22,6 +22,7 @@ export class Store {
     public picks: PickDto[] = [];
     public selectedPlayer: any;
     public tableType: any = 'Averages';
+    public allPlayers: Boolean = true;
 
     loadPlayers(): Observable<void> {
         return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
@@ -33,19 +34,40 @@ export class Store {
 
     loadPlayersWithType(): Observable<void> { // This will get a differing point value for overall table points.
         if (this.tableType === "Totals") {
-            return this.http.get<[]>("/api/playersview/playerstotal") // we use a get from the players url we expect, and are saying we expect an array type back
-                .pipe(map(data => {
-                    this.players = data; // set the data we return back into our any array
-                    return
-                }));
+            if (this.allPlayers === true) {
+                return this.http.get<[]>("/api/playersview/playerstotal") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        console.log("Selected all players with totals")
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
+            else {
+                return this.http.get<[]>("/api/playersview/freeplayerstotal") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        console.log("Selected only free players with totals")
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
         }
-
         else {
-            return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
-                .pipe(map(data => {
-                    this.players = data; // set the data we return back into our any array
-                    return
-                }));
+            if (this.allPlayers === true) {
+                return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        console.log("Selected all players with averages")
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
+            else {
+                return this.http.get<[]>("/api/playersview/freeplayersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        console.log("Selected only free players with averages")
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
         }
     }
 
@@ -128,6 +150,7 @@ export class Store {
             this.loadPicks().subscribe();
             this.loadTimeline().subscribe();
             this.loadTimer().subscribe();
+            console.log(this.allPlayers + " if all players is selected or not");
 
         }, 5000);
     }
