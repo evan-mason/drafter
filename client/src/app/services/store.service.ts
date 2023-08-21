@@ -37,7 +37,6 @@ export class Store {
             if (this.allPlayers === true) {
                 return this.http.get<[]>("/api/playersview/playerstotal") // we use a get from the players url we expect, and are saying we expect an array type back
                     .pipe(map(data => {
-                        console.log("Selected all players with totals")
                         this.players = data; // set the data we return back into our any array
                         return
                     }));
@@ -45,7 +44,6 @@ export class Store {
             else {
                 return this.http.get<[]>("/api/playersview/freeplayerstotal") // we use a get from the players url we expect, and are saying we expect an array type back
                     .pipe(map(data => {
-                        console.log("Selected only free players with totals")
                         this.players = data; // set the data we return back into our any array
                         return
                     }));
@@ -55,7 +53,6 @@ export class Store {
             if (this.allPlayers === true) {
                 return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
                     .pipe(map(data => {
-                        console.log("Selected all players with averages")
                         this.players = data; // set the data we return back into our any array
                         return
                     }));
@@ -63,7 +60,6 @@ export class Store {
             else {
                 return this.http.get<[]>("/api/playersview/freeplayersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
                     .pipe(map(data => {
-                        console.log("Selected only free players with averages")
                         this.players = data; // set the data we return back into our any array
                         return
                     }));
@@ -150,7 +146,6 @@ export class Store {
             this.loadPicks().subscribe();
             this.loadTimeline().subscribe();
             this.loadTimer().subscribe();
-            console.log(this.allPlayers + " if all players is selected or not");
 
         }, 5000);
     }

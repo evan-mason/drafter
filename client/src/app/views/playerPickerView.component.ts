@@ -22,7 +22,7 @@ export default class PlayerPickerView implements OnInit{
     }
 
     ngOnInit(): void {
-        this.store.loadPlayers()
+        this.store.loadPlayersWithType()
             .subscribe();
 
         this.positionOptions = [
