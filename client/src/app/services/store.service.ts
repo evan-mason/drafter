@@ -22,7 +22,7 @@ export class Store {
     public picks: PickDto[] = [];
     public selectedPlayer: any;
     public tableType: any = 'Averages';
-    public allPlayers: Boolean = true;
+    public allPlayers: Boolean = false;
 
     loadPlayers(): Observable<void> {
         return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
