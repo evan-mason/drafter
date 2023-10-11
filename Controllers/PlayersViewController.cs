@@ -90,6 +90,78 @@ namespace Drafter.Controllers
             }
         }
 
+        [HttpGet("playersforecastedaverage")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersForecastedAverageDashboard()
+        {
+
+            try
+            {
+                var result = await _repository.GetAllPlayersForecastedDashboard();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
+        [HttpGet("freeplayersforecastedaverage")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetFreePlayersForecastedAverageDashboard()
+        {
+
+            try
+            {
+                var result = await _repository.GetFreePlayersForecastedDashboard();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
+        [HttpGet("playersforecastedtotal")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersForecastedTotalDashboard()
+        {
+
+            try
+            {
+                var result = await _repository.GetAllPlayersDashboardForecastedTotal();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
+        [HttpGet("freeplayersforecastedtotal")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetFreePlayersForecastedTotalDashboard()
+        {
+
+            try
+            {
+                var result = await _repository.GetFreePlayersDashboardForecastedTotal();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
         [HttpGet("selectedplayer")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]

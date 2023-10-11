@@ -47,12 +47,33 @@ namespace Drafter.Data
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<PlayerDto>> GetAllPlayersForecastedDashboard()
+        {
+            _logger.LogInformation("Get all players was called");
+            return await _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .OrderByDescending(p => p.FantasyPointsPredictedAverage)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PlayerDto>> GetFreePlayersForecastedDashboard()
+        {
+            _logger.LogInformation("Get all players was called");
+            return await _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .Where(p => p.FantasyTeam.Name == "Free Agents")
+                .OrderByDescending(p => p.FantasyPointsPredictedAverage)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<PlayerDto>> GetAllPlayersDashboardTotal()
         {
             _logger.LogInformation("Get all players was called");
             return await _ctx.Players
                 .Include(p => p.FantasyTeam)
-                .OrderByDescending(p => p.FantasyPointsAverage)
+                .OrderByDescending(p => p.FantasyPointsTotal)
                 .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsTotal, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
                 .ToListAsync();
         }
@@ -63,8 +84,29 @@ namespace Drafter.Data
             return await _ctx.Players
                 .Include(p => p.FantasyTeam)
                 .Where(p => p.FantasyTeam.Name == "Free Agents")
-                .OrderByDescending(p => p.FantasyPointsAverage)
+                .OrderByDescending(p => p.FantasyPointsTotal)
                 .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsTotal, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PlayerDto>> GetAllPlayersDashboardForecastedTotal()
+        {
+            _logger.LogInformation("Get all players was called");
+            return await _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .OrderByDescending(p => p.FantasyPointsPredictedTotal)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedTotal, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<PlayerDto>> GetFreePlayersDashboardForecastedTotal()
+        {
+            _logger.LogInformation("Get all players was called");
+            return await _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .Where(p => p.FantasyTeam.Name == "Free Agents")
+                .OrderByDescending(p => p.FantasyPointsPredictedTotal)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedTotal, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
                 .ToListAsync();
         }
 
@@ -418,7 +460,7 @@ namespace Drafter.Data
 
             DrafterUser SelectingUser = await _userManager.FindByNameAsync(userName);
 
-            if (GetNextPick().FantasyTeam.DrafterUser == SelectingUser)
+            if (GetNextPick().FantasyTeam.DrafterUser == SelectingUser && player.FantasyTeam.Name != "Free Agents")
             {
                 if (player != null)
                 {

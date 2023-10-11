@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Drafter.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class inittty : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -286,8 +286,28 @@ namespace Drafter.Migrations
                     STLTotal = table.Column<int>(type: "int", nullable: false),
                     BLKTotal = table.Column<int>(type: "int", nullable: false),
                     TOVTotal = table.Column<int>(type: "int", nullable: false),
+                    PredictedGamesPL = table.Column<int>(type: "int", nullable: false),
+                    PredictedMinutes = table.Column<double>(type: "float", nullable: false),
+                    PredictedPoints = table.Column<double>(type: "float", nullable: false),
+                    PredictedTRB = table.Column<double>(type: "float", nullable: false),
+                    PredictedAST = table.Column<double>(type: "float", nullable: false),
+                    PredictedSTL = table.Column<double>(type: "float", nullable: false),
+                    PredictedBLK = table.Column<double>(type: "float", nullable: false),
+                    PredictedTOV = table.Column<double>(type: "float", nullable: false),
+                    PredictedFGM = table.Column<double>(type: "float", nullable: false),
+                    PredictedFGA = table.Column<double>(type: "float", nullable: false),
+                    PredictedThreePM = table.Column<double>(type: "float", nullable: false),
+                    PredictedThreePA = table.Column<double>(type: "float", nullable: false),
+                    PredictedFreeThrowPG = table.Column<double>(type: "float", nullable: false),
+                    PredictedFreeThrowPA = table.Column<double>(type: "float", nullable: false),
+                    PredictedORB = table.Column<double>(type: "float", nullable: false),
+                    PredictedDRB = table.Column<double>(type: "float", nullable: false),
+                    PredictedDD = table.Column<double>(type: "float", nullable: false),
+                    PredictedTD = table.Column<double>(type: "float", nullable: false),
                     FantasyPointsAverage = table.Column<double>(type: "float", nullable: false),
                     FantasyPointsTotal = table.Column<double>(type: "float", nullable: false),
+                    FantasyPointsPredictedAverage = table.Column<double>(type: "float", nullable: false),
+                    FantasyPointsPredictedTotal = table.Column<double>(type: "float", nullable: false),
                     PlayerPictureId = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>

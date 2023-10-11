@@ -49,6 +49,39 @@ export class Store {
                     }));
             }
         }
+        else if (this.tableType === "ForecastedAVG"){
+            if (this.allPlayers === true) {
+                return this.http.get<[]>("/api/playersview/playersforecastedaverage") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
+            else {
+                return this.http.get<[]>("/api/playersview/freeplayersforecastedaverage") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
+        }
+        else if (this.tableType === "Forecasted") {
+            if (this.allPlayers === true) {
+                return this.http.get<[]>("/api/playersview/playersforecastedtotal") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
+            else {
+                return this.http.get<[]>("/api/playersview/freeplayersforecastedtotal") // we use a get from the players url we expect, and are saying we expect an array type back
+                    .pipe(map(data => {
+                        this.players = data; // set the data we return back into our any array
+                        return
+                    }));
+            }
+        }
+
         else {
             if (this.allPlayers === true) {
                 return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back

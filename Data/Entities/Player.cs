@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,13 +64,36 @@ namespace Drafter.Data.Entities
         public int ASTTotal { get; set; }
         public int STLTotal { get; set; }
         public int BLKTotal { get; set; }
-        public int TOVTotal { get; set; }        
+        public int TOVTotal { get; set; }
 
         // Forecast to complete
+
+        public int PredictedGamesPL { get; set; }
+        public double PredictedMinutes { get; set; }
+        public double PredictedPoints { get; set; }
+        public double PredictedTRB { get; set; }
+        public double PredictedAST { get; set; }
+        public double PredictedSTL { get; set; }
+        public double PredictedBLK { get; set; }
+        public double PredictedTOV { get; set; }
+        public double PredictedFGM { get; set; }
+        public double PredictedFGA { get; set; }
+        public double PredictedThreePM { get; set; }
+        public double PredictedThreePA { get; set; }
+        public double PredictedFreeThrowPG { get; set; }
+        public double PredictedFreeThrowPA { get; set; }
+        public double PredictedORB { get; set; }
+        public double PredictedDRB { get; set; }
+        public double PredictedDD { get; set; }
+        public double PredictedTD { get; set; }
 
         // Fantasy Points
         public double FantasyPointsAverage { get; set; }
         public double FantasyPointsTotal { get; set; }
+
+        public double FantasyPointsPredictedAverage { get; set; }
+
+        public double FantasyPointsPredictedTotal { get; set; }
 
         // Other useful columns
         public string PlayerPictureId { get; set; }
@@ -107,32 +131,65 @@ namespace Drafter.Data.Entities
             player.STL = Convert.ToDouble(values[24]);
             player.BLK = Convert.ToDouble(values[25]);
             player.TOV = Convert.ToDouble(values[26]);
-            player.BLK = Convert.ToDouble(values[27]);
-            player.Points = Convert.ToDouble(values[29]);
-            player.minutesTotal = Convert.ToInt16(values[30]);
-            player.FGMTotal = Convert.ToInt16(values[31]);
-            player.FGATotal = Convert.ToInt16(values[32]);
-            player.ThreePMTotal = Convert.ToInt16(values[33]);
-            player.ThreePATotal = Convert.ToInt16(values[34]);
-            player.TwoPMTotal = Convert.ToInt16(values[35]);
-            player.TwoPATotal = Convert.ToInt16(values[36]);
-            player.FreeThrowTotal = Convert.ToInt16(values[37]);
-            player.FreeThrowPATotal = Convert.ToInt16(values[38]);
-            player.ORBTotal = Convert.ToInt16(values[39]);
-            player.DRBTotal = Convert.ToInt16(values[40]);
-            player.TRBTotal = Convert.ToInt16(values[41]);
-            player.ASTTotal = Convert.ToInt16(values[42]);
-            player.STLTotal = Convert.ToInt16(values[43]);
-            player.BLKTotal = Convert.ToInt16(values[44]);
-            player.TOVTotal = Convert.ToInt16(values[45]);
-            player.pointsTotal = Convert.ToInt16(values[47]);
-            player.PlayerPictureId =values[48];
+            player.Points = Convert.ToDouble(values[27]);
+            player.minutesTotal = Convert.ToInt16(values[28]);
+            player.FGMTotal = Convert.ToInt16(values[29]);
+            player.FGATotal = Convert.ToInt16(values[30]);
+            player.ThreePMTotal = Convert.ToInt16(values[31]);
+            player.ThreePATotal = Convert.ToInt16(values[32]);
+            player.TwoPMTotal = Convert.ToInt16(values[33]);
+            player.TwoPATotal = Convert.ToInt16(values[34]);
+            player.FreeThrowTotal = Convert.ToInt16(values[35]);
+            player.FreeThrowPATotal = Convert.ToInt16(values[36]);
+            player.ORBTotal = Convert.ToInt16(values[37]);
+            player.DRBTotal = Convert.ToInt16(values[38]);
+            player.TRBTotal = Convert.ToInt16(values[39]);
+            player.ASTTotal = Convert.ToInt16(values[40]);
+            player.STLTotal = Convert.ToInt16(values[41]);
+            player.BLKTotal = Convert.ToInt16(values[42]);
+            player.TOVTotal = Convert.ToInt16(values[43]);
+            player.pointsTotal = Convert.ToInt16(values[44]);
+            player.PlayerPictureId = values[45];
+            player.PredictedGamesPL = Convert.ToInt16(values[46]);
+            player.PredictedMinutes = Convert.ToDouble(values[47]);
+            player.PredictedPoints = Convert.ToDouble(values[48]);
+            player.PredictedTRB = Convert.ToDouble(values[49]);
+            player.PredictedAST = Convert.ToDouble(values[50]);
+            player.PredictedSTL = Convert.ToDouble(values[51]);
+            player.PredictedBLK = Convert.ToDouble(values[52]);
+            player.PredictedTOV = Convert.ToDouble(values[53]);
+            player.PredictedFGM = Convert.ToDouble(values[54]);
+            player.PredictedFGA = Convert.ToDouble(values[55]);
+            player.PredictedThreePM = Convert.ToDouble(values[56]);
+            player.PredictedThreePA = Convert.ToDouble(values[57]);
+            player.PredictedFreeThrowPG = Convert.ToDouble(values[58]);
+            player.PredictedFreeThrowPA = Convert.ToDouble(values[59]);
+            player.PredictedORB = Convert.ToDouble(values[60]);
+            player.PredictedDRB = Convert.ToDouble(values[61]);
+            player.PredictedDD = Convert.ToDouble(values[62]);
+            player.PredictedTD = Convert.ToDouble(values[63]);
+            if (player.PredictedGamesPL > 0 && player.PredictedDD > 0)
+            {
+                player.PredictedDD = Math.Round(player.PredictedDD / player.PredictedGamesPL, 4); ;
+            }
+            if (player.PredictedGamesPL > 0 && player.PredictedTD > 0)
+            {
+                player.PredictedTD = Math.Round(player.PredictedTD / player.PredictedGamesPL, 4); ;
+            }
             //player.DDTotal = Convert.ToInt16(values[49]);
             //player.TDTotal = Convert.ToInt16(values[50]);
             //player.QDTotal = Convert.ToInt16(values[51]);
-            player.FantasyPointsTotal = scoringConfig.Value.Point * player.Points;
             player.FantasyPointsTotal = getFantasyPoints(player, scoringConfig);
-            player.FantasyPointsAverage = player.FantasyPointsTotal / player.GamesPL;
+            if (player.FantasyPointsTotal == 0)
+            {
+                player.FantasyPointsAverage = 0;
+            }
+            else
+            {
+                player.FantasyPointsAverage = Math.Round(player.FantasyPointsTotal / player.GamesPL, 4);
+            }
+            player.FantasyPointsPredictedAverage = Math.Round(getFantasyPointsPrediction(player, scoringConfig), 4);
+            player.FantasyPointsPredictedTotal = Math.Round(player.FantasyPointsPredictedAverage * player.PredictedGamesPL, 4);
             player.FantasyTeam = freeAgentTeam;
             return player;
         }
@@ -154,6 +211,24 @@ namespace Drafter.Data.Entities
                 + (player.FreeThrowTotal * scoringConfig.Value.FTM)
                 + (player.FreeThrowPATotal * scoringConfig.Value.FTA)
                 + (player.ThreePMTotal * scoringConfig.Value.ThreePM);
+        }
+
+        public static double getFantasyPointsPrediction(Player player, IOptions<ScoringConfig> scoringConfig)
+        {
+            return (player.PredictedPoints * scoringConfig.Value.Point)
+                + (player.PredictedAST * scoringConfig.Value.Assist)
+                + (player.PredictedORB * scoringConfig.Value.OffensiveRebound)
+                + (player.PredictedDRB * scoringConfig.Value.DefensiveRebound)
+                + (player.PredictedBLK * scoringConfig.Value.Block)
+                + (player.PredictedSTL * scoringConfig.Value.Steal)
+                + (player.PredictedTOV * scoringConfig.Value.Turnover)
+                + (player.PredictedFGM * scoringConfig.Value.FGM)
+                + (player.PredictedFGA * scoringConfig.Value.FGA)
+                + (player.PredictedFreeThrowPG * scoringConfig.Value.FTM)
+                + (player.PredictedFreeThrowPA * scoringConfig.Value.FTA)
+                + (player.PredictedThreePM * scoringConfig.Value.ThreePM)
+                + (player.PredictedDD * scoringConfig.Value.DoubleDouble)
+                + (player.PredictedTD * scoringConfig.Value.TripleDouble);
         }
     }
 }

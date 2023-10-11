@@ -11,12 +11,10 @@ I think I will probe to check for changes every 5 seconds as this is the easiest
 
 Next Features Priority
 -- Interval Refresh // 5 seconds but can be improved.
--- Triple Double etc addition to stats calculations.
 -- Next best pick Algorithm
--- fix the pages in the table resetting on refresh.
+-- fix the pages in the table resetting on refresh. // Fix will be to make it just one page for now. This will have to be server side down the track to fix.
 -- hook up drafting function to the presenter page, which then sets the video into motion. 
 -- remove placeholder objects for calls to the database repository.
--- make with projections work. See rotowire for paid projections.
 -- Phase 3
 
 Design
@@ -112,9 +110,6 @@ Improvements to make
 - Fix timer when it goes into negative
 - interval refresh should only refresh if there's new data. I didn't manage to do this but it will help relieve the server if we can implment.
 - tickTock() in the timer, we convert to seconds from milliseconds then back to seconds again. This is stupid.
-
-IMPORTANT FIXES TO MAKE
-- You can currently steal other users picks, as well as you can redraft your own players and the picks will be deleted
 
 IMPORTANT COMMANDS
 

@@ -50,7 +50,8 @@
             <td class="text-right">{{ p.fantasyPoints |  number : '0.2-4'}}</td>
             <td>{{ p.nbaTeam }}</td>
             <td>{{ p.fantasyTeam }}</td>
-            <td><button type="button" pButton pRipple icon="pi pi-plus" (click)="draftPlayer(p)"></button>
+            <td>
+                <button type="button" pButton pRipple icon="pi pi-plus" [disabled]="p.fantasyTeam != 'Free Agents'" (click)="draftPlayer(p)"></button>
                 <!--
                     <form method="post">
                     <button id="draftButton" class="btn btn-success" name="Id" value="" [disabled]="">Draft</button>

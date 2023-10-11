@@ -1,8 +1,8 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.6.4
-Truncating numbers to 4 dp.
+version 0.8.1
+Presenter page has working viewer now. Just needs next availiable and recommending.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
@@ -10,12 +10,11 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- Deployment
--- Interval Refresh
--- Player Pictures // DONE
--- Triple Double etc addition
--- Pick Rater and f you button
+-- Interval Refresh // 5 seconds but can be improved.
 -- Next best pick Algorithm
+-- fix the pages in the table resetting on refresh.
+-- hook up drafting function to the presenter page, which then sets the video into motion. 
+-- remove placeholder objects for calls to the database repository.
 -- Phase 3
 
 Design
@@ -39,15 +38,42 @@ screens USER
 screens PRESENTER Phase 3
 -- Last pick video // not handled in carousel https://videogular.github.io/ngx-videogular/docs/ this will be a hidden full screen absolute position object. unhides on pick. hides and pauses after certain amount of minutes.
    we need to download the videos locally fml i wanna die, the server will serve them using the wwwroot.
+-- https://stackoverflow.com/questions/44301213/videogular2-set-next-video-and-play-automatically for setting up next video etc
 -- Last pick stats
 -- other random stats and current teams. 10 second cycle.
 -- Next team picking
--- F/A playerlist
 -- picks timeline
 -- Timer/Draft State
 -- End of draft summaries with videos
 -- play sound on pick. draft sound. https://stackoverflow.com/questions/44883501/play-sound-in-angular-4
 -- Summaries include best team, worst pick, best shooters, tallest team, etc etc. Phase 4
+
+screens for above - we create a html template that we can grab. Making these screens fully dynamic and less hard coded for trivia/info pages. Phase 4
+https://stackoverflow.com/questions/46327430/retrieve-html-from-server-and-display-with-angular
+https://stackoverflow.com/questions/46798683/css-hide-element-after-5-seconds-show-it
+-- last picked player stats {player.getlastplayer} on rotate
+-- random NBA QnA with hiding answers that reveal {post.title} {post.content} on rotate
+   random NBA trivia {post.title} {post.content} {post.reveal} on rotate bundled in with above.
+-- best at posistion on rotate
+-- next picking team maybe? on rotate
+
+allow setting up of full application under one page infrastructure. Phase 5
+-- team/draft create is removed from top menu
+-- login and register is removed from top menu to be handled by angular
+-- import CSV will seed the players rather than using the command line
+
+Phase 6 AI Adam silver
+-- use AI voice generator to create a voice that will announce the picks. 
+-- we can leverage a speech to text with a custom AI voice. Or. We can record snips and piece them together to create the total pick announcement
+-- P1 {With the {} pick, of the "Draft"}P2{the "team name " selects}P3{ "player" from}P4{the "NBA team"}
+-- The wording can be modified for the above as fit
+
+Phase 7, Android/IOS web app 
+-- make everything mobile friendly
+
+Phase 8 convert to native app
+-- https://betterprogramming.pub/how-to-convert-your-angular-application-to-a-native-mobile-app-android-and-ios-c212b38976df
+-- Make sure we are able to change the url string on load, so we can change the server ip where we need to. House to house etc.
 
 PRESENTER IDEA ARCHETECTURE
 -- It will be based on a carosel structure, hopefully css can control the animation to switch from slides to fades if need be. -- sorted
@@ -82,7 +108,8 @@ Improvements to make
 - Handle draftplayerdashboard exception when drafting a player that's not avaliable.
 - draftPlayer picking player does not reset time when done locally.
 - Fix timer when it goes into negative
-
+- interval refresh should only refresh if there's new data. I didn't manage to do this but it will help relieve the server if we can implment.
+- tickTock() in the timer, we convert to seconds from milliseconds then back to seconds again. This is stupid.
 
 IMPORTANT COMMANDS
 
@@ -101,3 +128,7 @@ Deployment
 Install .nethosting core hosting bundle 
 run app pool as physical windows USER
 go to C:\Windows\System32\inetserv\Config and change applicationHost.config file. Make applicationPoolDefaults setProfileEnvironment="true"
+
+follow https://app.pluralsight.com/course-player?clipId=911d1a47-1a19-4bee-90d7-050594ca2e74 as close as possible and look at event viewer logs whenever possible.
+
+use the SQL string when publishing

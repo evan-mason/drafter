@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Drafter.Migrations
 {
     [DbContext(typeof(DrafterContext))]
-    [Migration("20230807090307_init")]
-    partial class init
+    [Migration("20231011112352_inittty")]
+    partial class inittty
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -242,6 +242,12 @@ namespace Drafter.Migrations
                     b.Property<double>("FantasyPointsAverage")
                         .HasColumnType("float");
 
+                    b.Property<double>("FantasyPointsPredictedAverage")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FantasyPointsPredictedTotal")
+                        .HasColumnType("float");
+
                     b.Property<double>("FantasyPointsTotal")
                         .HasColumnType("float");
 
@@ -293,6 +299,60 @@ namespace Drafter.Migrations
                     b.Property<string>("Position")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("PredictedAST")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedBLK")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedDD")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedDRB")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedFGA")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedFGM")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedFreeThrowPA")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedFreeThrowPG")
+                        .HasColumnType("float");
+
+                    b.Property<int>("PredictedGamesPL")
+                        .HasColumnType("int");
+
+                    b.Property<double>("PredictedMinutes")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedORB")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedPoints")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedSTL")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedTD")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedTOV")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedTRB")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedThreePA")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PredictedThreePM")
+                        .HasColumnType("float");
 
                     b.Property<int>("Rank")
                         .HasColumnType("int");
