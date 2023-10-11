@@ -36,8 +36,8 @@ export default class PlayerPickerView implements OnInit{
         this.tableTypes = [
             { name: "Averages" , value: "Averages"},
             { name: "Totals" , value: "Totals"},
-            { name: "Forecasted AVG", value: "ForecastedAVG" },
-            { name: "Forecasted Total", value: "Forecasted" }
+            { name: "Forecasted Averages", value: "ForecastedAVG" },
+            { name: "Forecasted Totals", value: "Forecasted" }
         ]
 
         this.playerStatuses = [

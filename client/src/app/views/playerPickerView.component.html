@@ -12,7 +12,8 @@
 >
     <ng-template pTemplate="caption">
         <div class="flex">
-            <p-selectButton [options]="tableTypes" [(ngModel)]="tableType" [multiple]="false" optionLabel="name" optionValue="value" (onChange)="onTableTypeChange()"></p-selectButton>
+            <p-dropdown [options]="tableTypes" [(ngModel)]="tableType" optionLabel="name" optionValue="value" (onChange)="onTableTypeChange()"></p-dropdown>
+            <!--<p-selectButton [options]="tableTypes" [(ngModel)]="tableType" [multiple]="false" optionLabel="name" optionValue="value" (onChange)="onTableTypeChange()"></p-selectButton>-->
             <p-selectButton [options]="playerStatuses" [(ngModel)]="store.allPlayers" optionLabel="label" optionValue="value" (onChange)="onTableTypeChange()" style="margin-left: 10px;"></p-selectButton>
             <span class="p-input-icon-left ml-auto">
                 <i class="pi pi-search"></i>
