@@ -53,65 +53,19 @@ export class Store {
             }));
     }
 
-    loadNextBests() {
-        const nextBests: PlayerDto[] = [
-            // generate list of 5 sample PlayerDto's
-            {
-                id: 1,
-                name: "Kyrie",
-                position: "C",
-                nbaTeam: "mavs",
-                fantasyPoints: 20,
-                fantasyTeam: "kevy1"
-            },
-            {
-                id: 2,
-                name: "Kobe",
-                position: "C",
-                nbaTeam: "mavs",
-                fantasyPoints: 20,
-                fantasyTeam: "kevy1"
-            },
-            {
-                id: 3,
-                name: "Lebron",
-                position: "C",
-                nbaTeam: "mavs",
-                fantasyPoints: 20,
-                fantasyTeam: "kevy1"
-            },
-            {
-                id: 4,
-                name: "Kyrie",
-                position: "C",
-                nbaTeam: "mavs",
-                fantasyPoints: 20,
-                fantasyTeam: "kevy1"
-            },
-            {
-                id: 5,
-                name: "Kyrie",
-                position: "C",
-                nbaTeam: "mavs",
-                fantasyPoints: 20,
-                fantasyTeam: "kevy1"
-            }
-        ]
-        this.nextBests = nextBests;
+    loadNextBests() : Observable<void>  {
+        return this.http.get<[]>("/api/presenter/nextbestfive") // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.nextBests = data; // set the data we return back into our any array
+                return
+            }));
     }
 
-    loadPreviousPick(){ // placeholder for now
-
-        const previousPick: PlayerDto = {
-            id: 5,
-            name: "Kyrie",
-            position: "C",
-            nbaTeam: "mavs",
-            fantasyPoints: 20,
-            fantasyTeam: "kevy1"
-        }
-
-        this.previousPick = previousPick;
+    loadPreviousPick(): Observable < void> {
+            return this.http.get<any>("/api/presenter/getlastpicked") // we use a get from the players url we expect, and are saying we expect an array type back
+                .pipe(map(data => {
+                    this.previousPick = data; // set the data we return back into our any array
+                }));
     }
 
     loadTimer(): Observable<void> {

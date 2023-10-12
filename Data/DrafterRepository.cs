@@ -139,12 +139,32 @@ namespace Drafter.Data
                 .ToList();
         }
 
+        public async Task<IEnumerable<PlayerDto>> GetFreePlayersForecastedTotalPresenter()
+        {
+            _logger.LogInformation("Get all players was called");
+            return await _ctx.Players
+                .Include(p => p.FantasyTeam)
+                .Where(p => p.FantasyTeam.Name == "Free Agents")
+                .OrderByDescending(p => p.FantasyPointsPredictedAverage)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .Take(5)
+                .ToListAsync();
+        }
+
         public IEnumerable<Player> GetPlayerByPosition(string position)
         {
             return _ctx.Players
                 .Where(p => p.Position == position)
                 .OrderByDescending(p => p.FantasyPointsAverage)
                 .ToList();
+        }
+
+        public async Task<PlayerDto> GetLastPickedPresenter()
+        {
+            return await _ctx.Players
+                .OrderByDescending(p => p.DraftPosition) // hacked the id to be draft position. It's actually not but saves me creating another dto
+                .Select(p => new PlayerDto() { Id = p.DraftPosition, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedTotal, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<FantasyTeam>> GetMyTeam(string userName) // THIS ISN'T WORKING AS IT'S NOT BEING USED

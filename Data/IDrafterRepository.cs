@@ -1,5 +1,4 @@
 ﻿using Drafter.Data.Entities;
-using Drafter.ViewModels;
 
 namespace Drafter.Data
 {
@@ -15,6 +14,8 @@ namespace Drafter.Data
         Task<IEnumerable<PlayerDto>> GetFreePlayersDashboardTotal();
         Task<IEnumerable<PlayerDto>> GetAllPlayersDashboardForecastedTotal();
         Task<IEnumerable<PlayerDto>> GetFreePlayersDashboardForecastedTotal();
+        Task<IEnumerable<PlayerDto>> GetFreePlayersForecastedTotalPresenter();
+        Task<PlayerDto> GetLastPickedPresenter();
         Task<Player> GetSelectedPlayerDashboard(int id); 
         Task<IEnumerable<PlayerDto>> GetMyPlayersDashboard(string userName);
         Task<IEnumerable<PlayerDto>> GetTeamPresenter(int drafterPlayerId);

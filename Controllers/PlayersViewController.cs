@@ -23,10 +23,11 @@ namespace Drafter.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersAverageDashboard()
         {
-
+            _logger.LogInformation("Get players for dashboard was hit");
             try
             {
                 var result = await _repository.GetAllPlayersDashboard();
+                _logger.LogInformation("Get players for dashboard completed");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -41,10 +42,11 @@ namespace Drafter.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetFreePlayersAverageDashboard()
         {
-
+            _logger.LogInformation("Get players for dashboard was hit");
             try
             {
                 var result = await _repository.GetFreePlayersDashboard();
+                _logger.LogInformation("Get players for dashboard completed");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -59,10 +61,11 @@ namespace Drafter.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersTotalDashboard()
         {
-
+            _logger.LogInformation("Get players for dashboard was hit");
             try
             {
                 var result = await _repository.GetAllPlayersDashboardTotal();
+                _logger.LogInformation("Get players for dashboard completed");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -77,10 +80,11 @@ namespace Drafter.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetFreePlayersTotalDashboard()
         {
-
+            _logger.LogInformation("Get players for dashboard was hit");
             try
             {
                 var result = await _repository.GetFreePlayersDashboardTotal();
+                _logger.LogInformation("Get players for dashboard completed");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -95,10 +99,11 @@ namespace Drafter.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersForecastedAverageDashboard()
         {
-
+            _logger.LogInformation("Get players for dashboard was hit");
             try
             {
                 var result = await _repository.GetAllPlayersForecastedDashboard();
+                _logger.LogInformation("Get players for dashboard completed");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -113,10 +118,11 @@ namespace Drafter.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetFreePlayersForecastedAverageDashboard()
         {
-
+            _logger.LogInformation("Get players for dashboard was hit");
             try
             {
                 var result = await _repository.GetFreePlayersForecastedDashboard();
+                _logger.LogInformation("Get players for dashboard completed");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -131,10 +137,11 @@ namespace Drafter.Controllers
         [ProducesResponseType(400)]
         public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersForecastedTotalDashboard()
         {
-
+            _logger.LogInformation("Get players for dashboard was hit");
             try
             {
                 var result = await _repository.GetAllPlayersDashboardForecastedTotal();
+                _logger.LogInformation("Get players for dashboard completed");
                 return Ok(result);
             }
             catch (Exception ex)

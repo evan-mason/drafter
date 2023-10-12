@@ -10,7 +10,7 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- Interval Refresh // 5 seconds but can be improved.
+-- Interval Refresh // 5 seconds but can be improved. // buggy
 -- Next best pick Algorithm
 -- fix the pages in the table resetting on refresh. // Fix will be to make it just one page for now. This will have to be server side down the track to fix.
 -- hook up drafting function to the presenter page, which then sets the video into motion. 

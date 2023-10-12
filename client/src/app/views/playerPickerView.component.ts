@@ -16,9 +16,10 @@ export default class PlayerPickerView implements OnInit{
     tableTypes!: any[];
     tableType: any = 'Averages';
     playerStatuses!: any[];
+    first = 0;
+    firstSaved = 0;
 
     constructor(public store: Store, private http: HttpClient) {
-
     }
 
     ngOnInit(): void {
@@ -69,6 +70,10 @@ export default class PlayerPickerView implements OnInit{
 
     onTableTypeChange() {
         this.store.setTableType(this.tableType);
+        this.store.loadPlayersWithType().subscribe();
+    }
+
+    refresh(): void {
         this.store.loadPlayersWithType().subscribe();
     }
 }

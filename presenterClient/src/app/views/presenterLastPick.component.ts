@@ -11,7 +11,6 @@ export default class PresenterLastPick implements OnInit{
     constructor(public store: Store) { }
 
     ngOnInit(): void {
-        this.store.loadPreviousPick()
-            //.subscribe();
+        this.store.loadPreviousPick().subscribe();
     }
 }

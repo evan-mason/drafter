@@ -11,7 +11,6 @@ export default class PresenterNextBests implements OnInit {
     constructor(public store: Store) { }
 
     ngOnInit(): void {
-        this.store.loadNextBests();
-        //.subscribe();
+        this.store.loadNextBests().subscribe();
     }
 }

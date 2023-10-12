@@ -121,5 +121,41 @@ namespace Drafter.Controllers
                 return BadRequest("Failed to get last pick time for dashboard");
             }
         }
+
+        [HttpGet("nextbestfive")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<DateTime>> GetNextBestFive()
+        {
+            try
+            {
+                var result = await _repository.GetFreePlayersForecastedTotalPresenter();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get last pick time for dashboard: {ex}");
+                return BadRequest("Failed to get last pick time for dashboard");
+            }
+        }
+
+        [HttpGet("getlastpicked")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetLastPick()
+        {
+
+            try
+            {
+                var result = await _repository.GetLastPickedPresenter();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get last picked: {ex}");
+                return BadRequest("Failed to get last picked:");
+            }
+        }
+
     }
 }

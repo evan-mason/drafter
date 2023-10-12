@@ -30,5 +30,8 @@ export default class DashboardTime implements OnInit{
         this.lastPickTime = new Date(this.store.lastPickTime);
         this.timerMilliseconds = this.lastPickTime - new Date().getTime() + 300000; //
         this.timer = Math.floor(this.timerMilliseconds / 1000); //convert to seconds // this is stupid because we are converting back into milliseconds in the html
+        if (this.timer < 300 && this.timer > 297) {
+            this.store.loadPlayersWithType().subscribe();
+        }
     }
 }
