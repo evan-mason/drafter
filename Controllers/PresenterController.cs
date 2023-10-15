@@ -157,5 +157,41 @@ namespace Drafter.Controllers
             }
         }
 
+        [HttpGet("video")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<int>> video()
+        {
+
+            try
+            {
+                var result = await _repository.GetLastPickedVideoNumber();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get last picked: {ex}");
+                return BadRequest("Failed to get last picked:");
+            }
+        }
+
+        [HttpGet("nextbestplayer")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetNextBestPlayer(int id)
+        {
+
+            try
+            {
+                var result = await _repository.GetNextBestForecastedPlayerPresenter();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get products: {ex}");
+                return BadRequest("Failed to get products");
+            }
+        }
+
     }
 }

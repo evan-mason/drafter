@@ -1,6 +1,7 @@
 ﻿using Drafter.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Numerics;
 
 namespace Drafter.Data
 {
@@ -147,6 +148,7 @@ namespace Drafter.Data
                 .Where(p => p.FantasyTeam.Name == "Free Agents")
                 .OrderByDescending(p => p.FantasyPointsPredictedAverage)
                 .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .Skip(1)
                 .Take(5)
                 .ToListAsync();
         }
@@ -217,6 +219,16 @@ namespace Drafter.Data
             return await _ctx.FantasyTeams
                 .Where(u => u.Id == drafterPlayerId)
                 .Select(p => new String(p.Name))
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<int> GetLastPickedVideoNumber()
+        {
+            // default return is 0 if not found
+            return await _ctx.Players
+                .Where(p => p.DraftTime < DateTime.Now && p.DraftTime > DateTime.Now.AddSeconds(-5))
+                .OrderByDescending(p => p.DraftPosition) // hacked the id to be draft position. It's actually not but saves me creating another dto
+                .Select(p => int.Parse(p.PlayerPictureId))
                 .FirstOrDefaultAsync();
         }
 
@@ -502,6 +514,17 @@ namespace Drafter.Data
                 NBATeam = player.NBATeam, 
                 FantasyTeam = player.FantasyTeam.Name 
             };
+        }
+
+        public async Task<PlayerDto> GetNextBestForecastedPlayerPresenter()
+        {
+            _logger.LogInformation("Get next best forecasted for presenter");
+            return await _ctx.Players
+                .Where(p => p.FantasyTeam.Name == "Free Agents")
+                .OrderByDescending(p => p.FantasyPointsPredictedAverage)
+                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
+                .Take(1)
+                .FirstOrDefaultAsync();
         }
     }
 }

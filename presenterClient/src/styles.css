@@ -37,3 +37,9 @@ presenter-video-player {
     left: 0;
     top: 0;
 }
+
+.presenter-viewer {
+    position: relative;
+    width: 70vw;
+    height: 70vh;
+}

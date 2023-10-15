@@ -17,7 +17,7 @@ export class Store {
     public currentTeam: PlayerDto[] = [];
     public nextBests: PlayerDto[] = [];
     public lastPickTime: any;
-    //public nextPick: PickDto[] = [];
+    public nextBestPlayer: any;
     public picks: PickDto[] = [];
     public totalTeams: number = 0;
     // for viewer
@@ -25,6 +25,8 @@ export class Store {
     public totalPages: number = 6;
     private pageSub$ = new Subject<number>();
     public page$ = this.pageSub$.asObservable();
+    //video stuff
+    public video: any = false;
     
 
     loadTeam(teamNumber: number): Observable<void> {
@@ -82,6 +84,14 @@ export class Store {
             }));
     }
 
+    loadNextBestPlayer(): Observable<void> {
+        return this.http.get<any>("/api/presenter/nextbestplayer") // we use a get from the player url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.nextBestPlayer = data; // set the data we return back into our any array
+            }));
+    }
+
+
     nextPage() { // I can pull this out of here if I like, but I think I'm going to want to emit next from the store in some other area.
         this.currentPage++;
         if (this.currentPage === this.totalPages) { // this is because if 2 is the first team 3 is the second team and so on. total teams is one more than the count.
@@ -93,5 +103,20 @@ export class Store {
     setPage(pageNumber : number) { // unused but might be cool to use somewhere. Could have a secret page 5 or something.
         this.currentPage = pageNumber;
         this.pageSub$.next(this.currentPage);
+    }
+
+    getVideo(): Observable<void> {
+        return this.http.get<number>("/api/presenter/video")
+            .pipe(map(data => {
+                if (data != 0)
+                {
+                    if (this.video != data) // if data has not been set yet.
+                    {
+                        this.video = data;
+                    }
+                    console.log("video URL is set");
+                    console.log(this.video);
+                }
+            }));
     }
 }

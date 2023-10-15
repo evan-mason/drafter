@@ -11,7 +11,7 @@ I think I will probe to check for changes every 5 seconds as this is the easiest
 
 Next Features Priority
 -- Interval Refresh // 5 seconds but can be improved. // buggy
--- Next best pick Algorithm
+-- Next best pick Algorithm. Predictions are set but alg isn't working
 -- fix the pages in the table resetting on refresh. // Fix will be to make it just one page for now. This will have to be server side down the track to fix.
 -- hook up drafting function to the presenter page, which then sets the video into motion. 
 -- remove placeholder objects for calls to the database repository.
@@ -132,3 +132,5 @@ go to C:\Windows\System32\inetserv\Config and change applicationHost.config file
 follow https://app.pluralsight.com/course-player?clipId=911d1a47-1a19-4bee-90d7-050594ca2e74 as close as possible and look at event viewer logs whenever possible.
 
 use the SQL string when publishing
+
+for presenter videos to function. We have to use https://simplewebserver.org/ set to host a folder of videos, with the videos being at the root directory. Hosted at :8088

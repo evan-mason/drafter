@@ -18,7 +18,6 @@ export class Store {
     public timeline: PlayerDto[] = [];
     public lastPickTime: any;
     public newPickTime: any;
-    //public nextPick: PickDto[] = [];
     public picks: PickDto[] = [];
     public selectedPlayer: any;
     public tableType: any = 'Averages';

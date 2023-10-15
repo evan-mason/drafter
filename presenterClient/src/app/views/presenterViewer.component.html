@@ -1,60 +1,63 @@
-﻿<div *ngIf="(store.page$ | async) === 0">
-    <h2>Trivia Question</h2>
-    <p>Who was the first player to win the MVP award with a losing record?</p>
-    <button>Michael Jordan</button>
-    <button>Allen Iverson</button>
-    <button>Lebron James</button>
-    <button>James Harden</button>
-    <button>Stephen Curry</button>
-    <button>Kevin Durant</button>
-</div>
-<div *ngIf="(store.page$ | async) === 1">
-    <h2>Trivia</h2>
-    <p>What is the name of the team that plays in the Staples Center?</p>
-    <button>Los Angeles Lakers</button>
-    <button>Los Angeles Clippers</button>
-    <button>Los Angeles Kings</button>
-    <button>Los Angeles Dodgers</button>
-</div>
-<div *ngIf="(store.page$ | async) === 2">
-    <h2>NBA Fact</h2>
-    <h4>The shortest and tallest players in the NBA once played for the same team</h4>
-    <p>Muggsy Bogues 5’3” once went through the legs of another player and is still a record-breaking height. This is what has made some of Bogues’ victories even more impressive. Playing with the Washington Bullets 1987 league alongside one of the tallest players in NBA history, Bogues made quite the statement next to Manute Bol. At 7’7’’, Bol was another impressive addition to the team, and the height difference of over two feet made entertaining and exciting viewing.
-    </p>
-</div>
-<div *ngIf="(store.page$ | async) === 3">
-    <h2>Last player picked</h2>
-    <h3>Kyrie Irving</h3>
-    <img src="https://cdn.nba.com/headshots/nba/latest/260x190/202681.png" />
-    <h5>2022-23 Stats</h5>
-    <p>PPG: 27.1</p>
-    <p>APG: 5.5</p>
-    <p>RPG: 5.1</p>
-    <p>SPG: 1.1</p>
-    <p>BPG: 0.8</p>
-    <p>MPG: 37.4</p>
-    <p>Irving was the first overall pick in the 2011 NBA draft by the Cleveland Cavaliers. He was named the NBA Rookie of the Year in 2012 and was named an NBA All-Star six times. He won an NBA championship with the Cavaliers in 2016.</p>
-</div>
-<div *ngIf="(store.page$ | async) === 4">
-    <h2>Next team picking roster</h2>
-    <h3>Team 1</h3>
-    <h4>PG: Stephen Curry</h4>
-    <h4>SG: Bradley Beal</h4>
-    <h4>SF: Kevin Durant</h4>
-    <h4>PF: Anthony Davis</h4>
-    <h4>C: Nikola Jokic</h4>
-    <h4>Reserve: Jimmy Butler</h4>
-    <h4>Reserve: Joel Embiid</h4>
-    <h4>Reserve: Donovan Mitchell</h4>
-    <h4>Reserve: Bam Adebayo</h4>
-    <h4>Reserve: Jayson Tatum</h4>
-    <h4>Reserve: Paul George</h4>
-    <h4>Reserve: Devin Booker</h4>
-</div>
-<div *ngIf="(store.page$ | async) === 5">
-    <h2>Next 5 best available PG's'</h2>
-    <h4>1. Damian Lillard</h4>
-    <h4>2. Luka Doncic</h4>
-    <h4>3. Trae Young</h4>
-    <h4>4. Chris Paul</h4>
+﻿<div class="presenter-viewer">
+    <div *ngIf="(store.page$ | async) === 0">
+        <h2>Trivia Question</h2>
+        <p>Who was the first player to win the MVP award with a losing record?</p>
+        <button>Michael Jordan</button>
+        <button>Allen Iverson</button>
+        <button>Lebron James</button>
+        <button>James Harden</button>
+        <button>Stephen Curry</button>
+        <button>Kevin Durant</button>
+    </div>
+    <div *ngIf="(store.page$ | async) === 1">
+        <h2>Trivia</h2>
+        <p>What is the name of the team that plays in the Staples Center?</p>
+        <button>Los Angeles Lakers</button>
+        <button>Los Angeles Clippers</button>
+        <button>Los Angeles Kings</button>
+        <button>Los Angeles Dodgers</button>
+    </div>
+    <div *ngIf="(store.page$ | async) === 2">
+        <h2>NBA Fact</h2>
+        <h4>The shortest and tallest players in the NBA once played for the same team</h4>
+        <p>
+            Muggsy Bogues 5’3” once went through the legs of another player and is still a record-breaking height. This is what has made some of Bogues’ victories even more impressive. Playing with the Washington Bullets 1987 league alongside one of the tallest players in NBA history, Bogues made quite the statement next to Manute Bol. At 7’7’’, Bol was another impressive addition to the team, and the height difference of over two feet made entertaining and exciting viewing.
+        </p>
+    </div>
+    <div *ngIf="(store.page$ | async) === 3">
+        <h2>Last player picked</h2>
+        <h3>Kyrie Irving</h3>
+        <img src="https://cdn.nba.com/headshots/nba/latest/260x190/202681.png" />
+        <h5>2022-23 Stats</h5>
+        <p>PPG: 27.1</p>
+        <p>APG: 5.5</p>
+        <p>RPG: 5.1</p>
+        <p>SPG: 1.1</p>
+        <p>BPG: 0.8</p>
+        <p>MPG: 37.4</p>
+        <p>Irving was the first overall pick in the 2011 NBA draft by the Cleveland Cavaliers. He was named the NBA Rookie of the Year in 2012 and was named an NBA All-Star six times. He won an NBA championship with the Cavaliers in 2016.</p>
+    </div>
+    <div *ngIf="(store.page$ | async) === 4">
+        <h2>Next team picking roster</h2>
+        <h3>Team 1</h3>
+        <h4>PG: Stephen Curry</h4>
+        <h4>SG: Bradley Beal</h4>
+        <h4>SF: Kevin Durant</h4>
+        <h4>PF: Anthony Davis</h4>
+        <h4>C: Nikola Jokic</h4>
+        <h4>Reserve: Jimmy Butler</h4>
+        <h4>Reserve: Joel Embiid</h4>
+        <h4>Reserve: Donovan Mitchell</h4>
+        <h4>Reserve: Bam Adebayo</h4>
+        <h4>Reserve: Jayson Tatum</h4>
+        <h4>Reserve: Paul George</h4>
+        <h4>Reserve: Devin Booker</h4>
+    </div>
+    <div *ngIf="(store.page$ | async) === 5">
+        <h2>Next 5 best available PG's'</h2>
+        <h4>1. Damian Lillard</h4>
+        <h4>2. Luka Doncic</h4>
+        <h4>3. Trae Young</h4>
+        <h4>4. Chris Paul</h4>
+    </div>
 </div>
