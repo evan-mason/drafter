@@ -1,8 +1,8 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.8.1
-Presenter page has working viewer now. Just needs next availiable and recommending.
+version 0.9.0
+Stats close to complete, videos working, presenter structure complete. Just have to push out the placeholders.
 
 Methodology
 I believe in the best possible configuration. When the website has made a change, it will use websockets to send the type of change made, player picked up etc. Then the appropiate components will be re-mounted. 
@@ -10,12 +10,17 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- Interval Refresh // 5 seconds but can be improved. // buggy
--- Next best pick Algorithm. Predictions are set but alg isn't working
--- fix the pages in the table resetting on refresh. // Fix will be to make it just one page for now. This will have to be server side down the track to fix.
--- hook up drafting function to the presenter page, which then sets the video into motion. 
--- remove placeholder objects for calls to the database repository.
+-- get the correct positions.
+-- put all double doubles in.
+-- test a full draft with 5 users. and videos.
+-- finalise build.
+-- setup 10 users according to draft day. -- LAUNCH
 -- Phase 3
+
+Bug Priority
+-- Interval Refresh // 5 seconds but can be improved. // buggy and not setup for picker on dashboard.
+-- Next best pick Algorithm. Predictions are set but alg isn't created yet. Just grabbing best according to predicted average.
+-- fix the pages in the table resetting on refresh. // Fix will be to make it just one page for now. This will have to be server side down the track to fix.
 
 Design
 
