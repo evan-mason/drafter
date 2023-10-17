@@ -5,4 +5,5 @@
     nbaTeam: string
     fantasyPoints: number
     fantasyTeam: string
+    playerPictureId: string
 }

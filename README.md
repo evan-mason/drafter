@@ -12,7 +12,8 @@ I think I will probe to check for changes every 5 seconds as this is the easiest
 Next Features Priority
 -- get the correct positions. -- Started
 -- test a full draft with 5 users. and videos.
--- finalise build.
+-- fix black screen on video that isn't there.
+-- finalise build.   
 -- setup 10 users according to draft day. -- LAUNCH
 -- View draft board popup.
 -- Phase 3

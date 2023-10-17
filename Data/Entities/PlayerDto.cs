@@ -14,5 +14,6 @@ namespace Drafter.Data.Entities
         public string NBATeam { get; set; }
         public double FantasyPoints { get; set; }
         public string FantasyTeam { get; set; }
+        public string PlayerPictureId { get; set; }
     }
 }

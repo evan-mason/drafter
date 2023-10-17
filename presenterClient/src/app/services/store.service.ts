@@ -9,7 +9,7 @@ import { PickDto } from "../shared/PickDto";
 export class Store {
 
     constructor(private http: HttpClient) {
-
+        this.refresh();
     }
 
     public previousPick: any;
@@ -119,4 +119,15 @@ export class Store {
                 }
             }));
     }
+
+    refresh(): void { // move logic to presenter when completed
+        setInterval(() => {
+            this.loadPicks().subscribe();
+            this.loadNextBestPlayer().subscribe();
+            this.loadNextBests().subscribe();
+            this.loadTimer().subscribe();
+            this.loadPreviousPick().subscribe();
+        }, 10000);
+    }
+
 }
