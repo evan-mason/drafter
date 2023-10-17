@@ -1,7 +1,7 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.9.0
+version 0.9.1
 Stats close to complete, videos working, presenter structure complete. Just have to push out the placeholders.
 
 Methodology
@@ -10,10 +10,17 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
+-- get the correct positions.
+-- put all double doubles in.
+-- test a full draft with 5 users. and videos.
+-- finalise build.
+-- setup 10 users according to draft day. -- LAUNCH
+-- Phase 3
+
+Bug Priority
 -- Interval Refresh // 5 seconds but can be improved. // buggy and not setup for picker on dashboard.
 -- Next best pick Algorithm. Predictions are set but alg isn't created yet. Just grabbing best according to predicted average.
 -- fix the pages in the table resetting on refresh. // Fix will be to make it just one page for now. This will have to be server side down the track to fix.
--- Phase 3
 
 Design
 

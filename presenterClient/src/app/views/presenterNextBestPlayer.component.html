@@ -1,9 +1,45 @@
-﻿<mat-card class="col-md-1" let store.nextBestPlayer>
-    <mat-card-title-group>
-        <div class="pick-border">
-            <mat-card-title> {{ store.nextBestPlayer.name }}({{ store.nextBestPlayer.position }})</mat-card-title>
-            <h2>MAKE THIS ONE BIGGER AND INTERESTING</h2>
-            <mat-card-subtitle>{{ store.nextBestPlayer.nbaTeam }} {{ store.nextBestPlayer.fantasyPoints }}</mat-card-subtitle>
-        </div>
-    </mat-card-title-group>
-</mat-card>
+﻿<div let store.nextBestPlayer>
+    <mat-card class="col-md-4">
+        <mat-card-title-group>
+            <img mat-card-sm-image
+                 src="https://cdn.nba.com/headshots/nba/latest/260x190/{{store.nextBestPlayer.playerPictureId}}.png" />
+            <div class="pick-border">
+                <mat-card-title> {{ store.nextBestPlayer.name }}({{ store.nextBestPlayer.position }}), {{ store.nextBestPlayer.nbaTeam }} </mat-card-title>
+            </div>
+        </mat-card-title-group>
+    </mat-card>
+    <mat-card class="col-md-2">
+        <mat-card-title-group>
+            <div class="pick-border">
+                <mat-card-title>2022-23 Average: </mat-card-title>
+                <mat-card-subtitle>{{ store.nextBestPlayer.fantasyPointsAverage }}</mat-card-subtitle>
+            </div>
+        </mat-card-title-group>
+    </mat-card>
+    <mat-card class="col-md-2">
+        <mat-card-title-group>
+            <div class="pick-border">
+                <mat-card-title>2022-23 Total: </mat-card-title>
+                <mat-card-subtitle>{{ store.nextBestPlayer.fantasyPointsTotal }}</mat-card-subtitle>
+            </div>
+        </mat-card-title-group>
+    </mat-card>
+    <mat-card class="col-md-2">
+        <mat-card-title-group>
+            <div class="pick-border">
+                <mat-card-title><i>Predicted</i></mat-card-title>
+                <mat-card-title>2023-24 Average: </mat-card-title>
+                <mat-card-subtitle>{{ store.nextBestPlayer.fantasyPointsPredictedAverage }}</mat-card-subtitle>
+            </div>
+        </mat-card-title-group>
+    </mat-card>
+    <mat-card class="col-md-2">
+        <mat-card-title-group>
+            <div class="pick-border">
+                <mat-card-title><i>Predicted</i></mat-card-title>
+                <mat-card-title>2023-24 Total: </mat-card-title>
+                <mat-card-subtitle>{{ store.nextBestPlayer.fantasyPointsPredictedTotal }}</mat-card-subtitle>
+            </div>
+        </mat-card-title-group>
+    </mat-card>
+</div>

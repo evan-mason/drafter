@@ -51,7 +51,27 @@ export interface Player {
     stlTotal: number
     blkTotal: number
     tovTotal: number
+    predictedGamesPL: number
+    predictedMinutes: number
+    predictedPoints: number
+    predictedTRB: number
+    predictedAST: number
+    predictedSTL: number
+    predictedBLK: number
+    predictedTOV: number
+    predictedFGM: number
+    predictedFGA: number
+    predictedThreePM: number
+    predictedThreePA: number
+    predictedFreeThrowPG: number
+    predictedFreeThrowPA: number
+    predictedORB: number
+    predictedDRB: number
+    predictedDD: number
+    predictedTD: number
     fantasyPointsAverage: number
     fantasyPointsTotal: number
+    fantasyPointsPredictedAverage: number
+    fantasyPointsPredictedTotal: number
     playerPictureId: string
 }

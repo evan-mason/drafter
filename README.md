@@ -1,7 +1,7 @@
 # drafter
 Angular C# MVC NBA Drafting application built for the boys.
 
-version 0.9.0
+version 0.9.1
 Stats close to complete, videos working, presenter structure complete. Just have to push out the placeholders.
 
 Methodology
@@ -15,6 +15,7 @@ Next Features Priority
 -- test a full draft with 5 users. and videos.
 -- finalise build.
 -- setup 10 users according to draft day. -- LAUNCH
+-- Create a draft board
 -- Phase 3
 
 Bug Priority
@@ -139,3 +140,15 @@ follow https://app.pluralsight.com/course-player?clipId=911d1a47-1a19-4bee-90d7-
 use the SQL string when publishing
 
 for presenter videos to function. We have to use https://simplewebserver.org/ set to host a folder of videos, with the videos being at the root directory. Hosted at :8088
+
+NOTES FOR 2023. -----------------
+
+--- All positions and double/triple doubles were manually added. May include slight errors.
+--- All videos and player images are based on NBA.com player ID's. These were all altered manually so these could be mismatched.
+--- Because NBA.com is the reference, I didn't have everyone.
+--- There's some players in here from 2022 that are irrelevant in 2023. Don't pick these cunts it's pretty stupid. The forecast should make you aware of whos no longer there.
+--- If you mis pick let me know asap. I can change it in the database somewhat quickly.
+--- TOTALS for 2022-23 may not be entirely accurate as double and triple doubles werenn't added for last year. Although unless it's the top 20% of players these values only provide minor changes to overall value
+
+--- The presenter is half finished in terms of what entertainment it was going to provide. So Ignore what's happening in the middle pls. I couldn't be fucked disabling it.
+

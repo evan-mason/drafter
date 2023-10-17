@@ -483,6 +483,7 @@ namespace Drafter.Data
         public async Task<PlayerDto> DraftPlayerDashboard(PlayerDto playerDto, string userName)
         {
             var player = _ctx.Players
+                .Include(p => p.FantasyTeam)
                 .SingleOrDefault(p => p.Id == playerDto.Id);
 
             var thisPick = await _ctx.Picks 
@@ -492,7 +493,7 @@ namespace Drafter.Data
 
             DrafterUser SelectingUser = await _userManager.FindByNameAsync(userName);
 
-            if (GetNextPick().FantasyTeam.DrafterUser == SelectingUser && player.FantasyTeam.Name != "Free Agents")
+            if (GetNextPick().FantasyTeam.DrafterUser == SelectingUser && player.FantasyTeam.Name == "Free Agents")
             {
                 if (player != null)
                 {
@@ -516,13 +517,12 @@ namespace Drafter.Data
             };
         }
 
-        public async Task<PlayerDto> GetNextBestForecastedPlayerPresenter()
+        public async Task<Player> GetNextBestForecastedPlayerPresenter()
         {
             _logger.LogInformation("Get next best forecasted for presenter");
             return await _ctx.Players
                 .Where(p => p.FantasyTeam.Name == "Free Agents")
                 .OrderByDescending(p => p.FantasyPointsPredictedAverage)
-                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam, FantasyTeam = p.FantasyTeam.Name })
                 .Take(1)
                 .FirstOrDefaultAsync();
         }

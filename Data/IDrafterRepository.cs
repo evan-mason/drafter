@@ -42,6 +42,6 @@ namespace Drafter.Data
         public void GenerateDraft();
         public Task CreateDraft(Draft newDraft, string username);
         Task<int> GetLastPickedVideoNumber();
-        Task<PlayerDto> GetNextBestForecastedPlayerPresenter();
+        Task<Player> GetNextBestForecastedPlayerPresenter();
     }
 }

@@ -178,7 +178,7 @@ namespace Drafter.Controllers
         [HttpGet("nextbestplayer")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetNextBestPlayer(int id)
+        public async Task<ActionResult<IEnumerable<Player>>> GetNextBestPlayer()
         {
 
             try
