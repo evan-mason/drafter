@@ -26,9 +26,7 @@ export default class PresenterVideoPlayer implements OnInit{
 
         setTimeout(() => this.api.getDefaultMedia().play(), 5000); // 5 seconds after window init, send play.
 
-        setTimeout(() => this.api.getDefaultMedia().pause(), 15000); // 15 seconds after window init send pause
-
-        setTimeout(() => this.store.video = false, 15000); //15 seconds after window init, reset videoUrl to false and back to waiting state.
+        setTimeout(() => this.store.video = false, 120000); //15 seconds after window init, reset videoUrl to false and back to waiting state.
     }
 
     playAudio() {

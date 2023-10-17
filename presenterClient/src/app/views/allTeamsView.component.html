@@ -2,17 +2,14 @@
 <p-table [value]="store.currentTeam" styleClass="p-datatable-gridlines"> 
  <ng-template pTemplate="header"> 
         <tr>
-            <th>My Position</th>
             <th>Name</th>
             <th>Position</th>
             <th>Points</th>
             <th>NBA Team</th>
         </tr>
     </ng-template>
-    <p>I would like the below to be forecasted points later on</p>
     <ng-template pTemplate="body" let-p>
         <tr>
-            <td>PG</td>
             <td>{{ p.name }}</td>
             <td>{{ p.position }}</td>
             <td>{{ p.fantasyPoints |  number : '0.0-4'}}</td>

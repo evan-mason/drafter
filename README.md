@@ -10,12 +10,11 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- get the correct positions.
--- put all double doubles in.
+-- get the correct positions. -- Started
 -- test a full draft with 5 users. and videos.
 -- finalise build.
 -- setup 10 users according to draft day. -- LAUNCH
--- Create a draft board
+-- View draft board popup.
 -- Phase 3
 
 Bug Priority
@@ -151,4 +150,11 @@ NOTES FOR 2023. -----------------
 --- TOTALS for 2022-23 may not be entirely accurate as double and triple doubles werenn't added for last year. Although unless it's the top 20% of players these values only provide minor changes to overall value
 
 --- The presenter is half finished in terms of what entertainment it was going to provide. So Ignore what's happening in the middle pls. I couldn't be fucked disabling it.
+
+
+
+-- DATA INPUT
+
+SORT BY MINIUTES PREDICTED
+POSITIONS - 120
 
