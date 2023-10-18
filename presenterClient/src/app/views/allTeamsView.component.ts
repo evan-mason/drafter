@@ -23,6 +23,9 @@ export default class AllTeamsView implements OnInit{
         this.store.loadTeam(2)
             .subscribe();
 
+        this.store.loadTeamName(2)
+            .subscribe();
+
         this.positionOptions = [
             { label: 'PG', value: 'PG' },
             { label: 'SG', value: 'SG' },

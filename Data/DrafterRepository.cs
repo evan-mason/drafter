@@ -319,7 +319,7 @@ namespace Drafter.Data
             return _ctx.Players
                 .Include(p => p.FantasyTeam)
                 .OrderBy(p => p.DraftPosition)
-                .Where(p => p.FantasyTeam.DrafterUser != FreeAgentUser) // shouldn't need calling but eh.
+                .Where(p => p.FantasyTeam.DrafterUser != FreeAgentUser && p.DraftTime < DateTime.Now.AddSeconds(-10)) // shouldn't need calling but eh.
                 .ToList();
         }
 

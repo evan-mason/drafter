@@ -4,7 +4,9 @@
             <img mat-card-sm-image
                  src="https://cdn.nba.com/headshots/nba/latest/260x190/{{store.nextBestPlayer.playerPictureId}}.png" />
             <div class="pick-border">
-                <mat-card-title> {{ store.nextBestPlayer.name }}({{ store.nextBestPlayer.position }}), {{ store.nextBestPlayer.nbaTeam }} </mat-card-title>
+                <mat-card-title> {{ store.nextBestPlayer.name }}</mat-card-title>
+                <mat-card-subtitle>({{ store.nextBestPlayer.position }})</mat-card-subtitle>
+                <mat-card-subtitle>{{ store.nextBestPlayer.nbaTeam }}</mat-card-subtitle>
             </div>
         </mat-card-title-group>
     </mat-card>
