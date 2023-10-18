@@ -10,14 +10,8 @@ I believe in the best possible configuration. When the website has made a change
 I think I will probe to check for changes every 5 seconds as this is the easiest way to implement it for now. a 5 second refresh is fine for me at this point.
 
 Next Features Priority
--- get the correct positions. -- Started
--- test a full draft with 5 users. and videos.
--- finalise build. - compile everything and fix odd bugs that exist.
--- setup 10 users according to draft day. -- LAUNCH
--- View draft board popup.
--- Add forecasted data to table on drafter sidebar
 
--- clean up dashboard draftboard implementation
+-- clean up dashboard draftboard implementation -- IT'S REALLY BAD AND CLUNKY
 -- Phase 3
 
 Bug Priority
