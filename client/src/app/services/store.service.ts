@@ -176,10 +176,10 @@ export class Store {
         let draftedFreeAgentIndex : number = this.players.findIndex(p => p.id == player.id)!;
         return this.http.post<PlayerDto>("/api/playersview/draftplayerdashboard", player) // we're getting the new player back, this is because we need it's new team.
             .pipe(map(playerDto => {
-                this.myPlayers.push(player); // puts the returned player into our list
-                this.players[draftedFreeAgentIndex] = playerDto; // puts the returned player into the main list with changed attributes
-                this.picks.shift(); // removes the first pick from the list
-                this.timeline.push(player); // adds the player to the timeline
+                //this.myPlayers.push(player); // puts the returned player into our list
+                //this.players[draftedFreeAgentIndex] = playerDto; // puts the returned player into the main list with changed attributes
+                //this.picks.shift(); // removes the first pick from the list
+                //this.timeline.push(player); // adds the player to the timeline
                 //this.lastPickTime(new Date()); // sets the last pick time to now although it doesn't work. time format is incorrect.
             }));
     }

@@ -24,13 +24,12 @@ export default class PresenterVideoPlayer implements OnInit{
 
         this.playAudio();
 
-        console.log("can play value below");
-
         setTimeout(() => this.api.getDefaultMedia().play(), 5000); // 5 seconds after window init, send play.
 
         setTimeout(() => {
             if (this.api.canPlay != true) {
                 this.store.video = false
+                console.log("CANNOT PLAY SO RESETTING");
             }
         }, 5100) // 5 seconds after window init, if video can't play, reset videoUrl to false and back to waiting state.
 
