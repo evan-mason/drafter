@@ -238,7 +238,7 @@ export class Store {
     }
 
     loadTeam1(): Observable<void> {
-        let queryParams = new HttpParams().append("id", 1);
+        let queryParams = new HttpParams().append("id", 2);
         return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
                 this.team1 = data; // set the data we return back into our any array
@@ -328,7 +328,7 @@ export class Store {
     }
 
     loadTeam1Name(): Observable<void> {
-        let queryParams = new HttpParams().append("id", 1);
+        let queryParams = new HttpParams().append("id", 2);
         return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
                 this.team1name = data; // set the data we return back into our any array
