@@ -48,3 +48,11 @@ presenter-video-player {
     width: 110px !important;
     height: 80px;
 }
+
+header {
+    display: none;
+}
+
+.row {
+    width: 100%;
+}

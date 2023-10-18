@@ -259,7 +259,7 @@ namespace Drafter.Controllers
         [HttpGet("timelinedashboard")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<ActionResult<Pick>> GetTimelineDashboard()
+        public async Task<ActionResult<PlayerDto>> GetTimelineDashboard()
         {
             _logger.LogInformation("Get timeline endpoint was hit");
             try

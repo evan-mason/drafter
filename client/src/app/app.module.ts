@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { RatingModule } from 'primeng/rating';
+import { DialogModule } from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
 import { Store } from './services/store.service';
@@ -45,7 +46,8 @@ import { ReversePipe } from './pipes/reversePipe';
         MatCardModule,
         BrowserAnimationsModule,
         SelectButtonModule,
-        RatingModule
+        RatingModule,
+        DialogModule
   ],
   providers: [Store],
   bootstrap: [AppComponent]

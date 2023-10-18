@@ -207,8 +207,8 @@ namespace Drafter.Data
 
             return await _ctx.Players
                 .Where(u => u.FantasyTeam == MyTeam)
-                .OrderByDescending(p => p.FantasyPointsAverage)
-                .Select(p => new PlayerDto() { Id = p.Id, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam }) 
+                .OrderBy(p => p.DraftPosition)
+                .Select(p => new PlayerDto() { Id = p.DraftPosition, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsPredictedAverage, NBATeam = p.NBATeam }) 
                 .ToListAsync();
         }
 
@@ -333,7 +333,7 @@ namespace Drafter.Data
                 .Include(p => p.FantasyTeam)
                 .OrderBy(p => p.DraftPosition)
                 .Where(p => p.FantasyTeam.DrafterUser != FreeAgentUser) // shouldn't need calling but eh.
-                .Select(p => new PlayerDto() { Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsAverage, NBATeam = p.NBATeam, PlayerPictureId = p.PlayerPictureId })
+                .Select(p => new PlayerDto() { Id = p.DraftPosition, Name = p.Name, Position = p.Position, FantasyPoints = p.FantasyPointsAverage, FantasyTeam = p.FantasyTeam.Name, NBATeam = p.NBATeam, PlayerPictureId = p.PlayerPictureId })
                 .ToList();
         }
 

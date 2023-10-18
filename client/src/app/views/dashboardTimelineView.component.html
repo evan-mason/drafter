@@ -3,12 +3,12 @@
         <img mat-card-sm-image
              src="https://cdn.nba.com/headshots/nba/latest/260x190/{{player.playerPictureId}}.png" />
         <mat-card-title-group>
-            <mat-card-title>Pick {{player.draftPosition}}:{{player.position}} {{ player.name }}. } </mat-card-title>
-            <mat-card-subtitle>{{ player.nbaTeam }}. {{ player.position }}.</mat-card-subtitle>
+            <mat-card-title>Pick {{ player.id}} by {{ player.fantasyTeam }}</mat-card-title>
+            <mat-card-subtitle>{{ player.name }} | {{ player.position }}.</mat-card-subtitle>
+            <mat-card-subtitle>{{ player.nbaTeam }}</mat-card-subtitle>
         </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-        {{ player.fantasyTeam }}
         <!--
         <p>Rate Pick: <p-rating [(ngModel)]="ratingValue" [cancel]="false"></p-rating><button id="rateButton" class="btn btn-primary" name="rateButton" value="@p.Id">Submit Rating</button></p>
         <button id="draftButton" class="btn btn-primary" name="Stolen" value="@p.Id">Stolen</button>

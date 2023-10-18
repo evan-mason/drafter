@@ -39,3 +39,15 @@ mat-card-content.mat-mdc-card-content {
     width: 110px !important;
     height: 80px;
 }
+
+button.p-ripple.p-element.p-button.p-component.p-button-icon-only {
+    padding-left: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 24px;
+    margin-left: 5px;
+}
+
+td {
+    height: 26px;
+}

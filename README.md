@@ -12,10 +12,12 @@ I think I will probe to check for changes every 5 seconds as this is the easiest
 Next Features Priority
 -- get the correct positions. -- Started
 -- test a full draft with 5 users. and videos.
--- fix black screen on video that isn't there.
--- finalise build.   
+-- finalise build. - compile everything and fix odd bugs that exist.
 -- setup 10 users according to draft day. -- LAUNCH
 -- View draft board popup.
+-- Add forecasted data to table on drafter sidebar
+
+-- clean up dashboard draftboard implementation
 -- Phase 3
 
 Bug Priority
@@ -157,5 +159,4 @@ NOTES FOR 2023. -----------------
 -- DATA INPUT
 
 SORT BY MINIUTES PREDICTED
-POSITIONS - 120
-
+POSITIONS - UPTO 330

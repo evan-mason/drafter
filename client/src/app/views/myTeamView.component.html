@@ -1,22 +1,269 @@
 <h2>My Team</h2>
-<p-table [value]="store.myPlayers" styleClass="p-datatable-gridlines"> 
- <ng-template pTemplate="header"> 
-     <tr>
-         <!--<th>My Position</th>-->
-         <th>Name</th>
-         <th>Position</th>
-         <th>Points</th>
-         <th>NBA Team</th>
-     </tr>
+<p-table [value]="store.myPlayers" styleClass="p-datatable-gridlines">
+    <ng-template pTemplate="header">
+        <tr>
+            <!--<th>My Position</th>-->
+            <th>Name</th>
+            <th>Position</th>
+            <th>Points</th>
+            <th>NBA Team</th>
+        </tr>
     </ng-template>
-    <p>I would like the below to be forecasted points later on</p>
     <ng-template pTemplate="body" let-p>
         <tr>
             <!--<td>PG (sortable)</td>-->
-         <td>{{ p.name }}</td>
-         <td>{{ p.position }}</td>
-         <td>{{ p.fantasyPoints |  number : '0.0-4'}}</td>
-         <td>{{ p.nbaTeam }}</td>
-     </tr>
+            <td>{{ p.name }}</td>
+            <td>{{ p.position }}</td>
+            <td>{{ p.fantasyPoints |  number : '0.0-4'}}</td>
+            <td>{{ p.nbaTeam }}</td>
+        </tr>
     </ng-template>
 </p-table>
+<p-button (click)="showDialog()" icon="pi pi-external-link" label="Show Entire Draft Board"></p-button>
+<p-dialog header="Draftboard" [(visible)]="visible" [style]="{width: '80vw'}" [maximizable]="true">
+
+    <div class="row">
+        <table class="col-md-1">
+            <tr>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 1</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 2</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 3</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 4</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 5</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 6</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 7</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 8</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 9</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 10</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 11</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 12</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 13</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>Round 14</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <p-table [value]="store.team1" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team1name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team2" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team2name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team3" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team3name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team4" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team4name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team5" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team5name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team6" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team6name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team7" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team7name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team8" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team8name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team9" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team9name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="store.team10" class="col-md-1">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>{{store.team10name}}</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-p>
+                <tr>
+                    <td>#{{p.id}}</td>
+                </tr>
+                <tr>
+                    <td style="font-size: x-small; height: 26px">{{p.name}}&nbsp;</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</p-dialog>

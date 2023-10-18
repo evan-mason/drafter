@@ -23,6 +23,29 @@ export class Store {
     public tableType: any = 'Averages';
     public allPlayers: Boolean = false;
 
+    //Draftboard bullshit
+    public team1!: any[];
+    public team2!: any[];
+    public team3!: any[];
+    public team4!: any[];
+    public team5!: any[];
+    public team6!: any[];
+    public team7!: any[];
+    public team8!: any[];
+    public team9!: any[];
+    public team10!: any[];
+
+    public team1name!: any[];
+    public team2name!: any[];
+    public team3name!: any[];
+    public team4name!: any[];
+    public team5name!: any[];
+    public team6name!: any[];
+    public team7name!: any[];
+    public team8name!: any[];
+    public team9name!: any[];
+    public team10name!: any[];
+
     loadPlayers(): Observable<void> {
         return this.http.get<[]>("/api/playersview/playersaverage") // we use a get from the players url we expect, and are saying we expect an array type back
             .pipe(map(data => {
@@ -185,4 +208,213 @@ export class Store {
     setTableType(tableType: string): void {
         this.tableType = tableType;
     }
+
+    // REMOVE BELOW FOR BETTER IMPLEMENTATION
+    refreshDraftboard(): void {
+        this.loadTeam1().subscribe();
+        this.loadTeam2().subscribe();
+        this.loadTeam3().subscribe();
+        this.loadTeam4().subscribe();
+        this.loadTeam5().subscribe();
+        this.loadTeam6().subscribe();
+        this.loadTeam7().subscribe();
+        this.loadTeam8().subscribe();
+        this.loadTeam9().subscribe();
+        this.loadTeam10().subscribe();
+    }
+
+    // REMOVE BELOW FOR BETTER IMPLEMENTATION
+    refreshDraftboardName(): void {
+        this.loadTeam1Name().subscribe();
+        this.loadTeam2Name().subscribe();
+        this.loadTeam3Name().subscribe();
+        this.loadTeam4Name().subscribe();
+        this.loadTeam5Name().subscribe();
+        this.loadTeam6Name().subscribe();
+        this.loadTeam7Name().subscribe();
+        this.loadTeam8Name().subscribe();
+        this.loadTeam9Name().subscribe();
+        this.loadTeam10Name().subscribe();
+    }
+
+    loadTeam1(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 1);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team1 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam2(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 3);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team2 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam3(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 4);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team3 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam4(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 5);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team4 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam5(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 6);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team5 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam6(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 7);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team6 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam7(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 8);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team7 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam8(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 9);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team8 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam9(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 10);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team9 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam10(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 11);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteampresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team10 = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam1Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 1);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team1name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam2Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 3);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team2name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam3Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 4);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team3name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam4Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 5);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team4name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam5Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 6);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team5name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam6Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 7);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team6name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam7Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 8);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team7name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam8Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 9);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team8name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam9Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 10);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team9name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
+    loadTeam10Name(): Observable<void> {
+        let queryParams = new HttpParams().append("id", 11);
+        return this.http.get<PlayerDto[]>("/api/presenter/getteamnamepresenter", { params: queryParams }) // we use a get from the players url we expect, and are saying we expect an array type back
+            .pipe(map(data => {
+                this.team10name = data; // set the data we return back into our any array
+                return
+            }));
+    }
+
 }
